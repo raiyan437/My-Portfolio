@@ -3,29 +3,29 @@
 const pathname = Astro.url.pathname;
 
 const isHome = pathname === '/' || pathname === '/index.html' || pathname === '/index';
-const isAbout = pathname.startsWith('/about');
-const isWorks = pathname.startsWith('/works');
-const isContact = pathname.startsWith('/contact');
+const isAbout = pathname.includes('/about');
+const isWorks = pathname.includes('/works');
+const isContact = pathname.includes('/contact');
 ---
 
 <header class="header-area">
     <div class="container">
         <div class="gx-row d-flex align-items-center justify-content-between">
-            <a href="/" class="logo">
-                <img src="/assets/logo.png" alt="Logo">
+            <a href="./" class="logo">
+                <img src="./assets/logo.png" alt="Logo">
             </a>
 
             <!-- Navigation Menu -->
             <nav class="navbar" id="navbar">
                 <ul class="menu" id="menu-main-menu">
-                    <li class={isHome ? "active" : ""}><a href="/">Home</a></li>
-                    <li class={isAbout ? "active" : ""}><a href="/about">About</a></li>
-                    <li class={isWorks ? "active" : ""}><a href="/works">Works</a></li>
-                    <li class={isContact ? "active" : ""}><a href="/contact">Contact</a></li>
+                    <li class={isHome ? "active" : ""}><a href="./">Home</a></li>
+                    <li class={isAbout ? "active" : ""}><a href="./about">About</a></li>
+                    <li class={isWorks ? "active" : ""}><a href="./works">Works</a></li>
+                    <li class={isContact ? "active" : ""}><a href="./contact">Contact</a></li>
                 </ul>
             </nav>
 
-            <a href="/contact" class="theme-btn">Let's talk</a>
+            <a href="./contact" class="theme-btn">Let's talk</a>
 
             <!-- Mobile Toggle Menu -->
             <div class="show-menu" id="show-menu">
