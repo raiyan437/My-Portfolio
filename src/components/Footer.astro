@@ -1,8 +1,9 @@
 ---
 // src/components/Footer.astro
 const pathname = Astro.url.pathname;
+const base = import.meta.env.BASE_URL;
 
-const isHome = pathname === '/' || pathname === '/index.html' || pathname === '/index';
+const isHome = pathname === base || pathname === `${base}index.html`;
 const isAbout = pathname.includes('/about');
 const isWorks = pathname.includes('/works');
 const isContact = pathname.includes('/contact');
@@ -11,15 +12,15 @@ const isContact = pathname.includes('/contact');
 <footer class="footer-area">
     <div class="container">
         <div class="footer-content text-center">
-            <a href="./" class="logo">
-                <img src="./assets/logo.png" alt="Logo">
+            <a href={base} class="logo">
+                <img src={base + "assets/logo.png"} alt="Logo">
             </a>
             
             <ul class="footer-menu">
-                <li class={isHome ? "active" : ""}><a href="./">Home</a></li>
-                <li class={isAbout ? "active" : ""}><a href="./about">About</a></li>
-                <li class={isWorks ? "active" : ""}><a href="./works">Works</a></li>
-                <li class={isContact ? "active" : ""}><a href="./contact">Contact</a></li>
+                <li class={isHome ? "active" : ""}><a href={base}>Home</a></li>
+                <li class={isAbout ? "active" : ""}><a href={base + "about"}>About</a></li>
+                <li class={isWorks ? "active" : ""}><a href={base + "works"}>Works</a></li>
+                <li class={isContact ? "active" : ""}><a href={base + "contact"}>Contact</a></li>
             </ul>
 
             <p class="copyright">

@@ -1,6 +1,7 @@
 ---
 // src/pages/works/practice-management-system.astro
 import BaseLayout from '../../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout title="Practice Management System - Project Details - Raiyan Uddin" bodyClass="main-workdetails-page">
@@ -13,9 +14,9 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
                     <div class="breadcrumb-content" data-aos="fade-up">
                         <p>ARCHITECTURE & SYSTEM - PRACTICE MANAGEMENT SYSTEM</p>
                         <h1 class="section-heading">
-                            <img src="/assets/star-2.png" alt="star">
+                            <img src={base + "assets/star-2.png"} alt="star">
                             Legal & professional practice <br>management portal
-                            <img src="/assets/star-2.png" alt="star">
+                            <img src={base + "assets/star-2.png"} alt="star">
                         </h1>
                     </div>
                 </div>
@@ -23,14 +24,14 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
             <!-- Hero Banner Image -->
             <div class="project-details-img" data-aos="zoom-in">
-                <img src="/assets/project3.jpeg" alt="Practice Management System Banner">
+                <img src={base + "assets/project3.jpeg"} alt="Practice Management System Banner">
             </div>
 
             <!-- Info Box Card -->
             <div data-aos="zoom-in">
                 <div class="d-flex project-infos-wrap shadow-box mb-24">
-                    <img src="/assets/bg1.png" alt="BG" class="bg-img">
-                    <img src="/assets/icon2.png" alt="Star" class="star-icon">
+                    <img src={base + "assets/bg1.png"} alt="BG" class="bg-img">
+                    <img src={base + "assets/icon2.png"} alt="Star" class="star-icon">
                     
                     <div class="project-details-info flex-1">
                         <h4>Practice Management System</h4>
@@ -47,9 +48,9 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
             <!-- Project Overview & Details Meta Box -->
             <div data-aos="zoom-in">
                 <div class="project-about-2 d-flex shadow-box mb-24">
-                    <img src="/assets/bg1.png" alt="BG" class="bg-img">
+                    <img src={base + "assets/bg1.png"} alt="BG" class="bg-img">
                     <div class="left-details">
-                        <img src="/assets/icon2.png" alt="Star" class="star-icon">
+                        <img src={base + "assets/icon2.png"} alt="Star" class="star-icon">
                         <ul>
                             <li>
                                 <p>Year</p>
@@ -78,7 +79,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
             <!-- Next Project Button -->
             <div class="container d-flex align-items-center justify-content-center mt-24 mb-24" data-aos="zoom-in">
-                <a href="/works/mrmax" class="big-btn shadow-box">Next Project</a>
+                <a href={base + "works/mrmax"} class="big-btn shadow-box">Next Project</a>
             </div>
 
         </div>

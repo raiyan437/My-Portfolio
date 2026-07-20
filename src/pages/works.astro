@@ -1,6 +1,7 @@
 ---
 // src/pages/works.astro
 import BaseLayout from '../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout title="Works - Gridx" bodyClass="main-workspage">
@@ -13,9 +14,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                     <!-- Mobile Heading Title -->
                     <div class="d-md-none mb-24" data-aos="fade-up">
                         <h1 class="section-heading">
-                            <img src="/assets/star-2.png" alt="img">
+                            <img src={base + "assets/star-2.png"} alt="img">
                             All Projects
-                            <img src="/assets/star-2.png" alt="img">
+                            <img src={base + "assets/star-2.png"} alt="img">
                         </h1>
                     </div>
 
@@ -23,18 +24,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                     <div class="mb-24">
                         <div data-aos="zoom-in">
                             <div class="project-item shadow-box">
-                                <a href="/works/mrmax" class="overlay-link"></a>
-                                <img src="/assets/bg1.png" alt="img" class="bg-img">
+                                <a href={base + "works/mrmax"} class="overlay-link"></a>
+                                <img src={base + "assets/bg1.png"} alt="img" class="bg-img">
                                 <div class="project-img">
-                                    <img class="proj-img" src="/assets/project1.jpeg" alt="MrMax">
+                                    <img class="proj-img" src={base + "assets/project1.jpeg"} alt="MrMax">
                                 </div>
                                 <div class="d-flex align-items-center justify-content-between">
                                     <div class="project-info">
                                         <p>WEB DESIGNING</p>
                                         <h2>MrMax</h2>
                                     </div>
-                                    <a href="/works/mrmax" class="project-btn">
-                                        <img src="/assets/icon.svg" alt="img">
+                                    <a href={base + "works/mrmax"} class="project-btn">
+                                        <img src={base + "assets/icon.svg"} alt="img">
                                     </a>
                                 </div>
                             </div>
@@ -45,18 +46,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                     <div class="mb-24">
                         <div data-aos="zoom-in">
                             <div class="project-item shadow-box">
-                                <a href="/works/qa-brains-java-playwright" class="overlay-link"></a>
-                                <img src="/assets/bg1.png" alt="img" class="bg-img">
+                                <a href={base + "works/qa-brains-java-playwright"} class="overlay-link"></a>
+                                <img src={base + "assets/bg1.png"} alt="img" class="bg-img">
                                 <div class="project-img">
-                                    <img class="proj-img" src="/assets/project2.jpeg" alt="QA Brains Automation Project">
+                                    <img class="proj-img" src={base + "assets/project2.jpeg"} alt="QA Brains Automation Project">
                                 </div>
                                 <div class="d-flex align-items-center justify-content-between">
                                     <div class="project-info">
                                         <p>Java & Playwright</p>
                                         <h2>QA Brains Automation Project</h2>
                                     </div>
-                                    <a href="/works/qa-brains-java-playwright" class="project-btn">
-                                        <img src="/assets/icon.svg" alt="img">
+                                    <a href={base + "works/qa-brains-java-playwright"} class="project-btn">
+                                        <img src={base + "assets/icon.svg"} alt="img">
                                     </a>
                                 </div>
                             </div>
@@ -67,18 +68,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                     <div class="mb-24">
                         <div data-aos="zoom-in">
                             <div class="project-item shadow-box">
-                                <a href="/works/qa-brains-ts-playwright" class="overlay-link"></a>
-                                <img src="/assets/bg1.png" alt="img" class="bg-img">
+                                <a href={base + "works/qa-brains-ts-playwright"} class="overlay-link"></a>
+                                <img src={base + "assets/bg1.png"} alt="img" class="bg-img">
                                 <div class="project-img">
-                                    <img class="proj-img" src="/assets/project4.jpeg" alt="QA Brains Automation Project">
+                                    <img class="proj-img" src={base + "assets/project4.jpeg"} alt="QA Brains Automation Project">
                                 </div>
                                 <div class="d-flex align-items-center justify-content-between">
                                     <div class="project-info">
                                         <p>Typescript & Playwright</p>
                                         <h2>QA Brains Automation Project</h2>
                                     </div>
-                                    <a href="/works/qa-brains-ts-playwright" class="project-btn">
-                                        <img src="/assets/icon.svg" alt="img">
+                                    <a href={base + "works/qa-brains-ts-playwright"} class="project-btn">
+                                        <img src={base + "assets/icon.svg"} alt="img">
                                     </a>
                                 </div>
                             </div>
@@ -91,9 +92,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                     <!-- Desktop Header Title -->
                     <div class="d-none d-md-block mb-24" data-aos="fade-up">
                         <h1 class="section-heading justify-content-start">
-                            <img src="/assets/star-2.png" alt="img">
+                            <img src={base + "assets/star-2.png"} alt="img">
                             All Projects
-                            <img src="/assets/star-2.png" alt="img">
+                            <img src={base + "assets/star-2.png"} alt="img">
                         </h1>
                     </div>
 
@@ -104,18 +105,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                             <div class="mb-24">
                                 <div data-aos="zoom-in" class="flex-1">
                                     <div class="project-item shadow-box">
-                                        <a href="/works/restful-booker" class="overlay-link"></a>
-                                        <img src="/assets/bg1.png" alt="img" class="bg-img">
+                                        <a href={base + "works/restful-booker"} class="overlay-link"></a>
+                                        <img src={base + "assets/bg1.png"} alt="img" class="bg-img">
                                         <div class="project-img">
-                                            <img class="proj-img" src="/assets/project3.jpeg" alt="Restful Booker">
+                                            <img class="proj-img" src={base + "assets/project3.jpeg"} alt="Restful Booker">
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between">
                                             <div class="project-info">
                                                 <p>API Automation</p>
                                                 <h2>Restful Booker</h2>
                                             </div>
-                                            <a href="/works/restful-booker" class="project-btn">
-                                                <img src="/assets/icon.svg" alt="img">
+                                            <a href={base + "works/restful-booker"} class="project-btn">
+                                                <img src={base + "assets/icon.svg"} alt="img">
                                             </a>
                                         </div>
                                     </div>
@@ -126,18 +127,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                             <div class="mb-24">
                                 <div data-aos="zoom-in" class="flex-1">
                                     <div class="project-item shadow-box">
-                                        <a href="/works/gcc-mealkun" class="overlay-link"></a>
-                                        <img src="/assets/bg1.png" alt="img" class="bg-img">
+                                        <a href={base + "works/gcc-mealkun"} class="overlay-link"></a>
+                                        <img src={base + "assets/bg1.png"} alt="img" class="bg-img">
                                         <div class="project-img">
-                                            <img class="proj-img" src="/assets/project5.jpeg" alt="GCC Mealkun">
+                                            <img class="proj-img" src={base + "assets/project5.jpeg"} alt="GCC Mealkun">
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between">
                                             <div class="project-info">
                                                 <p>MOBILE DESIGNING</p>
                                                 <h2>GCC Mealkun</h2>
                                             </div>
-                                            <a href="/works/gcc-mealkun" class="project-btn">
-                                                <img src="/assets/icon.svg" alt="img">
+                                            <a href={base + "works/gcc-mealkun"} class="project-btn">
+                                                <img src={base + "assets/icon.svg"} alt="img">
                                             </a>
                                         </div>
                                     </div>
@@ -151,18 +152,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                             <div class="mb-24">
                                 <div data-aos="zoom-in" class="flex-1">
                                     <div class="project-item shadow-box">
-                                        <a href="/works/bsec-ipo-system" class="overlay-link"></a>
-                                        <img src="/assets/bg1.png" alt="img" class="bg-img">
+                                        <a href={base + "works/bsec-ipo-system"} class="overlay-link"></a>
+                                        <img src={base + "assets/bg1.png"} alt="img" class="bg-img">
                                         <div class="project-img">
-                                            <img class="proj-img" src="/assets/project4.jpeg" alt="BSEC IPO System">
+                                            <img class="proj-img" src={base + "assets/project4.jpeg"} alt="BSEC IPO System">
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between">
                                             <div class="project-info">
                                                 <p>BRANDING</p>
                                                 <h2>BSEC IPO System</h2>
                                             </div>
-                                            <a href="/works/bsec-ipo-system" class="project-btn">
-                                                <img src="/assets/icon.svg" alt="img">
+                                            <a href={base + "works/bsec-ipo-system"} class="project-btn">
+                                                <img src={base + "assets/icon.svg"} alt="img">
                                             </a>
                                         </div>
                                     </div>
@@ -173,18 +174,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                             <div class="mb-24">
                                 <div data-aos="zoom-in" class="flex-1">
                                     <div class="project-item shadow-box">
-                                        <a href="/works/dnothi" class="overlay-link"></a>
-                                        <img src="/assets/bg1.png" alt="img" class="bg-img">
+                                        <a href={base + "works/dnothi"} class="overlay-link"></a>
+                                        <img src={base + "assets/bg1.png"} alt="img" class="bg-img">
                                         <div class="project-img">
-                                            <img class="proj-img" src="/assets/project6.jpeg" alt="dNothi">
+                                            <img class="proj-img" src={base + "assets/project6.jpeg"} alt="dNothi">
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between">
                                             <div class="project-info">
                                                 <p>WEB DESIGNING</p>
                                                 <h2>dNothi</h2>
                                             </div>
-                                            <a href="/works/dnothi" class="project-btn">
-                                                <img src="/assets/icon.svg" alt="img">
+                                            <a href={base + "works/dnothi"} class="project-btn">
+                                                <img src={base + "assets/icon.svg"} alt="img">
                                             </a>
                                         </div>
                                     </div>
@@ -195,18 +196,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                             <div class="mb-24">
                                 <div data-aos="zoom-in" class="flex-1">
                                     <div class="project-item shadow-box">
-                                        <a href="/works/practice-management-system" class="overlay-link"></a>
-                                        <img src="/assets/bg1.png" alt="img" class="bg-img">
+                                        <a href={base + "works/practice-management-system"} class="overlay-link"></a>
+                                        <img src={base + "assets/bg1.png"} alt="img" class="bg-img">
                                         <div class="project-img">
-                                            <img class="proj-img" src="/assets/project3.jpeg" alt="Practice Management System">
+                                            <img class="proj-img" src={base + "assets/project3.jpeg"} alt="Practice Management System">
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between">
                                             <div class="project-info">
                                                 <p>ARCHITECTURE</p>
                                                 <h2>Practice Management System</h2>
                                             </div>
-                                            <a href="/works/practice-management-system" class="project-btn">
-                                                <img src="/assets/icon.svg" alt="img">
+                                            <a href={base + "works/practice-management-system"} class="project-btn">
+                                                <img src={base + "assets/icon.svg"} alt="img">
                                             </a>
                                         </div>
                                     </div>
