@@ -1,0 +1,159 @@
+---
+// src/pages/about.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SocialLinks from '../components/SocialLinks.astro';
+---
+
+<BaseLayout title="ABOUT PAGE – Gridx" bodyClass="main-aboutpage">
+    <section class="about-area">
+        <div class="container">
+            
+            <!-- Row 1: Self Image & Self Summary details -->
+            <div class="row mb-24">
+                <!-- Left: About Image Box -->
+                <div class="col-md-4 mb-24">
+                    <div data-aos="zoom-in" class="about-image-box-wrap">
+                        <div class="about-image-box shadow-box">
+                            <img src="/assets/bg1.png" alt="img" class="bg-img">
+                            <div class="image-inner">
+                                <img src="/assets/me4.jpg" alt="Raiyan Uddin">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Self summary detail info -->
+                <div class="col-md-8 mb-24">
+                    <div class="about-details" data-aos="zoom-in">
+                        <h1 class="section-heading">
+                            <img src="/assets/star-2.png" alt="star">
+                            Self-summary
+                            <img src="/assets/star-2.png" alt="star">
+                        </h1>
+
+                        <div class="about-details-inner shadow-box">
+                            <img src="/assets/icon2.png" alt="star" class="star-icon">
+                            <h2>Raiyan Uddin</h2>
+                            <p>I am a Software QA Engineer with a focus on Manual and Automation test. I have a diverse range of experience having worked across various fields and industries.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 2: Experience timeline & Education timeline -->
+            <div class="row mb-24">
+                <!-- Experience Box -->
+                <div class="col-md-6 mb-24">
+                    <div data-aos="zoom-in">
+                        <div class="about-edc-exp about-experience shadow-box">
+                            <img src="/assets/bg1.png" alt="img" class="bg-img">
+                            <h4>EXPERIENCE</h4>
+                            <ul>
+                                <li>
+                                    <p class="date">2025 - Present</p>
+                                    <h3>BJIT</h3>
+                                    <p class="type">Software QA Engineer</p>
+                                </li>
+                                <li>
+                                    <p class="date">2023 - 2025</p>
+                                    <h3>Tappware Solutions Limited</h3>
+                                    <p class="type">Jr. Software QA Engineer</p>
+                                </li>
+                                <li>
+                                    <p class="date">2022 - 2022</p>
+                                    <h3>bKash</h3>
+                                    <p class="type">Client Relationship officer</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Education Box -->
+                <div class="col-md-6 mb-24">
+                    <div data-aos="zoom-in">
+                        <div class="about-edc-exp about-education shadow-box">
+                            <img src="/assets/bg1.png" alt="img" class="bg-img">
+                            <h4>EDUCATION</h4>
+                            <ul>
+                                <li>
+                                    <p class="date">2019 - 2023</p>
+                                    <h3>BRAC UNIVERSITY</h3>
+                                    <p class="type">Bachelor of Computer Scinece and Engineering</p>
+                                </li>
+                                <li>
+                                    <p class="date">2016 - 2018</p>
+                                    <h3>Chittagong College</h3>
+                                    <p class="type">Science</p>
+                                </li>
+                                <li>
+                                    <p class="date">2010 - 2016</p>
+                                    <h3>Nasirabad Govt. High School</h3>
+                                    <p class="type">Science</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 3: Profiles, Contact, Credentials -->
+            <div class="row">
+                <!-- Profiles Box -->
+                <div class="col-md-4 mb-24">
+                    <div data-aos="zoom-in" class="about-profile-box-wrap">
+                        <div class="about-profile-box info-box shadow-box h-full">
+                            <img src="/assets/bg1.png" alt="BG" class="bg-img">
+                            <SocialLinks />
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div class="infos">
+                                    <h5>STAY WITH ME</h5>
+                                    <h2>Profiles</h2>
+                                </div>
+                                <a href="/contact" class="about-btn">
+                                    <img src="/assets/icon.svg" alt="Star">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Box -->
+                <div class="col-md-4 mb-24">
+                    <div data-aos="zoom-in" class="about-contact-box-wrap">
+                        <div class="about-contact-box info-box shadow-box">
+                            <a class="overlay-link" href="/contact"></a>
+                            <img src="/assets/bg1.png" alt="BG" class="bg-img">
+                            <img src="/assets/icon2.png" alt="Star" class="star-icon">
+                            <h2>Let's <br>work <span>together.</span></h2>
+                            <a href="/contact" class="about-btn">
+                                <img src="/assets/icon.svg" alt="Star">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Credentials Box -->
+                <div class="col-md-4 mb-24">
+                    <div data-aos="zoom-in" class="about-crenditials-box">
+                        <div class="info-box shadow-box h-full">
+                            <a class="overlay-link" href="/about"></a>
+                            <img src="/assets/bg1.png" alt="BG" class="bg-img">
+                            <img class="proj-img" src="/assets/sign.png" alt="Signature">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div class="infos">
+                                    <h5>MORE ABOUT ME</h5>
+                                    <h2>Credentials</h2>
+                                </div>
+                                <a href="/about" class="about-btn">
+                                    <img src="/assets/icon.svg" alt="Star">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</BaseLayout>
