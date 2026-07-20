@@ -1,9 +1,10 @@
 ---
 // src/components/Footer.astro
 const pathname = Astro.url.pathname;
+
 const isHome = pathname === '/' || pathname === '/index.html' || pathname === '/index';
 const isAbout = pathname.startsWith('/about');
-const isWorks = pathname.startsWith('/works') || pathname.includes('/Works/');
+const isWorks = pathname.startsWith('/works');
 const isContact = pathname.startsWith('/contact');
 ---
 
