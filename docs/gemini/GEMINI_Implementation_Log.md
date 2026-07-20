@@ -1,53 +1,33 @@
 # GEMINI Implementation Log
 
 ## Purpose
-This document logs the step-by-step development history, major structural decisions, and iteration milestones for the **Demo Portfolio** project.
+Historical log of major development milestones, technical refactoring, and deployment activities for Raiyan Uddin's Astro Portfolio.
 
-## Last Updated
-2026-07-21
+---
 
-## Current Status
-- All implementation phases including Astro framework migration complete.
+### [2026-07-21] - GitHub Pages Live Deployment & Path Optimization
+- **GitHub Actions Workflow**: Created `.github/workflows/deploy.yml` for automated Astro static site building and publishing on GitHub Pages.
+- **Subpath Routing Fix**: Configured `astro.config.mjs` (`site: 'https://raiyan437.github.io'`, `base: '/My-Portfolio'`) and updated all navigation links and asset paths to use explicit `/My-Portfolio/` prefixes.
+- **Logo Restoration**: Fixed header and footer logo image source paths across all subpages.
+- **Git Push**: Pushed final release to GitHub (`https://github.com/raiyan437/My-Portfolio.git`). Live site active at `https://raiyan437.github.io/My-Portfolio/`.
 
-## Relevant Files
-- [package.json](file:///d:/Others/Google%20Antigravity/Demo%20portfolio/package.json)
-- [astro.config.mjs](file:///d:/Others/Google%20Antigravity/Demo%20portfolio/astro.config.mjs)
-- [src/layouts/BaseLayout.astro](file:///d:/Others/Google%20Antigravity/Demo%20portfolio/src/layouts/BaseLayout.astro)
-- [src/components/Header.astro](file:///d:/Others/Google%20Antigravity/Demo%20portfolio/src/components/Header.astro)
-- [src/components/Footer.astro](file:///d:/Others/Google%20Antigravity/Demo%20portfolio/src/components/Footer.astro)
-- [src/components/Preloader.astro](file:///d:/Others/Google%20Antigravity/Demo%20portfolio/src/components/Preloader.astro)
-- [src/pages/index.astro](file:///d:/Others/Google%20Antigravity/Demo%20portfolio/src/pages/index.astro)
-- [src/pages/about.astro](file:///d:/Others/Google%20Antigravity/Demo%20portfolio/src/pages/about.astro)
-- [src/pages/works.astro](file:///d:/Others/Google%20Antigravity/Demo%20portfolio/src/pages/works.astro)
-- [src/pages/contact.astro](file:///d:/Others/Google%20Antigravity/Demo%20portfolio/src/pages/contact.astro)
-- [src/pages/works/](file:///d:/Others/Google%20Antigravity/Demo%20portfolio/src/pages/works)
-- [public/](file:///d:/Others/Google%20Antigravity/Demo%20portfolio/public)
+---
 
-## Decisions
-- Replaced initial custom portfolio template with a 100% accurate reproduction of the **Gridx** theme per explicit user request.
-- Localized all design images, background noise textures, signatures, project detail banners, and project assets into `./public/assets/`.
-- Refactored project into Astro framework for modularity and component reusability without altering HTML IDs, classes, or visual UX.
+### [2026-07-21] - Component Modularization & Code Cleanup
+- **SocialLinks Component**: Extracted `SocialLinks.astro` component to encapsulate social SVG icons across Home, About, and Contact pages.
+- **Legacy Cleanup**: Purged root static `.html` files (`index.html`, `about.html`, `works.html`, `contact.html`, `Works/` directory) after verifying Astro component parity.
+- **Build Verification**: Ran `npx astro build` verifying clean compilation of all 12 static HTML routes in `dist/`.
 
-## Implementation Log
+---
 
-### Step 1: Workspace Cleanup & Target Scraping
-- Purged initial portfolio files from workspace `d:\Others\Google Antigravity\Demo portfolio`.
-- Analyzed live Gridx structure at `https://wpriverthemes.com/gridx/`.
-- Downloaded core visual assets (`bg1.png`, `me.png`, `sign.png`, `my-works.png`, `gfonts.png`, `project1.jpeg` through `project6.jpeg`, `logo.svg`, `star1.svg`, `icon.svg`, `icon2.png`, `star-2.png`, `project-dt-1.jpeg`, `project3-1.jpeg`).
+### [2026-07-20] - User Personalization & Project Detail Migration
+- **User Content Alignment**: Replaced template placeholders with Raiyan Uddin's custom QA Engineer portfolio details (BJIT, Tappware, bKash experience; BRAC University CSE education).
+- **8 Project Detail Pages**: Converted all 8 real QA projects into Astro pages under `src/pages/works/`.
+- **Master Layout Integration**: Wrapped all pages with `<BaseLayout>` containing `<Header>`, `<Footer>`, and `<Preloader>`.
 
-### Step 2: HTML Page Construction & Works Directory
-- Built initial `index.html`, `about.html`, `works.html`, `contact.html`, and `Works/` project details structure.
-- Localized `bootstrap.min.css`, `bootstrap.bundle.min.js`, `aos.css`, and `aos.js` into `./assets/`.
+---
 
-### Step 3: Documentation Setup
-- Created `/docs/gemini/` repository documentation directory with `GEMINI_` prefix files.
-
-### Step 4: Astro Refactoring
-- Created `package.json` and `astro.config.mjs`.
-- Moved static assets (`style.css`, `main.js`, `assets/`) into `public/`.
-- Built components (`Header.astro`, `Footer.astro`, `Preloader.astro`) and master layout (`BaseLayout.astro`).
-- Created Astro pages (`index.astro`, `about.astro`, `works.astro`, `contact.astro`, and 8 detail pages in `src/pages/works/`).
-- Verified static build (`npx.cmd astro build` generated 12 pages in `dist/` in 1.07s).
-
-## Outstanding Work
-- None.
+### [2026-07-20] - Astro Framework Initialization
+- Created `package.json`, `astro.config.mjs`, `src/pages/`, `src/components/`, `src/layouts/`.
+- Migrated static CSS and JS assets to `public/`.
+- Established documentation suite in `docs/gemini/`.

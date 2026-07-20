@@ -1,42 +1,69 @@
 # GEMINI Project Handoff
 
-## Purpose
-This document serves as the project handoff guide for subsequent AI agents (Gemini, Claude Code, CODEX, Copilot) or human developers taking over maintenance of the **Demo Portfolio** codebase.
+## Project Overview
+- **Project Name**: Raiyan Uddin - Software QA Engineer Portfolio
+- **Framework**: Astro (Static Web Application)
+- **Live URL**: [https://raiyan437.github.io/My-Portfolio/](https://raiyan437.github.io/My-Portfolio/)
+- **Repository**: [https://github.com/raiyan437/My-Portfolio.git](https://github.com/raiyan437/My-Portfolio.git)
 
-## Last Updated
-2026-07-21
+---
 
-## Current Status
-- Production Ready / Static Deployment Ready.
-
-## Relevant Files
-- [index.html](file:///d:/Others/Google%20Antigravity/Demo%20portfolio/index.html) - Main entrance dashboard.
-- [about.html](file:///d:/Others/Google%20Antigravity/Demo%20portfolio/about.html) - Profile and timeline page.
-- [works.html](file:///d:/Others/Google%20Antigravity/Demo%20portfolio/works.html) - Portfolio showcase.
-- [Works/](file:///d:/Others/Google%20Antigravity/Demo%20portfolio/Works) - 8 Project detail HTML pages.
-- [contact.html](file:///d:/Others/Google%20Antigravity/Demo%20portfolio/contact.html) - Contact page.
-- [style.css](file:///d:/Others/Google%20Antigravity/Demo%20portfolio/style.css) - Core design system.
-- [main.js](file:///d:/Others/Google%20Antigravity/Demo%20portfolio/main.js) - Interactive logic.
-- [assets/](file:///d:/Others/Google%20Antigravity/Demo%20portfolio/assets) - Local image assets & CSS/JS vendor libraries.
-
-## Decisions
-- Maintain pure static structure (no Node.js runtime required to serve or build).
-- Keep all documentation inside `/docs/gemini/` using the `GEMINI_` prefix.
-- Never overwrite documentation created by other AI agents.
-- **Mandatory Browser Execution**: Always use Google Chrome (`C:\Program Files\Google\Chrome\Application\chrome.exe`) for opening pages, manual verification, and automated browser tasks.
-
-## Verification & Local Testing
-To view and test the project in Google Chrome:
-```powershell
-Start-Process "C:\Program Files\Google\Chrome\Application\chrome.exe" -ArgumentList "file:///d:/Others/Google%20Antigravity/Demo%20portfolio/index.html"
+## Directory Structure
+```
+Demo portfolio/
+├── .github/
+│   └── workflows/
+│       └── deploy.yml          # GitHub Actions automated deployment
+├── docs/
+│   └── gemini/                 # Project documentation suite
+│       ├── GEMINI_Current_State.md
+│       ├── GEMINI_Implementation_Log.md
+│       ├── GEMINI_Project_Handoff.md
+│       ├── GEMINI_GIT.md
+│       ├── GEMINI_Notebook.md
+│       ├── GEMINI_Architecture.md
+│       ├── GEMINI_Roadmap.md
+│       └── GEMINI_Technical_Audit.md
+├── public/                     # Static assets served as-is
+│   ├── assets/                 # Images & local CSS/JS libraries
+│   ├── style.css               # Main portfolio CSS stylesheet
+│   └── main.js                 # JS controller
+├── src/
+│   ├── components/             # Reusable Astro UI components
+│   │   ├── Header.astro
+│   │   ├── Footer.astro
+│   │   ├── Preloader.astro
+│   │   └── SocialLinks.astro
+│   ├── layouts/
+│   │   └── BaseLayout.astro    # Master page wrapper
+│   └── pages/                  # Page routes
+│       ├── index.astro         # Home page
+│       ├── about.astro         # About page
+│       ├── works.astro         # Works grid page
+│       ├── contact.astro       # Contact page
+│       └── works/              # 8 Project detail pages
+├── astro.config.mjs            # Astro configuration with site & base URL
+├── package.json                # Dependencies & scripts
+└── .gitignore                  # Git ignore rules
 ```
 
-## Agent Co-Existence Rules
-If operating alongside other AI agents:
-- **Prefix Rule**: Always use `GEMINI_` prefix for new documentation created by Gemini.
-- **Location Rule**: Store all Gemini documentation in `/docs/gemini/`.
-- **Non-Destructive Rule**: Do not delete, overwrite, or rename documentation belonging to other agents (e.g. `CLAUDE_`, `COPILOT_`).
-- **Browser Executable Rule**: Do not rely on system default browser handlers; explicitly target Google Chrome executable at `C:\Program Files\Google\Chrome\Application\chrome.exe`.
+---
 
-## Outstanding Work
-- Optional integration of automated Playwright test suite.
+## Local Development & Build Commands
+
+### Start Local Dev Server
+```powershell
+npm run dev
+```
+
+### Build Production Bundle
+```powershell
+npm run build
+```
+
+### Push Updates to GitHub (Triggers Automated Deployment)
+```powershell
+git add .
+git commit -m "Describe your changes"
+git push origin main
+```
