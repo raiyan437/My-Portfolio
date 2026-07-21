@@ -5,7 +5,7 @@ export default defineConfig({
   site: 'https://raiyan437.github.io',
   base: '/My-Portfolio',
   output: 'static',
-  outDir: 'node_modules/.astro-out',
+  outDir: './dist',
   devToolbar: {
     enabled: false
   },
