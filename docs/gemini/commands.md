@@ -1,31 +1,9 @@
-# Project Execution Commands
+# Project Shell Commands Quick Reference
 
-## Directory Change Command
-```powershell
-cd "d:\Others\Google Antigravity\Demo portfolio"
-```
-
-## Install Dependencies
-```bash
-npm install
-```
-
-## Run Development Server
-```bash
-npm run dev
-```
-
-## Build for Production
-```bash
-npm run build
-```
-
-## Preview Production Build
-```bash
-npm run preview
-```
-
-## One-Liner (Navigate + Run Dev)
-```powershell
-cd "d:\Others\Google Antigravity\Demo portfolio"; npm run dev
-```
+| Command | Action | Output / Behavior |
+| :--- | :--- | :--- |
+| `npm run dev` | Start Dev Server | Serves live site at `http://localhost:4321/My-Portfolio/` |
+| `npx astro build` | Static Production Build | Compiles 15 static routes into `node_modules/.astro-out/` |
+| `npx astro preview` | Preview Production Build | Serves production bundle locally |
+| `npx astro preferences disable devToolbar` | Disable Dev Toolbar | Permanently disables Astro devToolbar overlay |
+| `git push origin main` | Deploy Code | Pushes updates to GitHub Pages repository |

@@ -1,111 +1,41 @@
-# GEMINI Run Commands - Execution & Development Guide
+# GEMINI Run Commands
 
 ## Purpose
-
-This document provides all the necessary terminal commands to navigate to, install, run, build, and preview the **Demo Portfolio** project.
+Reference guide for development, build, preference, and deployment commands.
 
 ## Last Updated
-
 2026-07-21
 
 ---
 
-## 1. Directory Change Commands
+## 💻 Essential Commands
 
-### PowerShell
-
-```powershell
-cd "d:\Others\Google Antigravity\Demo portfolio"
-```
-
-### Command Prompt (CMD)
-
-```cmd
-cd /d "d:\Others\Google Antigravity\Demo portfolio"
-```
-
-### Git Bash / Linux / Mac
-
-```bash
-cd "d:/Others/Google Antigravity/Demo portfolio"
-```
-
----
-
-## 2. Installation Commands
-
-If dependencies are not installed or need updating:
-
-```bash
-npm install
-```
-
----
-
-## 3. Development Server (Run Project)
-
-To launch the local development server with hot-reloading (default URL: `http://localhost:4321`):
-
+### 1. Start Development Server
 ```bash
 npm run dev
+# Starts Astro dev server at http://localhost:4321/My-Portfolio/
 ```
 
-_Alternative command:_
-
+### 2. Build Production Static Site
 ```bash
-npm start
+npx astro build
+# Generates 15 static routes in node_modules/.astro-out/
 ```
 
-_Direct Astro CLI:_
-
+### 3. Preview Production Build
 ```bash
-npx astro dev
+npx astro preview
+# Serves static build locally for verification
 ```
 
----
-
-## 4. Production Build & Preview
-
-### Build Production Artifacts
-
-Compiles the site into static assets inside the `dist/` directory:
-
+### 4. Permanently Disable Astro DevToolbar
 ```bash
-npm run build
+npx astro preferences disable devToolbar
 ```
 
-### Preview Production Build
-
-Serves the static production build locally for verification:
-
+### 5. Git Commit & Deploy to GitHub
 ```bash
-npm run preview
+git add .
+git commit -m "Final portfolio release"
+git push origin main
 ```
-
----
-
-## 5. One-Liner Execution Commands
-
-### Change Directory and Start Dev Server
-
-#### PowerShell
-
-```powershell
-cd "d:\Others\Google Antigravity\Demo portfolio"; cmd /c "npm run dev"
-```
-
-> [!TIP]
-> If PowerShell blocks `npm` due to execution policy, use `cmd /c "npm run dev"` or `npm.cmd run dev`.
-
-#### Command Prompt (CMD)
-
-```cmd
-cd /d "d:\Others\Google Antigravity\Demo portfolio" && npm run dev
-```
-
-#### Git Bash
-
-```bash
-cd "d:/Others/Google Antigravity/Demo portfolio" && npm run dev
-```
-

@@ -1,0 +1,303 @@
+---
+// src/pages/skills.astro
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const marqueeSkills = [
+  {
+    name: "Playwright",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/playwright/playwright-original.svg",
+  },
+  {
+    name: "Java",
+    icon: "https://upload.wikimedia.org/wikipedia/en/3/30/Java_programming_language_logo.svg",
+    isJava: true,
+  },
+  { name: "TypeScript", icon: "https://cdn.simpleicons.org/typescript/ffffff" },
+  { name: "Postman", icon: "https://cdn.simpleicons.org/postman/ffffff" },
+  { name: "JMeter", icon: "https://cdn.simpleicons.org/apachejmeter/ffffff" },
+  { name: "Jira", icon: "https://cdn.simpleicons.org/jira/ffffff" },
+  {
+    name: "GitHub Actions",
+    icon: "https://cdn.simpleicons.org/githubactions/ffffff",
+  },
+  { name: "GitHub", icon: "https://cdn.simpleicons.org/github/ffffff" },
+];
+
+// Repeat array 4 times to fill any screen width and guarantee 100% seamless infinite loop without blank gaps
+const quadMarquee = [
+  ...marqueeSkills,
+  ...marqueeSkills,
+  ...marqueeSkills,
+  ...marqueeSkills,
+];
+---
+
+<BaseLayout
+  title="Skills & Specialization - Raiyan Uddin"
+  bodyClass="main-skillspage"
+>
+  <section class="about-area">
+    <div class="container">
+      <!-- Section Header Title 
+      <div class="mb-24" data-aos="fade-up">
+        <h1 class="section-heading justify-content-center">
+          <img src="/My-Portfolio/assets/star-2.png" alt="star" />
+          Skills & Specialization
+          <img src="/My-Portfolio/assets/star-2.png" alt="star" />
+        </h1>
+      </div>-->
+
+      <!-- Interactive Skills Marquee Banner (Never-ending loop) -->
+      <div data-aos="zoom-in" class="mb-24">
+        <div class="banner shadow-box" style="padding: 24px 30px;">
+          <div
+            class="icon-boxes"
+            style="margin: 0; mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);"
+          >
+            <div class="skills-marquee-track">
+              {
+                quadMarquee.map((item) => (
+                  <span class="skill-icon-pill" title={item.name}>
+                    <img
+                      class={item.isJava ? "java-icon" : ""}
+                      src={item.icon}
+                      alt={item.name}
+                    />
+                  </span>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Core Specialization Grid (2x2 Glassmorphism Cards) -->
+      <div class="row mb-24">
+        <!-- Specialization 1: Test Automation & Frameworks -->
+        <div class="col-md-6 mb-24">
+          <div data-aos="zoom-in" class="h-full">
+            <div
+              class="info-box shadow-box h-full d-flex flex-column justify-content-between"
+              style="padding: 36px;"
+            >
+              <img src="/My-Portfolio/assets/bg1.png" alt="BG" class="bg-img" />
+              <div>
+                <div
+                  class="d-flex align-items-center justify-content-between mb-24"
+                >
+                  <h5
+                    style="color: #BCBCBC; opacity: 0.7; font-size: 13px; letter-spacing: 0.5px;"
+                  >
+                    AUTOMATION ENGINEERING
+                  </h5>
+                  <img
+                    src="/My-Portfolio/assets/star-2.png"
+                    alt="star"
+                    style="width: 24px; opacity: 0.8;"
+                  />
+                </div>
+                <h2
+                  style="color: #fff; font-size: 28px; font-weight: 500; margin-bottom: 16px;"
+                >
+                  Test Automation & Frameworks
+                </h2>
+                <p
+                  style="color: #BCBCBC; font-size: 15px; line-height: 1.6; margin-bottom: 24px;"
+                >
+                  Designing scalable, robust automation suites using Playwright
+                  (Java & TypeScript) and Selenium WebDriver. Implementing Page
+                  Object Model (POM) and BDD test architecture for end-to-end
+                  regression.
+                </p>
+              </div>
+              <div class="d-flex flex-wrap" style="gap: 16px;">
+                <span class="skill-icon-pill" title="Playwright">
+                  <img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/playwright/playwright-original.svg"
+                    alt="Playwright"
+                  />
+                </span>
+                <span class="skill-icon-pill" title="Java">
+                  <img
+                    class="java-icon"
+                    src="https://upload.wikimedia.org/wikipedia/en/3/30/Java_programming_language_logo.svg"
+                    alt="Java"
+                  />
+                </span>
+                <span class="skill-icon-pill" title="TypeScript">
+                  <img
+                    src="https://cdn.simpleicons.org/typescript/ffffff"
+                    alt="TypeScript"
+                  />
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Specialization 2: API & Performance Testing -->
+        <div class="col-md-6 mb-24">
+          <div data-aos="zoom-in" class="h-full">
+            <div
+              class="info-box shadow-box h-full d-flex flex-column justify-content-between"
+              style="padding: 36px;"
+            >
+              <img src="/My-Portfolio/assets/bg1.png" alt="BG" class="bg-img" />
+              <div>
+                <div
+                  class="d-flex align-items-center justify-content-between mb-24"
+                >
+                  <h5
+                    style="color: #BCBCBC; opacity: 0.7; font-size: 13px; letter-spacing: 0.5px;"
+                  >
+                    BACKEND & LOAD TESTING
+                  </h5>
+                  <img
+                    src="/My-Portfolio/assets/star-2.png"
+                    alt="star"
+                    style="width: 24px; opacity: 0.8;"
+                  />
+                </div>
+                <h2
+                  style="color: #fff; font-size: 28px; font-weight: 500; margin-bottom: 16px;"
+                >
+                  API & Performance Testing
+                </h2>
+                <p
+                  style="color: #BCBCBC; font-size: 15px; line-height: 1.6; margin-bottom: 24px;"
+                >
+                  Automating REST API suites with Postman, Newman, and REST
+                  Assured. Executing load, stress, and endurance testing with
+                  Apache JMeter to ensure backend throughput and low latency
+                  under high traffic.
+                </p>
+              </div>
+              <div class="d-flex flex-wrap" style="gap: 16px;">
+                <span class="skill-icon-pill" title="Postman">
+                  <img
+                    src="https://cdn.simpleicons.org/postman/ffffff"
+                    alt="Postman"
+                  />
+                </span>
+                <span class="skill-icon-pill" title="JMeter">
+                  <img
+                    src="https://cdn.simpleicons.org/apachejmeter/ffffff"
+                    alt="JMeter"
+                  />
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Specialization 3: CI/CD & DevOps Pipeline -->
+        <div class="col-md-6 mb-24">
+          <div data-aos="zoom-in" class="h-full">
+            <div
+              class="info-box shadow-box h-full d-flex flex-column justify-content-between"
+              style="padding: 36px;"
+            >
+              <img src="/My-Portfolio/assets/bg1.png" alt="BG" class="bg-img" />
+              <div>
+                <div
+                  class="d-flex align-items-center justify-content-between mb-24"
+                >
+                  <h5
+                    style="color: #BCBCBC; opacity: 0.7; font-size: 13px; letter-spacing: 0.5px;"
+                  >
+                    CONTINUOUS TESTING
+                  </h5>
+                  <img
+                    src="/My-Portfolio/assets/star-2.png"
+                    alt="star"
+                    style="width: 24px; opacity: 0.8;"
+                  />
+                </div>
+                <h2
+                  style="color: #fff; font-size: 28px; font-weight: 500; margin-bottom: 16px;"
+                >
+                  CI/CD & DevOps Integration
+                </h2>
+                <p
+                  style="color: #BCBCBC; font-size: 15px; line-height: 1.6; margin-bottom: 24px;"
+                >
+                  Integrating automated test jobs into GitHub Actions and
+                  Jenkins pipelines. Generating automated Allure and HTML
+                  execution reports for rapid feedback on every pull request.
+                </p>
+              </div>
+              <div class="d-flex flex-wrap" style="gap: 16px;">
+                <span class="skill-icon-pill" title="GitHub Actions">
+                  <img
+                    src="https://cdn.simpleicons.org/githubactions/ffffff"
+                    alt="GitHub Actions"
+                  />
+                </span>
+                <span class="skill-icon-pill" title="GitHub">
+                  <img
+                    src="https://cdn.simpleicons.org/github/ffffff"
+                    alt="GitHub"
+                  />
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Specialization 4: QA Strategy & Test Management -->
+        <div class="col-md-6 mb-24">
+          <div data-aos="zoom-in" class="h-full">
+            <div
+              class="info-box shadow-box h-full d-flex flex-column justify-content-between"
+              style="padding: 36px;"
+            >
+              <img src="/My-Portfolio/assets/bg1.png" alt="BG" class="bg-img" />
+              <div>
+                <div
+                  class="d-flex align-items-center justify-content-between mb-24"
+                >
+                  <h5
+                    style="color: #BCBCBC; opacity: 0.7; font-size: 13px; letter-spacing: 0.5px;"
+                  >
+                    MANAGEMENT & PROCESS
+                  </h5>
+                  <img
+                    src="/My-Portfolio/assets/star-2.png"
+                    alt="star"
+                    style="width: 24px; opacity: 0.8;"
+                  />
+                </div>
+                <h2
+                  style="color: #fff; font-size: 28px; font-weight: 500; margin-bottom: 16px;"
+                >
+                  QA Strategy & Management
+                </h2>
+                <p
+                  style="color: #BCBCBC; font-size: 15px; line-height: 1.6; margin-bottom: 24px;"
+                >
+                  Designing end-to-end Test Plans, STLC workflows, test matrix
+                  design, exploratory testing, and detailed bug reporting in
+                  Jira and TestRail across Agile Scrum sprints.
+                </p>
+              </div>
+              <div class="d-flex flex-wrap" style="gap: 16px;">
+                <span class="skill-icon-pill" title="Jira">
+                  <img
+                    src="https://cdn.simpleicons.org/jira/ffffff"
+                    alt="Jira"
+                  />
+                </span>
+                <span class="skill-icon-pill" title="Confluence">
+                  <img
+                    src="https://cdn.simpleicons.org/confluence/ffffff"
+                    alt="Confluence"
+                  />
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,124 @@
+---
+// src/pages/certifications.astro
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const certifications = [
+  {
+    title: "ISTQB Certified Tester (CTFL)",
+    issuer: "ISTQB® - International Software Testing Qualifications Board",
+    category: "FOUNDATION CERTIFICATION",
+    year: "2024",
+    image: "/My-Portfolio/assets/bsec_detail.jpg",
+    details:
+      "Foundational software testing principles, test design techniques, STLC workflows, and defect management.",
+  },
+  {
+    title: "Playwright Automation Masterclass",
+    issuer: "QA Brains Academy",
+    category: "AUTOMATION SPECIALIZATION",
+    year: "2024",
+    image: "/My-Portfolio/assets/qa_java_detail.jpg",
+    details:
+      "Advanced web automation using Playwright Java & TypeScript, Page Object Model, and parallel test execution.",
+  },
+  {
+    title: "Postman API Student Expert",
+    issuer: "Postman",
+    category: "API TESTING",
+    year: "2023",
+    image: "/My-Portfolio/assets/api_detail.jpg",
+    details:
+      "Automated API suite validation, environment variables, dynamic assertions, and Newman CLI integration.",
+  },
+  {
+    title: "Apache JMeter Performance Testing",
+    issuer: "Software QA Institute",
+    category: "PERFORMANCE & LOAD",
+    year: "2023",
+    image: "/My-Portfolio/assets/practice_detail.jpg",
+    details:
+      "Thread group load generation, assertion listeners, throughput metrics, and server stress testing.",
+  },
+  {
+    title: "Agile QA & Scrum Fundamentals",
+    issuer: "Tappware Solutions / BJIT",
+    category: "AGILE METHODOLOGY",
+    year: "2023",
+    image: "/My-Portfolio/assets/dnothi_detail.jpg",
+    details:
+      "Agile sprint testing, user story estimation, defect lifecycle management in Jira, and bug reporting.",
+  },
+  {
+    title: "Git & GitHub CI/CD Quality Pipeline",
+    issuer: "GitHub Community",
+    category: "DEVOPS & INTEGRATION",
+    year: "2023",
+    image: "/My-Portfolio/assets/qa_ts_detail.jpg",
+    details:
+      "Continuous integration test workflows, pull request regression checks, and GitHub Actions automation.",
+  },
+];
+---
+
+<BaseLayout
+  title="Certifications - Raiyan Uddin"
+  bodyClass="main-certificationspage"
+>
+  <section class="projects-area">
+    <div class="container">
+      <!-- Section Title 
+      <div class="mb-24" data-aos="fade-up">
+        <h1 class="section-heading justify-content-center">
+          <img src="/My-Portfolio/assets/star-2.png" alt="star" />
+          Certifications
+          <img src="/My-Portfolio/assets/star-2.png" alt="star" />
+        </h1>
+      </div>-->
+
+      <!-- Uniform Equal-Sized Grid (3 Columns x 2 Rows) -->
+      <div class="row">
+        {
+          certifications.map((cert) => (
+            <div class="col-md-4 mb-24">
+              <div data-aos="zoom-in" class="h-full">
+                <div
+                  class="project-item shadow-box h-full d-flex flex-column"
+                  style="padding: 24px 24px 20px 24px;"
+                >
+                  <img
+                    src="/My-Portfolio/assets/bg1.png"
+                    alt="BG"
+                    class="bg-img"
+                  />
+                  <div
+                    class="project-img mb-16"
+                    style="height: 190px; border-radius: 18px; overflow: hidden; flex-shrink: 0;"
+                  >
+                    <img
+                      class="proj-img"
+                      src={cert.image}
+                      alt={cert.title}
+                      loading="lazy"
+                      style="width: 100%; height: 100%; object-fit: cover;"
+                    />
+                  </div>
+                  <div class="d-flex flex-column justify-content-start flex-grow-1">
+                    <p style="color: #BCBCBC; font-size: 11px; letter-spacing: 0.5px; margin-bottom: 6px; text-transform: uppercase;">
+                      {cert.category} • {cert.year}
+                    </p>
+                    <h2 style="font-size: 20px; font-weight: 500; color: #fff; margin-bottom: 6px; line-height: 1.3;">
+                      {cert.title}
+                    </h2>
+                    <p style="color: #9f9f9f; font-size: 13px; line-height: 1.4; margin: 0;">
+                      {cert.issuer}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>

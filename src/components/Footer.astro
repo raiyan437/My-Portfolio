@@ -4,8 +4,12 @@ const pathname = Astro.url.pathname;
 
 const isHome = pathname === '/My-Portfolio/' || pathname === '/My-Portfolio' || pathname === '/';
 const isAbout = pathname.includes('/about');
+const isSkills = pathname.includes('/skills');
 const isWorks = pathname.includes('/works');
+const isCertifications = pathname.includes('/certifications');
 const isContact = pathname.includes('/contact');
+
+const currentYear = new Date().getFullYear();
 ---
 
 <footer class="footer-area">
@@ -18,12 +22,14 @@ const isContact = pathname.includes('/contact');
             <ul class="footer-menu">
                 <li class={isHome ? "active" : ""}><a href="/My-Portfolio/">Home</a></li>
                 <li class={isAbout ? "active" : ""}><a href="/My-Portfolio/about/">About</a></li>
+                <li class={isSkills ? "active" : ""}><a href="/My-Portfolio/skills/">Skills</a></li>
                 <li class={isWorks ? "active" : ""}><a href="/My-Portfolio/works/">Works</a></li>
+                <li class={isCertifications ? "active" : ""}><a href="/My-Portfolio/certifications/">Certifications</a></li>
                 <li class={isContact ? "active" : ""}><a href="/My-Portfolio/contact/">Contact</a></li>
             </ul>
 
             <p class="copyright">
-                © All rights reserved by <span><a href="#">Raiyan Uddin</a></span>
+                © {currentYear} All rights reserved by <span><a href="/My-Portfolio/">Raiyan Uddin</a></span>
             </p>
         </div>
     </div>

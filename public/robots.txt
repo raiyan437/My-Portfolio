@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://raiyan437.github.io/My-Portfolio/sitemap.xml

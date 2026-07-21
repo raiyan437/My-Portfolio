@@ -1,77 +1,43 @@
-# GEMINI GIT - Repository Version Control & Remote Sync Guide
+# GEMINI Git & Branching Strategy
 
 ## Purpose
-This document specifies the Git version control configuration, remote synchronization rules, branch management workflow, and push/pull procedures for **Raiyan Uddin's Portfolio** project.
+Git branching strategy, commit conventions, and repository workflow.
 
 ## Last Updated
 2026-07-21
 
-## Current Status
-- **Repository Initialized**: Local Git repository connected to GitHub.
-- **Remote Target**: `https://github.com/raiyan437/My-Portfolio.git`
-- **Default Branch**: `main` (or `master`)
-- **Ignored Paths**: `node_modules/`, `.astro/`, `dist/`, `*.log`, `.env`
+---
 
-## Relevant Files
-- [.gitignore](file:///d:/Others/Google%20Antigravity/Demo%20portfolio/.gitignore) - Specifies files ignored from Git tracking.
-- [package.json](file:///d:/Others/Google%20Antigravity/Demo%20portfolio/package.json) - Project dependencies & build scripts.
-- [docs/gemini/](file:///d:/Others/Google%20Antigravity/Demo%20portfolio/docs/gemini) - Gemini documentation suite.
+## 🌿 Branching Model
+
+- **Repository**: `https://github.com/raiyan437/My-Portfolio.git`
+- **Main Branch**: `main` (Production deployment branch for GitHub Pages).
+- **GitHub Pages Settings**: Source set to `main` branch / root directory or GitHub Actions workflow.
 
 ---
 
-## 1. Remote Repository Setup
+## 📝 Commit Message Convention
 
-- **Remote Name**: `origin`
-- **Repository URL**: `https://github.com/raiyan437/My-Portfolio.git`
-- **HTTPS Clone URL**: `https://github.com/raiyan437/My-Portfolio.git`
+Format: `<type>(<scope>): <short description>`
+
+### Types
+- `feat`: New feature or page (e.g. `feat(skills): add 4x infinite skills marquee`).
+- `fix`: Bug fix (e.g. `fix(marquee): resolve CSS syntax error in style.css`).
+- `docs`: Documentation update (e.g. `docs(readme): update README.md and gemini docs`).
+- `style`: UI styling or CSS token changes.
+- `refactor`: Code restructuring without changing functionality.
 
 ---
 
-## 2. Standard Workflow & Commands
+## 🚀 Deployment Workflow
 
-### Check Repository Status
-```powershell
-git status
-```
-
-### Stage All Changes
-```powershell
+```bash
+# Stage all modified and new files
 git add .
-```
 
-### Commit Changes
-```powershell
-git commit -m "Your descriptive commit message"
-```
+# Create production commit
+git commit -m "docs: finalize project documentation and gemini docs suite"
 
-### Push to Remote Repository
-```powershell
-# Push to main branch
-git push -u origin main
-```
-
-### Pull Latest Changes from Remote
-```powershell
-git pull origin main
-```
-
----
-
-## 3. Recommended Branching Strategy
-
-- `main` / `master`: Production-ready branch matching the live portfolio build.
-- `feature/*`: Topic branches for new components or page features before merging into main.
-- `docs/*`: Branch for documentation memory updates.
-
----
-
-## 4. Git Execution in Windows Environment
-
-When running Git commands on Windows via PowerShell:
-```powershell
-$git = "C:\Users\raiyan\.cache\codex-runtimes\codex-primary-runtime\dependencies\native\git\cmd\git.exe"
-& $git status
-& $git add .
-& $git commit -m "Commit message"
-& $git push -u origin main
+# Push updates to main
+git push origin main
 ```

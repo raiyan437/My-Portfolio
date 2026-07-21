@@ -1,33 +1,40 @@
 # GEMINI Implementation Log
 
 ## Purpose
-Historical log of major development milestones, technical refactoring, and deployment activities for Raiyan Uddin's Astro Portfolio.
+Chronological record of feature implementations, refactoring, and UI enhancements made for **Raiyan Uddin's Portfolio**.
+
+## Last Updated
+2026-07-21
 
 ---
 
-### [2026-07-21] - GitHub Pages Live Deployment & Path Optimization
-- **GitHub Actions Workflow**: Created `.github/workflows/deploy.yml` for automated Astro static site building and publishing on GitHub Pages.
-- **Subpath Routing Fix**: Configured `astro.config.mjs` (`site: 'https://raiyan437.github.io'`, `base: '/My-Portfolio'`) and updated all navigation links and asset paths to use explicit `/My-Portfolio/` prefixes.
-- **Logo Restoration**: Fixed header and footer logo image source paths across all subpages.
-- **Git Push**: Pushed final release to GitHub (`https://github.com/raiyan437/My-Portfolio.git`). Live site active at `https://raiyan437.github.io/My-Portfolio/`.
+### Implementation Entries
 
----
+#### Entry 1: Core Navigation & Navigation Architecture
+- Added `Skills` (`/skills/`) and `Certifications` (`/certifications/`) links to `Header.astro` and `Footer.astro`.
+- Enforced unified route order: **`Home` → `About` → `Skills` → `Works` → `Certifications` → `Contact`**.
 
-### [2026-07-21] - Component Modularization & Code Cleanup
-- **SocialLinks Component**: Extracted `SocialLinks.astro` component to encapsulate social SVG icons across Home, About, and Contact pages.
-- **Legacy Cleanup**: Purged root static `.html` files (`index.html`, `about.html`, `works.html`, `contact.html`, `Works/` directory) after verifying Astro component parity.
-- **Build Verification**: Ran `npx astro build` verifying clean compilation of all 12 static HTML routes in `dist/`.
+#### Entry 2: Social Media Link Standardization
+- Updated all social URLs in `SocialLinks.astro`: Email (`raiyan.uddin.37.pro@gmail.com`), LinkedIn, GitHub, Facebook, Instagram, WhatsApp (`wa.link/6uo9zk`).
 
----
+#### Entry 3: Skills & Specialization Page (`skills.astro`)
+- Created page with 4 specialization cards (*Automation Engineering*, *API & Performance*, *CI/CD*, *QA Strategy*).
+- Integrated 4x duplicated array track (`quadMarquee`) and `@keyframes skills-marquee` for seamless infinite loop with 0 gap and 0 jump.
+- Added 16px gap between skill icon pills.
 
-### [2026-07-20] - User Personalization & Project Detail Migration
-- **User Content Alignment**: Replaced template placeholders with Raiyan Uddin's custom QA Engineer portfolio details (BJIT, Tappware, bKash experience; BRAC University CSE education).
-- **8 Project Detail Pages**: Converted all 8 real QA projects into Astro pages under `src/pages/works/`.
-- **Master Layout Integration**: Wrapped all pages with `<BaseLayout>` containing `<Header>`, `<Footer>`, and `<Preloader>`.
+#### Entry 4: Certifications Page (`certifications.astro`)
+- Created 6 uniform equal-sized cards (ISTQB CTFL, Playwright Masterclass, Postman Expert, JMeter, Agile QA, Git CI/CD).
+- Removed outdated "Verified Credential" badge line and tightened bottom padding while preserving 3x2 grid dimensions.
 
----
+#### Entry 5: Contact Page Form & Social Grid (`contact.astro`)
+- Connected contact form to Web3Forms API sending submissions to `raiyan.uddin.37.pro@gmail.com` with mailto fallback.
+- Restructured social links into a 3x2 glassmorphic icon pill grid matching the homepage profile box.
 
-### [2026-07-20] - Astro Framework Initialization
-- Created `package.json`, `astro.config.mjs`, `src/pages/`, `src/components/`, `src/layouts/`.
-- Migrated static CSS and JS assets to `public/`.
-- Established documentation suite in `docs/gemini/`.
+#### Entry 6: Assets, Branding & SEO Metadata
+- Linked `SQA_Raiyan_Uddin_CV.pdf` on Home and About page Resume cards (`target="_blank"`).
+- Replaced default favicon with topbar logo (`logo.png`).
+- Added OpenGraph, Twitter card, meta keywords, and meta description tags in `BaseLayout.astro`.
+- Created `public/robots.txt` and custom `src/pages/404.astro` error page.
+- Added theme-matched floating Back-to-Top button.
+- Disabled Astro devToolbar permanently in `astro.config.mjs` and Astro preferences.
+- Added project `README.md`.

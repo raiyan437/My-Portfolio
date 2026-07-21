@@ -1,7 +1,6 @@
 ---
 // src/pages/works/practice-management-system.astro
 import BaseLayout from '../../layouts/BaseLayout.astro';
-const base = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout title="Practice Management System - Project Details - Raiyan Uddin" bodyClass="main-workdetails-page">
@@ -12,11 +11,11 @@ const base = import.meta.env.BASE_URL;
             <section class="breadcrumb-area">
                 <div class="container">
                     <div class="breadcrumb-content" data-aos="fade-up">
-                        <p>ARCHITECTURE & SYSTEM - PRACTICE MANAGEMENT SYSTEM</p>
+                        <p>ARCHITECTURE - PRACTICE MANAGEMENT</p>
                         <h1 class="section-heading">
-                            <img src={base + "assets/star-2.png"} alt="star">
+                            <img src="/My-Portfolio/assets/star-2.png" alt="star">
                             Legal & professional practice <br>management portal
-                            <img src={base + "assets/star-2.png"} alt="star">
+                            <img src="/My-Portfolio/assets/star-2.png" alt="star">
                         </h1>
                     </div>
                 </div>
@@ -24,33 +23,38 @@ const base = import.meta.env.BASE_URL;
 
             <!-- Hero Banner Image -->
             <div class="project-details-img" data-aos="zoom-in">
-                <img src={base + "assets/project3.jpeg"} alt="Practice Management System Banner">
+                <img src="/My-Portfolio/assets/project8.png" alt="Practice Management System Banner">
             </div>
 
             <!-- Info Box Card -->
             <div data-aos="zoom-in">
                 <div class="d-flex project-infos-wrap shadow-box mb-24">
-                    <img src={base + "assets/bg1.png"} alt="BG" class="bg-img">
-                    <img src={base + "assets/icon2.png"} alt="Star" class="star-icon">
+                    <img src="/My-Portfolio/assets/bg1.png" alt="BG" class="bg-img">
+                    <img src="/My-Portfolio/assets/icon2.png" alt="Star" class="star-icon">
                     
                     <div class="project-details-info flex-1">
                         <h4>Practice Management System</h4>
-                        <p>End-to-end software quality engineering for Practice Management System. Tested case tracking, client billing automation, calendar scheduling integrations, and report generation engines.</p>
+                        <p>End-to-end software quality engineering and system architecture validation for the Practice Management System. Tested case tracking, automated legal billing & invoicing engines, calendar scheduling integrations, time-tracking logs, and secure document storage.</p>
                     </div>
 
                     <div class="project-details-info flex-1">
                         <h4>About</h4>
-                        <p>Comprehensive legal and corporate practice portal verification ensuring accurate invoicing calculations, secure client record storage, and reliable user authentication.</p>
+                        <p>Comprehensive legal and corporate practice portal verification ensuring accurate financial calculations, multi-client record isolation, encrypted client file access, and seamless integration across practice modules.</p>
                     </div>
                 </div>
+            </div>
+
+            <!-- Project Showcase Banner 2 -->
+            <div class="project-details-2-img mb-24" data-aos="zoom-in">
+                <img src="/My-Portfolio/assets/practice_detail.jpg" alt="Practice Management System Showcase Banner">
             </div>
 
             <!-- Project Overview & Details Meta Box -->
             <div data-aos="zoom-in">
                 <div class="project-about-2 d-flex shadow-box mb-24">
-                    <img src={base + "assets/bg1.png"} alt="BG" class="bg-img">
+                    <img src="/My-Portfolio/assets/bg1.png" alt="BG" class="bg-img">
                     <div class="left-details">
-                        <img src={base + "assets/icon2.png"} alt="Star" class="star-icon">
+                        <img src="/My-Portfolio/assets/icon2.png" alt="Star" class="star-icon">
                         <ul>
                             <li>
                                 <p>Year</p>
@@ -62,7 +66,7 @@ const base = import.meta.env.BASE_URL;
                             </li>
                             <li>
                                 <p>Services</p>
-                                <h5>Software QA & Testing</h5>
+                                <h5>Architecture & QA</h5>
                             </li>
                             <li>
                                 <p>Project</p>
@@ -72,16 +76,19 @@ const base = import.meta.env.BASE_URL;
                     </div>
                     <div class="right-details">
                         <h4>Description</h4>
-                        <p>System integration testing, billing calculation verification, case file security testing, and regression suite execution.</p>
+                        <p>System architecture QA, automated invoice billing validation, legal case workflow testing, schedule sync verification, role-based data encryption, and regression suite execution.</p>
                     </div>
                 </div>
             </div>
 
             <!-- Next Project Button -->
             <div class="container d-flex align-items-center justify-content-center mt-24 mb-24" data-aos="zoom-in">
-                <a href={base + "works/mrmax"} class="big-btn shadow-box">Next Project</a>
+                <a href="/My-Portfolio/works/mrmax/" class="big-btn shadow-box">Next Project</a>
             </div>
 
         </div>
     </section>
 </BaseLayout>
+
+
+

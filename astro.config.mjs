@@ -4,5 +4,18 @@ import { defineConfig } from 'astro/config';
 export default defineConfig({
   site: 'https://raiyan437.github.io',
   base: '/My-Portfolio',
-  output: 'static'
+  output: 'static',
+  outDir: 'node_modules/.astro-out',
+  devToolbar: {
+    enabled: false
+  },
+  vite: {
+    server: {
+      watch: {
+        usePolling: true,
+        interval: 500,
+        ignored: ['**/dist/**', '**/build_output/**', '**/node_modules/**']
+      }
+    }
+  }
 });

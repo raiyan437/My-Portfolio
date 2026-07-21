@@ -1,49 +1,29 @@
 # GEMINI Roadmap
 
 ## Purpose
-This document outlines the project roadmap, upcoming feature enhancements, automated testing integration, and deployment milestones for the **Demo Portfolio** project.
+Roadmap tracking completed milestones and post-launch enhancement possibilities for **Raiyan Uddin's Portfolio**.
 
 ## Last Updated
-2026-07-20
+2026-07-21
 
-## Current Status
-- Milestone 1 (Design & Replication) complete.
-- Milestone 2 (Testing & Customization) pending execution.
+---
 
-## Relevant Files
-- [index.html](file:///d:/Others/Google%20Antigravity/Demo%20portfolio/index.html)
-- [about.html](file:///d:/Others/Google%20Antigravity/Demo%20portfolio/about.html)
-- [works.html](file:///d:/Others/Google%20Antigravity/Demo%20portfolio/works.html)
-- [contact.html](file:///d:/Others/Google%20Antigravity/Demo%20portfolio/contact.html)
+## 🎯 Completed Milestones (Phase 1) ✅
 
-## Decisions
-- Structure project improvements into clear, sequential milestones.
+- [x] **Core Page Architecture**: Built 15 static Astro routes (Home, About, Skills, Works, Certifications, Contact, 8 Case Studies, 404 Page).
+- [x] **Top Bar & Footer Navigation**: Synced 6-item navigation order (`Home` → `About` → `Skills` → `Works` → `Certifications` → `Contact`).
+- [x] **Infinite Skills Marquee**: 4x quadMarquee loop with zero gap and zero jump on `skills.astro`.
+- [x] **Resume PDF Integration**: Integrated `SQA_Raiyan_Uddin_CV.pdf` on Home and About pages (`target="_blank"`).
+- [x] **Contact Form Integration**: Web3Forms API sending form entries to `raiyan.uddin.37.pro@gmail.com` with mailto fallback.
+- [x] **SEO & Social Sharing**: OpenGraph preview tags, Twitter metadata, meta keywords, `robots.txt`.
+- [x] **UX & Accessibility**: Glassmorphic Back-to-Top scroll button, horizontal scrollbar fix (`overflow-x: hidden`), mobile menu auto-close outside click handler.
+- [x] **Documentation**: Complete `README.md`, `walkthrough.md`, `project_audit.md`, and `docs/gemini/` suite.
 
-## Planned Work & Milestones
+---
 
-### Phase 1: Core Design & Asset Localization (COMPLETED)
-- [x] Replicate Gridx portfolio design with 100% fidelity.
-- [x] Localize visual assets into `./assets/`.
-- [x] Localize CSS and JS vendor libraries (`bootstrap.min.css`, `aos.css`, `bootstrap.bundle.min.js`, `aos.js`).
-- [x] Standardize 1170px container max-width.
-- [x] Create project documentation memory inside `/docs/gemini/`.
+## 🚀 Post-Launch Enhancements (Phase 2)
 
-### Phase 2: Automated Testing Setup (PLANNED)
-- [ ] Initialize `npm` package configuration (`package.json`).
-- [ ] Install Playwright testing framework (`@playwright/test`).
-- [ ] Script automated End-to-End (E2E) tests covering:
-  - Header navigation links routing across all pages.
-  - Preloader fade-out lifecycle.
-  - Contact form validation and submission feedback.
-  - Mobile viewport toggle menu.
-
-### Phase 3: Personalization & Dynamic Backend Integration (PLANNED)
-- [ ] Replace default profile placeholder copy with user's personal content, bio, experience, and education.
-- [ ] Connect contact form submission to a real email backend endpoint (e.g. Formspree, EmailJS, or serverless function).
-
-### Phase 4: Production Deployment (PLANNED)
-- [ ] Deploy static portfolio site to GitHub Pages, Netlify, or Vercel.
-- [ ] Configure custom domain name and SSL certificates.
-
-## Outstanding Work
-- Initiate Phase 2 when requested by user.
+- [ ] **GitHub Actions Auto-Deploy Workflow**: Add `.github/workflows/deploy.yml` for automated GitHub Pages publishing on `git push`.
+- [ ] **Full-Screen Image Lightbox Modal**: Add modal image zoom for project case study screenshots.
+- [ ] **Automatic XML Sitemap**: Integrate `@astrojs/sitemap` package for automatic sitemap compilation.
+- [ ] **Custom Domain**: Attach a personal domain (e.g. `raiyanuddin.dev`) via GitHub Pages CNAME.
