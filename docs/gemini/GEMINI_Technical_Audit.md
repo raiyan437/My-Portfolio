@@ -1,7 +1,7 @@
 # GEMINI Technical Audit
 
 ## Purpose
-Technical audit report evaluating build integrity, performance, responsive design, and SEO metadata for **Raiyan Uddin's Portfolio**.
+Technical audit report evaluating build integrity, performance, file connectivity, asset cleanup, and SEO metadata for **Raiyan Uddin's Portfolio**.
 
 ## Last Updated
 2026-07-21
@@ -14,6 +14,7 @@ Technical audit report evaluating build integrity, performance, responsive desig
 - **Responsive Layout**: **9.5 / 10** (Desktop, tablet, mobile viewports verified).
 - **SEO & Social Preview**: **9.5 / 10** (OpenGraph, Twitter cards, meta keywords, `robots.txt`, custom 404).
 - **User Experience**: **9.6 / 10** (Back-to-Top scroll button, infinite skills marquee, Web3Forms contact submission, PDF resume opening in new tab).
+- **Code Hygiene & Cleanup**: **10 / 10** (Removed unreferenced duplicate files `public/resume.pdf`, `public/assets/SQA_Raiyan Uddin_CV.pdf`, `public/favicon.svg`; `.gitignore` updated).
 
 ---
 

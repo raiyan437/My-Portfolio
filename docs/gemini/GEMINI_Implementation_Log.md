@@ -1,7 +1,7 @@
 # GEMINI Implementation Log
 
 ## Purpose
-Chronological record of feature implementations, refactoring, and UI enhancements made for **Raiyan Uddin's Portfolio**.
+Chronological record of feature implementations, refactoring, asset cleanup, and UI enhancements made for **Raiyan Uddin's Portfolio**.
 
 ## Last Updated
 2026-07-21
@@ -31,10 +31,15 @@ Chronological record of feature implementations, refactoring, and UI enhancement
 - Restructured social links into a 3x2 glassmorphic icon pill grid matching the homepage profile box.
 
 #### Entry 6: Assets, Branding & SEO Metadata
-- Linked `SQA_Raiyan_Uddin_CV.pdf` on Home and About page Resume cards (`target="_blank"`).
+- Linked `public/assets/SQA_Raiyan_Uddin_CV.pdf` on Home and About page Resume cards (`target="_blank"`).
 - Replaced default favicon with topbar logo (`logo.png`).
 - Added OpenGraph, Twitter card, meta keywords, and meta description tags in `BaseLayout.astro`.
 - Created `public/robots.txt` and custom `src/pages/404.astro` error page.
 - Added theme-matched floating Back-to-Top button.
 - Disabled Astro devToolbar permanently in `astro.config.mjs` and Astro preferences.
-- Added project `README.md`.
+
+#### Entry 7: Code Audit & Unused Asset Cleanup
+- Audited file connectivity across all 15 routes and verified the continuous 8-project case study navigation loop.
+- Deleted unused duplicate assets: `public/assets/SQA_Raiyan Uddin_CV.pdf`, `public/resume.pdf`, `public/favicon.svg`.
+- Updated `.gitignore` to ignore `build_output/`.
+- Updated complete `docs/gemini/` documentation suite.

@@ -10,7 +10,7 @@ This document provides a comprehensive summary of the current operational state 
 👉 **[https://raiyan437.github.io/My-Portfolio/](https://raiyan437.github.io/My-Portfolio/)**
 
 ## Current Status
-- **Phase**: Complete, Documented & Verified.
+- **Phase**: Complete, Verified & Cleaned.
 - **Framework**: Astro 4.0 (Static Output).
 - **Build Output**: `output: 'static'`, `outDir: 'node_modules/.astro-out'`.
 - **GitHub Repository**: `https://github.com/raiyan437/My-Portfolio.git` (`main` branch).
@@ -36,9 +36,10 @@ This document provides a comprehensive summary of the current operational state 
 - **Top Bar & Footer Navigation**: Synced 6-item menu order (`Home` → `About` → `Skills` → `Works` → `Certifications` → `Contact`).
 - **Tab Branding**: Page title tags cleaned of template text + topbar logo favicon (`logo.png`).
 - **4x Infinite Skills Marquee**: Never-ending 4x duplicated marquee track with zero gap and zero jump on `skills.astro`.
-- **CV PDF Integration**: `SQA_Raiyan_Uddin_CV.pdf` linked on Home and About pages (`target="_blank"`).
+- **CV PDF Integration**: `public/assets/SQA_Raiyan_Uddin_CV.pdf` linked on Home and About pages (`target="_blank"`).
 - **Live Contact Form**: Web3Forms API integration sending submissions to `raiyan.uddin.37.pro@gmail.com` + mailto fallback.
 - **3x2 Social Links Grid**: Email, LinkedIn, GitHub, Facebook, Instagram, WhatsApp.
+- **Asset Cleanup**: Unused duplicate files (`public/resume.pdf`, `public/assets/SQA_Raiyan Uddin_CV.pdf`, `public/favicon.svg`) removed. `build_output/` added to `.gitignore`.
 - **UX & Performance**: Theme-matched Back-to-Top scroll button, `overflow-x: hidden` horizontal scrollbar fix, and OpenGraph/Twitter card metadata.
 
 ## Build Status
