@@ -1,6 +1,9 @@
 ---
 // src/pages/works.astro
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const rawBase = import.meta.env.BASE_URL;
+const base = rawBase.endsWith('/') ? rawBase : rawBase + '/';
 ---
 
 <BaseLayout title="Works - Raiyan Uddin" bodyClass="main-workspage">
@@ -12,9 +15,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           <!-- Mobile Heading Title -->
           <div class="d-md-none mb-24" data-aos="fade-up">
             <h1 class="section-heading">
-              <img src="/My-Portfolio/assets/star-2.png" alt="img" />
+              <img src={`${base}assets/star-2.png`} alt="img" />
               All Projects
-              <img src="/My-Portfolio/assets/star-2.png" alt="img" />
+              <img src={`${base}assets/star-2.png`} alt="img" />
             </h1>
           </div>
 
@@ -22,16 +25,16 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           <div class="mb-24">
             <div data-aos="zoom-in">
               <div class="project-item shadow-box">
-                <a href="/My-Portfolio/works/mrmax/" class="overlay-link"></a>
+                <a href={`${base}works/mrmax/`} class="overlay-link"></a>
                 <img
-                  src="/My-Portfolio/assets/bg1.png"
+                  src={`${base}assets/bg1.png`}
                   alt="img"
                   class="bg-img"
                 />
                 <div class="project-img">
                   <img
                     class="proj-img"
-                    src="/My-Portfolio/assets/project1.png"
+                    src={`${base}assets/project1.png`}
                     alt="MrMax"
                   />
                 </div>
@@ -40,8 +43,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                     <p>WEB DESIGNING</p>
                     <h2>MrMax</h2>
                   </div>
-                  <a href="/My-Portfolio/works/mrmax/" class="project-btn">
-                    <img src="/My-Portfolio/assets/icon.svg" alt="img" />
+                  <a href={`${base}works/mrmax/`} class="project-btn">
+                    <img src={`${base}assets/icon.svg`} alt="img" />
                   </a>
                 </div>
               </div>
@@ -53,17 +56,17 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             <div data-aos="zoom-in">
               <div class="project-item shadow-box">
                 <a
-                  href="/My-Portfolio/works/qa-brains-java-playwright/"
+                  href={`${base}works/qa-brains-java-playwright/`}
                   class="overlay-link"></a>
                 <img
-                  src="/My-Portfolio/assets/bg1.png"
+                  src={`${base}assets/bg1.png`}
                   alt="img"
                   class="bg-img"
                 />
                 <div class="project-img">
                   <img
                     class="proj-img"
-                    src="/My-Portfolio/assets/project2.png"
+                    src={`${base}assets/project2.png`}
                     alt="QA Brains Automation Project"
                   />
                 </div>
@@ -73,10 +76,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                     <h2>QA Brains Automation</h2>
                   </div>
                   <a
-                    href="/My-Portfolio/works/qa-brains-java-playwright/"
+                    href={`${base}works/qa-brains-java-playwright/`}
                     class="project-btn"
                   >
-                    <img src="/My-Portfolio/assets/icon.svg" alt="img" />
+                    <img src={`${base}assets/icon.svg`} alt="img" />
                   </a>
                 </div>
               </div>
@@ -88,17 +91,17 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             <div data-aos="zoom-in">
               <div class="project-item shadow-box">
                 <a
-                  href="/My-Portfolio/works/qa-brains-ts-playwright/"
+                  href={`${base}works/qa-brains-ts-playwright/`}
                   class="overlay-link"></a>
                 <img
-                  src="/My-Portfolio/assets/bg1.png"
+                  src={`${base}assets/bg1.png`}
                   alt="img"
                   class="bg-img"
                 />
                 <div class="project-img">
                   <img
                     class="proj-img"
-                    src="/My-Portfolio/assets/project3.png"
+                    src={`${base}assets/project3.png`}
                     alt="QA Brains Automation Project"
                   />
                 </div>
@@ -108,10 +111,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                     <h2>QA Brains Automation</h2>
                   </div>
                   <a
-                    href="/My-Portfolio/works/qa-brains-ts-playwright/"
+                    href={`${base}works/qa-brains-ts-playwright/`}
                     class="project-btn"
                   >
-                    <img src="/My-Portfolio/assets/icon.svg" alt="img" />
+                    <img src={`${base}assets/icon.svg`} alt="img" />
                   </a>
                 </div>
               </div>
@@ -124,9 +127,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           <!-- Desktop Header Title -->
           <div class="d-none d-md-block mb-24" data-aos="fade-up">
             <h1 class="section-heading justify-content-start">
-              <img src="/My-Portfolio/assets/star-2.png" alt="img" />
+              <img src={`${base}assets/star-2.png`} alt="img" />
               All Projects
-              <img src="/My-Portfolio/assets/star-2.png" alt="img" />
+              <img src={`${base}assets/star-2.png`} alt="img" />
             </h1>
           </div>
 
@@ -138,17 +141,17 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                 <div data-aos="zoom-in" class="flex-1">
                   <div class="project-item shadow-box">
                     <a
-                      href="/My-Portfolio/works/restful-booker/"
+                      href={`${base}works/restful-booker/`}
                       class="overlay-link"></a>
                     <img
-                      src="/My-Portfolio/assets/bg1.png"
+                      src={`${base}assets/bg1.png`}
                       alt="img"
                       class="bg-img"
                     />
                     <div class="project-img">
                       <img
                         class="proj-img"
-                        src="/My-Portfolio/assets/project4.png"
+                        src={`${base}assets/project4.png`}
                         alt="Restful Booker"
                       />
                     </div>
@@ -160,10 +163,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                         <h2>Restful Booker</h2>
                       </div>
                       <a
-                        href="/My-Portfolio/works/restful-booker/"
+                        href={`${base}works/restful-booker/`}
                         class="project-btn"
                       >
-                        <img src="/My-Portfolio/assets/icon.svg" alt="img" />
+                        <img src={`${base}assets/icon.svg`} alt="img" />
                       </a>
                     </div>
                   </div>
@@ -175,17 +178,17 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                 <div data-aos="zoom-in" class="flex-1">
                   <div class="project-item shadow-box">
                     <a
-                      href="/My-Portfolio/works/gcc-mealkun/"
+                      href={`${base}works/gcc-mealkun/`}
                       class="overlay-link"></a>
                     <img
-                      src="/My-Portfolio/assets/bg1.png"
+                      src={`${base}assets/bg1.png`}
                       alt="img"
                       class="bg-img"
                     />
                     <div class="project-img">
                       <img
                         class="proj-img"
-                        src="/My-Portfolio/assets/project5.png"
+                        src={`${base}assets/project5.png`}
                         alt="GCC Mealkun"
                       />
                     </div>
@@ -197,10 +200,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                         <h2>GCC Mealkun</h2>
                       </div>
                       <a
-                        href="/My-Portfolio/works/gcc-mealkun/"
+                        href={`${base}works/gcc-mealkun/`}
                         class="project-btn"
                       >
-                        <img src="/My-Portfolio/assets/icon.svg" alt="img" />
+                        <img src={`${base}assets/icon.svg`} alt="img" />
                       </a>
                     </div>
                   </div>
@@ -215,17 +218,17 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                 <div data-aos="zoom-in" class="flex-1">
                   <div class="project-item shadow-box">
                     <a
-                      href="/My-Portfolio/works/bsec-ipo-system/"
+                      href={`${base}works/bsec-ipo-system/`}
                       class="overlay-link"></a>
                     <img
-                      src="/My-Portfolio/assets/bg1.png"
+                      src={`${base}assets/bg1.png`}
                       alt="img"
                       class="bg-img"
                     />
                     <div class="project-img">
                       <img
                         class="proj-img"
-                        src="/My-Portfolio/assets/project6.png"
+                        src={`${base}assets/project6.png`}
                         alt="BSEC IPO System"
                       />
                     </div>
@@ -237,10 +240,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                         <h2>BSEC IPO System</h2>
                       </div>
                       <a
-                        href="/My-Portfolio/works/bsec-ipo-system/"
+                        href={`${base}works/bsec-ipo-system/`}
                         class="project-btn"
                       >
-                        <img src="/My-Portfolio/assets/icon.svg" alt="img" />
+                        <img src={`${base}assets/icon.svg`} alt="img" />
                       </a>
                     </div>
                   </div>
@@ -251,17 +254,17 @@ import BaseLayout from "../layouts/BaseLayout.astro";
               <div class="mb-24">
                 <div data-aos="zoom-in" class="flex-1">
                   <div class="project-item shadow-box">
-                    <a href="/My-Portfolio/works/dnothi/" class="overlay-link"
+                    <a href={`${base}works/dnothi/`} class="overlay-link"
                     ></a>
                     <img
-                      src="/My-Portfolio/assets/bg1.png"
+                      src={`${base}assets/bg1.png`}
                       alt="img"
                       class="bg-img"
                     />
                     <div class="project-img">
                       <img
                         class="proj-img"
-                        src="/My-Portfolio/assets/project7.png"
+                        src={`${base}assets/project7.png`}
                         alt="dNothi"
                       />
                     </div>
@@ -272,8 +275,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                         <p>WEB DESIGNING</p>
                         <h2>dNothi</h2>
                       </div>
-                      <a href="/My-Portfolio/works/dnothi/" class="project-btn">
-                        <img src="/My-Portfolio/assets/icon.svg" alt="img" />
+                      <a href={`${base}works/dnothi/`} class="project-btn">
+                        <img src={`${base}assets/icon.svg`} alt="img" />
                       </a>
                     </div>
                   </div>
@@ -285,17 +288,17 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                 <div data-aos="zoom-in" class="flex-1">
                   <div class="project-item shadow-box">
                     <a
-                      href="/My-Portfolio/works/practice-management-system/"
+                      href={`${base}works/practice-management-system/`}
                       class="overlay-link"></a>
                     <img
-                      src="/My-Portfolio/assets/bg1.png"
+                      src={`${base}assets/bg1.png`}
                       alt="img"
                       class="bg-img"
                     />
                     <div class="project-img">
                       <img
                         class="proj-img"
-                        src="/My-Portfolio/assets/project8.png"
+                        src={`${base}assets/project8.png`}
                         alt="Practice Management System"
                       />
                     </div>
@@ -307,10 +310,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                         <h2>Practice Management</h2>
                       </div>
                       <a
-                        href="/My-Portfolio/works/practice-management-system/"
+                        href={`${base}works/practice-management-system/`}
                         class="project-btn"
                       >
-                        <img src="/My-Portfolio/assets/icon.svg" alt="img" />
+                        <img src={`${base}assets/icon.svg`} alt="img" />
                       </a>
                     </div>
                   </div>

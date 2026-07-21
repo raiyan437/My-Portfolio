@@ -2,6 +2,9 @@
 // src/pages/skills.astro
 import BaseLayout from "../layouts/BaseLayout.astro";
 
+const rawBase = import.meta.env.BASE_URL;
+const base = rawBase.endsWith('/') ? rawBase : rawBase + '/';
+
 const marqueeSkills = [
   {
     name: "Playwright",
@@ -38,15 +41,6 @@ const quadMarquee = [
 >
   <section class="about-area">
     <div class="container">
-      <!-- Section Header Title 
-      <div class="mb-24" data-aos="fade-up">
-        <h1 class="section-heading justify-content-center">
-          <img src="/My-Portfolio/assets/star-2.png" alt="star" />
-          Skills & Specialization
-          <img src="/My-Portfolio/assets/star-2.png" alt="star" />
-        </h1>
-      </div>-->
-
       <!-- Interactive Skills Marquee Banner (Never-ending loop) -->
       <div data-aos="zoom-in" class="mb-24">
         <div class="banner shadow-box" style="padding: 24px 30px;">
@@ -80,7 +74,7 @@ const quadMarquee = [
               class="info-box shadow-box h-full d-flex flex-column justify-content-between"
               style="padding: 36px;"
             >
-              <img src="/My-Portfolio/assets/bg1.png" alt="BG" class="bg-img" />
+              <img src={`${base}assets/bg1.png`} alt="BG" class="bg-img" />
               <div>
                 <div
                   class="d-flex align-items-center justify-content-between mb-24"
@@ -91,7 +85,7 @@ const quadMarquee = [
                     AUTOMATION ENGINEERING
                   </h5>
                   <img
-                    src="/My-Portfolio/assets/star-2.png"
+                    src={`${base}assets/star-2.png`}
                     alt="star"
                     style="width: 24px; opacity: 0.8;"
                   />
@@ -142,7 +136,7 @@ const quadMarquee = [
               class="info-box shadow-box h-full d-flex flex-column justify-content-between"
               style="padding: 36px;"
             >
-              <img src="/My-Portfolio/assets/bg1.png" alt="BG" class="bg-img" />
+              <img src={`${base}assets/bg1.png`} alt="BG" class="bg-img" />
               <div>
                 <div
                   class="d-flex align-items-center justify-content-between mb-24"
@@ -153,7 +147,7 @@ const quadMarquee = [
                     BACKEND & LOAD TESTING
                   </h5>
                   <img
-                    src="/My-Portfolio/assets/star-2.png"
+                    src={`${base}assets/star-2.png`}
                     alt="star"
                     style="width: 24px; opacity: 0.8;"
                   />
@@ -197,7 +191,7 @@ const quadMarquee = [
               class="info-box shadow-box h-full d-flex flex-column justify-content-between"
               style="padding: 36px;"
             >
-              <img src="/My-Portfolio/assets/bg1.png" alt="BG" class="bg-img" />
+              <img src={`${base}assets/bg1.png`} alt="BG" class="bg-img" />
               <div>
                 <div
                   class="d-flex align-items-center justify-content-between mb-24"
@@ -208,7 +202,7 @@ const quadMarquee = [
                     CONTINUOUS TESTING
                   </h5>
                   <img
-                    src="/My-Portfolio/assets/star-2.png"
+                    src={`${base}assets/star-2.png`}
                     alt="star"
                     style="width: 24px; opacity: 0.8;"
                   />
@@ -251,7 +245,7 @@ const quadMarquee = [
               class="info-box shadow-box h-full d-flex flex-column justify-content-between"
               style="padding: 36px;"
             >
-              <img src="/My-Portfolio/assets/bg1.png" alt="BG" class="bg-img" />
+              <img src={`${base}assets/bg1.png`} alt="BG" class="bg-img" />
               <div>
                 <div
                   class="d-flex align-items-center justify-content-between mb-24"
@@ -262,7 +256,7 @@ const quadMarquee = [
                     MANAGEMENT & PROCESS
                   </h5>
                   <img
-                    src="/My-Portfolio/assets/star-2.png"
+                    src={`${base}assets/star-2.png`}
                     alt="star"
                     style="width: 24px; opacity: 0.8;"
                   />

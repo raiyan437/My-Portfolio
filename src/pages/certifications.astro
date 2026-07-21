@@ -2,13 +2,16 @@
 // src/pages/certifications.astro
 import BaseLayout from "../layouts/BaseLayout.astro";
 
+const rawBase = import.meta.env.BASE_URL;
+const base = rawBase.endsWith('/') ? rawBase : rawBase + '/';
+
 const certifications = [
   {
     title: "ISTQB Certified Tester (CTFL)",
     issuer: "ISTQB® - International Software Testing Qualifications Board",
     category: "FOUNDATION CERTIFICATION",
     year: "2024",
-    image: "/My-Portfolio/assets/bsec_detail.jpg",
+    image: `${base}assets/bsec_detail.jpg`,
     details:
       "Foundational software testing principles, test design techniques, STLC workflows, and defect management.",
   },
@@ -17,7 +20,7 @@ const certifications = [
     issuer: "QA Brains Academy",
     category: "AUTOMATION SPECIALIZATION",
     year: "2024",
-    image: "/My-Portfolio/assets/qa_java_detail.jpg",
+    image: `${base}assets/qa_java_detail.jpg`,
     details:
       "Advanced web automation using Playwright Java & TypeScript, Page Object Model, and parallel test execution.",
   },
@@ -26,7 +29,7 @@ const certifications = [
     issuer: "Postman",
     category: "API TESTING",
     year: "2023",
-    image: "/My-Portfolio/assets/api_detail.jpg",
+    image: `${base}assets/api_detail.jpg`,
     details:
       "Automated API suite validation, environment variables, dynamic assertions, and Newman CLI integration.",
   },
@@ -35,7 +38,7 @@ const certifications = [
     issuer: "Software QA Institute",
     category: "PERFORMANCE & LOAD",
     year: "2023",
-    image: "/My-Portfolio/assets/practice_detail.jpg",
+    image: `${base}assets/practice_detail.jpg`,
     details:
       "Thread group load generation, assertion listeners, throughput metrics, and server stress testing.",
   },
@@ -44,7 +47,7 @@ const certifications = [
     issuer: "Tappware Solutions / BJIT",
     category: "AGILE METHODOLOGY",
     year: "2023",
-    image: "/My-Portfolio/assets/dnothi_detail.jpg",
+    image: `${base}assets/dnothi_detail.jpg`,
     details:
       "Agile sprint testing, user story estimation, defect lifecycle management in Jira, and bug reporting.",
   },
@@ -53,7 +56,7 @@ const certifications = [
     issuer: "GitHub Community",
     category: "DEVOPS & INTEGRATION",
     year: "2023",
-    image: "/My-Portfolio/assets/qa_ts_detail.jpg",
+    image: `${base}assets/qa_ts_detail.jpg`,
     details:
       "Continuous integration test workflows, pull request regression checks, and GitHub Actions automation.",
   },
@@ -66,15 +69,6 @@ const certifications = [
 >
   <section class="projects-area">
     <div class="container">
-      <!-- Section Title 
-      <div class="mb-24" data-aos="fade-up">
-        <h1 class="section-heading justify-content-center">
-          <img src="/My-Portfolio/assets/star-2.png" alt="star" />
-          Certifications
-          <img src="/My-Portfolio/assets/star-2.png" alt="star" />
-        </h1>
-      </div>-->
-
       <!-- Uniform Equal-Sized Grid (3 Columns x 2 Rows) -->
       <div class="row">
         {
@@ -86,7 +80,7 @@ const certifications = [
                   style="padding: 24px 24px 20px 24px;"
                 >
                   <img
-                    src="/My-Portfolio/assets/bg1.png"
+                    src={`${base}assets/bg1.png`}
                     alt="BG"
                     class="bg-img"
                   />

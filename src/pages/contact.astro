@@ -2,6 +2,9 @@
 // src/pages/contact.astro
 import BaseLayout from "../layouts/BaseLayout.astro";
 import SocialLinks from "../components/SocialLinks.astro";
+
+const rawBase = import.meta.env.BASE_URL;
+const base = rawBase.endsWith('/') ? rawBase : rawBase + '/';
 ---
 
 <BaseLayout title="Contact - Raiyan Uddin" bodyClass="main-contactpage">
@@ -54,9 +57,9 @@ import SocialLinks from "../components/SocialLinks.astro";
         <!-- Right: Form Panel -->
         <div data-aos="zoom-in" class="contact-form">
           <div class="shadow-box">
-            <img src="/My-Portfolio/assets/bg1.png" alt="img" class="bg-img" />
+            <img src={`${base}assets/bg1.png`} alt="img" class="bg-img" />
             <img
-              src="/My-Portfolio/assets/icon2.png"
+              src={`${base}assets/icon2.png`}
               alt="img"
               class="star-icon"
             />

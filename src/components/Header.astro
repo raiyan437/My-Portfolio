@@ -1,31 +1,41 @@
 ---
 // src/components/Header.astro
+const rawBase = import.meta.env.BASE_URL;
+const base = rawBase.endsWith('/') ? rawBase : rawBase + '/';
 const pathname = Astro.url.pathname;
 
-const isHome = pathname === '/' || pathname === '/index.html' || pathname === '/index';
-const isAbout = pathname.includes('/about');
-const isWorks = pathname.includes('/works');
-const isContact = pathname.includes('/contact');
+const relativePath = pathname.startsWith(base) 
+  ? '/' + pathname.slice(base.length) 
+  : pathname;
+
+const isHome = relativePath === '/' || relativePath === '/index.html' || relativePath === '/index' || relativePath === '';
+const isAbout = relativePath.includes('about');
+const isSkills = relativePath.includes('skills');
+const isWorks = relativePath.includes('works');
+const isCertifications = relativePath.includes('certifications');
+const isContact = relativePath.includes('contact');
 ---
 
 <header class="header-area">
     <div class="container">
         <div class="gx-row d-flex align-items-center justify-content-between">
-            <a href="/" class="logo">
-                <img src="/assets/logo.png" alt="Logo">
+            <a href={base} class="logo">
+                <img src={`${base}assets/logo.png`} alt="Logo">
             </a>
 
             <!-- Navigation Menu -->
             <nav class="navbar" id="navbar">
                 <ul class="menu" id="menu-main-menu">
-                    <li class={isHome ? "active" : ""}><a href="/">Home</a></li>
-                    <li class={isAbout ? "active" : ""}><a href="/about/">About</a></li>
-                    <li class={isWorks ? "active" : ""}><a href="/works/">Works</a></li>
-                    <li class={isContact ? "active" : ""}><a href="/contact/">Contact</a></li>
+                    <li class={isHome ? "active" : ""}><a href={base}>Home</a></li>
+                    <li class={isAbout ? "active" : ""}><a href={`${base}about/`}>About</a></li>
+                    <li class={isSkills ? "active" : ""}><a href={`${base}skills/`}>Skills</a></li>
+                    <li class={isWorks ? "active" : ""}><a href={`${base}works/`}>Works</a></li>
+                    <li class={isCertifications ? "active" : ""}><a href={`${base}certifications/`}>Certifications</a></li>
+                    <li class={isContact ? "active" : ""}><a href={`${base}contact/`}>Contact</a></li>
                 </ul>
             </nav>
 
-            <a href="/contact/" class="theme-btn">Let's talk</a>
+            <a href={`${base}contact/`} class="theme-btn">Let's talk</a>
 
             <!-- Mobile Toggle Menu -->
             <div class="show-menu" id="show-menu">
