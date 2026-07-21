@@ -2,34 +2,30 @@
 // src/components/Header.astro
 const pathname = Astro.url.pathname;
 
-const isHome = pathname === '/My-Portfolio/' || pathname === '/My-Portfolio' || pathname === '/';
+const isHome = pathname === '/' || pathname === '/index.html' || pathname === '/index';
 const isAbout = pathname.includes('/about');
-const isSkills = pathname.includes('/skills');
 const isWorks = pathname.includes('/works');
-const isCertifications = pathname.includes('/certifications');
 const isContact = pathname.includes('/contact');
 ---
 
 <header class="header-area">
     <div class="container">
         <div class="gx-row d-flex align-items-center justify-content-between">
-            <a href="/My-Portfolio/" class="logo">
-                <img src="/My-Portfolio/assets/logo.png" alt="Logo">
+            <a href="/" class="logo">
+                <img src="/assets/logo.png" alt="Logo">
             </a>
 
             <!-- Navigation Menu -->
             <nav class="navbar" id="navbar">
                 <ul class="menu" id="menu-main-menu">
-                    <li class={isHome ? "active" : ""}><a href="/My-Portfolio/">Home</a></li>
-                    <li class={isAbout ? "active" : ""}><a href="/My-Portfolio/about/">About</a></li>
-                    <li class={isSkills ? "active" : ""}><a href="/My-Portfolio/skills/">Skills</a></li>
-                    <li class={isWorks ? "active" : ""}><a href="/My-Portfolio/works/">Works</a></li>
-                    <li class={isCertifications ? "active" : ""}><a href="/My-Portfolio/certifications/">Certifications</a></li>
-                    <li class={isContact ? "active" : ""}><a href="/My-Portfolio/contact/">Contact</a></li>
+                    <li class={isHome ? "active" : ""}><a href="/">Home</a></li>
+                    <li class={isAbout ? "active" : ""}><a href="/about/">About</a></li>
+                    <li class={isWorks ? "active" : ""}><a href="/works/">Works</a></li>
+                    <li class={isContact ? "active" : ""}><a href="/contact/">Contact</a></li>
                 </ul>
             </nav>
 
-            <a href="/My-Portfolio/contact/" class="theme-btn">Let's talk</a>
+            <a href="/contact/" class="theme-btn">Let's talk</a>
 
             <!-- Mobile Toggle Menu -->
             <div class="show-menu" id="show-menu">

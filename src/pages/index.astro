@@ -1,388 +1,220 @@
 ---
 // src/pages/index.astro
-import BaseLayout from "../layouts/BaseLayout.astro";
-import SocialLinks from "../components/SocialLinks.astro";
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SocialLinks from '../components/SocialLinks.astro';
 ---
 
-<BaseLayout
-  title="Raiyan Uddin - Software QA Engineer"
-  bodyClass="main-homepage"
->
-  <section class="about-area">
-    <div class="container">
-      <!-- Row 1: About Me & Ticker, Credentials, Projects -->
-      <div class="row">
-        <!-- Left Column: About Me Box -->
-        <div class="col-md-6 mb-24">
-          <div data-aos="zoom-in" class="about-me-box-wrap">
-            <div class="about-me-box shadow-box">
-              <a class="overlay-link" href="/My-Portfolio/about/"></a>
-              <img src="/My-Portfolio/assets/bg1.png" alt="BG" class="bg-img" />
-              <div class="img-box">
-                <img
-                  class="proj-img"
-                  src="/My-Portfolio/assets/me4.jpg"
-                  alt="hero-img"
-                />
-              </div>
-              <div class="infos">
-                <h5>Software QA Engineer</h5>
-                <h1>Raiyan Uddin</h1>
-                <p>I am a Software QA Engineer based in Bangladesh.</p>
-                <a href="/My-Portfolio/about/" class="about-btn">
-                  <img src="/My-Portfolio/assets/icon.svg" alt="Star" />
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Right Column: Ticker and subgrid cards -->
-        <div class="col-md-6 mb-24">
-          <div class="about-credentials-wrap">
-            <!-- Marquee banner row -->
-            <div data-aos="zoom-in" class="mb-24">
-              <div class="banner shadow-box">
-                <div class="marquee">
-                  <div class="hero-marquee-track">
-                    <span
-                      >SOFTWARE <b>QUALITY ASSURANCE</b><img
-                        src="/My-Portfolio/assets/star1.svg"
-                        alt="star"
-                      /></span
-                    >
-                    <span
-                      >AUTOMATION & <b>MANUAL TESTING</b><img
-                        src="/My-Portfolio/assets/star1.svg"
-                        alt="star"
-                      /></span
-                    >
-                    <span
-                      >API & <b>PERFORMANCE TESTING</b><img
-                        src="/My-Portfolio/assets/star1.svg"
-                        alt="star"
-                      /></span
-                    >
-                    <span
-                      >TEST AUTOMATION & <b>CI/CD INTEGRATION</b><img
-                        src="/My-Portfolio/assets/star1.svg"
-                        alt="star"
-                      /></span
-                    >
-                    <span
-                      >QUALITY ENGINEERING & <b>BUG TRACKING</b><img
-                        src="/My-Portfolio/assets/star1.svg"
-                        alt="star"
-                      /></span
-                    >
-                    <span
-                      >SOFTWARE <b>QUALITY ASSURANCE</b><img
-                        src="/My-Portfolio/assets/star1.svg"
-                        alt="star"
-                      /></span
-                    >
-                    <span
-                      >AUTOMATION & <b>MANUAL TESTING</b><img
-                        src="/My-Portfolio/assets/star1.svg"
-                        alt="star"
-                      /></span
-                    >
-                    <span
-                      >API & <b>PERFORMANCE TESTING</b><img
-                        src="/My-Portfolio/assets/star1.svg"
-                        alt="star"
-                      /></span
-                    >
-                    <span
-                      >TEST AUTOMATION & <b>CI/CD INTEGRATION</b><img
-                        src="/My-Portfolio/assets/star1.svg"
-                        alt="star"
-                      /></span
-                    >
-                    <span
-                      >QUALITY ENGINEERING & <b>BUG TRACKING</b><img
-                        src="/My-Portfolio/assets/star1.svg"
-                        alt="star"
-                      /></span
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Credentials & Projects subgrid row -->
+<BaseLayout title="Gridx – Personal Portfolio Website" bodyClass="main-homepage">
+    <section class="about-area">
+        <div class="container">
+            
+            <!-- Row 1: About Me & Ticker, Credentials, Projects -->
             <div class="row">
-              <div class="col-md-6 col-sm-6 mb-24">
-                <div data-aos="zoom-in" class="about-crenditials-box">
-                  <div class="info-box shadow-box h-full">
-                    <a class="overlay-link" href="/My-Portfolio/about/"></a>
-                    <img
-                      src="/My-Portfolio/assets/bg1.png"
-                      alt="BG"
-                      class="bg-img"
-                    />
-                    <img
-                      class="proj-img"
-                      src="/My-Portfolio/assets/sign.png"
-                      alt="sign"
-                    />
-                    <div
-                      class="d-flex align-items-center justify-content-between"
-                    >
-                      <div class="infos">
-                        <h5>MORE ABOUT ME</h5>
-                        <h2>Credentials</h2>
-                      </div>
-                      <a href="/My-Portfolio/about/" class="about-btn">
-                        <img src="/My-Portfolio/assets/icon.svg" alt="Star" />
-                      </a>
+                <!-- Left Column: About Me Box -->
+                <div class="col-md-6 mb-24">
+                    <div data-aos="zoom-in" class="about-me-box-wrap">
+                        <div class="about-me-box shadow-box">
+                            <a class="overlay-link" href="/about/"></a>
+                            <img src="/assets/bg1.png" alt="BG" class="bg-img">
+                            <div class="img-box">
+                                <img class="proj-img" src="/assets/me4.jpg" alt="hero-img">
+                            </div>
+                            <div class="infos">
+                                <h5>Software QA Engineer</h5>
+                                <h1>Raiyan Uddin</h1>
+                                <p>I am a Software QA Engineer based in Bangladesh.</p>
+                                <a href="/about/" class="about-btn">
+                                    <img src="/assets/icon.svg" alt="Star">
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                  </div>
                 </div>
-              </div>
 
-              <div class="col-md-6 col-sm-6 mb-24">
-                <div data-aos="zoom-in" class="about-project-box">
-                  <div class="info-box shadow-box h-full">
-                    <a class="overlay-link" href="/My-Portfolio/works/"></a>
-                    <img
-                      src="/My-Portfolio/assets/bg1.png"
-                      alt="BG"
-                      class="bg-img"
-                    />
-                    <img
-                      class="proj-img"
-                      src="/My-Portfolio/assets/my-works.png"
-                      alt="works"
-                    />
-                    <div
-                      class="d-flex align-items-center justify-content-between"
-                    >
-                      <div class="infos">
-                        <h5>SHOWCASE</h5>
-                        <h2>Projects</h2>
-                      </div>
-                      <a href="/My-Portfolio/works/" class="about-btn">
-                        <img src="/My-Portfolio/assets/icon.svg" alt="Star" />
-                      </a>
+                <!-- Right Column: Ticker and subgrid cards -->
+                <div class="col-md-6 mb-24">
+                    <div class="about-credentials-wrap">
+                        <!-- Marquee banner row -->
+                        <div data-aos="zoom-in" class="mb-24">
+                            <div class="banner shadow-box">
+                                <div class="marquee">
+                                    <div class="hero-marquee-track">
+                                        <span>SOFTWARE <b>QUALITY ASSURANCE</b><img src="/assets/star1.svg" alt="star"></span>
+                                        <span>AUTOMATION & <b>MANUAL TESTING</b><img src="/assets/star1.svg" alt="star"></span>
+                                        <span>API & <b>PERFORMANCE TESTING</b><img src="/assets/star1.svg" alt="star"></span>
+                                        <span>TEST AUTOMATION & <b>CI/CD INTEGRATION</b><img src="/assets/star1.svg" alt="star"></span>
+                                        <span>QUALITY ENGINEERING & <b>BUG TRACKING</b><img src="/assets/star1.svg" alt="star"></span>
+                                        <span>SOFTWARE <b>QUALITY ASSURANCE</b><img src="/assets/star1.svg" alt="star"></span>
+                                        <span>AUTOMATION & <b>MANUAL TESTING</b><img src="/assets/star1.svg" alt="star"></span>
+                                        <span>API & <b>PERFORMANCE TESTING</b><img src="/assets/star1.svg" alt="star"></span>
+                                        <span>TEST AUTOMATION & <b>CI/CD INTEGRATION</b><img src="/assets/star1.svg" alt="star"></span>
+                                        <span>QUALITY ENGINEERING & <b>BUG TRACKING</b><img src="/assets/star1.svg" alt="star"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Credentials & Projects subgrid row -->
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6 mb-24">
+                                <div data-aos="zoom-in" class="about-crenditials-box">
+                                    <div class="info-box shadow-box h-full">
+                                        <a class="overlay-link" href="/about/"></a>
+                                        <img src="/assets/bg1.png" alt="BG" class="bg-img">
+                                        <img class="proj-img" src="/assets/sign.png" alt="sign">
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <div class="infos">
+                                                <h5>MORE ABOUT ME</h5>
+                                                <h2>Credentials</h2>
+                                            </div>
+                                            <a href="/about/" class="about-btn">
+                                                <img src="/assets/icon.svg" alt="Star">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-sm-6 mb-24">
+                                <div data-aos="zoom-in" class="about-project-box">
+                                    <div class="info-box shadow-box h-full">
+                                        <a class="overlay-link" href="/works/"></a>
+                                        <img src="/assets/bg1.png" alt="BG" class="bg-img">
+                                        <img class="proj-img" src="/assets/my-works.png" alt="works">
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <div class="infos">
+                                                <h5>SHOWCASE</h5>
+                                                <h2>Projects</h2>
+                                            </div>
+                                            <a href="/works/" class="about-btn">
+                                                <img src="/assets/icon.svg" alt="Star">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
                 </div>
-              </div>
             </div>
-          </div>
-        </div>
-      </div>
 
-      <!-- Row 2: Resume, Specialization Skills, Profiles -->
-      <div class="row">
-        <!-- Resume Box -->
-        <div class="col-md-3 mb-24">
-          <div data-aos="zoom-in" class="about-blog-box h-full">
-            <div class="info-box shadow-box h-full">
-              <a
-                href="/My-Portfolio/assets/SQA_Raiyan_Uddin_CV.pdf"
-                class="overlay-link"
-                target="_blank"
-                rel="noopener noreferrer"></a>
-              <img src="/My-Portfolio/assets/bg1.png" alt="BG" class="bg-img" />
-              <img
-                class="proj-img"
-                src="/My-Portfolio/assets/gfonts2.png"
-                alt="gfonts"
-              />
-              <div class="d-flex align-items-center justify-content-between">
-                <div class="infos">
-                  <h5>RESUME</h5>
-                  <h2>Resume</h2>
+            <!-- Row 2: Resume, Specialization Skills, Profiles -->
+            <div class="row">
+                <!-- Resume Box -->
+                <div class="col-md-3 mb-24">
+                    <div data-aos="zoom-in" class="about-blog-box h-full">
+                        <div class="info-box shadow-box h-full">
+                            <a href="/resume.pdf" class="overlay-link" target="_blank"></a>
+                            <img src="/assets/bg1.png" alt="BG" class="bg-img">
+                            <img class="proj-img" src="/assets/gfonts.png" alt="gfonts">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div class="infos">
+                                    <h5>RESUME</h5>
+                                    <h2>Resume</h2>
+                                </div>
+                                <a href="/resume.pdf" class="about-btn" target="_blank">
+                                    <img src="/assets/icon.svg" alt="Star">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <a
-                  href="/My-Portfolio/assets/SQA_Raiyan_Uddin_CV.pdf"
-                  class="about-btn"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <img src="/My-Portfolio/assets/icon.svg" alt="Star" />
-                </a>
-              </div>
+
+                <!-- Services Box -->
+                <div class="col-md-6 mb-24">
+                    <div data-aos="zoom-in" class="about-services-box-wrap h-full">
+                        <div class="about-services-box info-box shadow-box h-full">
+                            <a href="/about/" class="overlay-link"></a>
+                            <img src="/assets/bg1.png" alt="BG" class="bg-img">
+                            <div class="icon-boxes">
+                                <div class="skills-marquee-track">
+                                    <span class="skill-icon-pill" title="Playwright"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/playwright/playwright-original.svg" alt="Playwright"></span>
+                                    <span class="skill-icon-pill" title="Java"><img class="java-icon" src="https://upload.wikimedia.org/wikipedia/en/3/30/Java_programming_language_logo.svg" alt="Java"></span>
+                                    <span class="skill-icon-pill" title="Jira"><img src="https://cdn.simpleicons.org/jira/ffffff" alt="Jira"></span>
+                                    <span class="skill-icon-pill" title="Postman"><img src="https://cdn.simpleicons.org/postman/ffffff" alt="Postman"></span>
+                                    <span class="skill-icon-pill" title="Apache JMeter"><img src="https://cdn.simpleicons.org/apachejmeter/ffffff" alt="Apache JMeter"></span>
+                                    <span class="skill-icon-pill" title="GitHub"><img src="https://cdn.simpleicons.org/github/ffffff" alt="GitHub"></span>
+                                    <span class="skill-icon-pill" title="GitHub Copilot"><img src="https://cdn.simpleicons.org/githubcopilot/ffffff" alt="GitHub Copilot"></span>
+
+                                    <span class="skill-icon-pill" title="Playwright"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/playwright/playwright-original.svg" alt="Playwright"></span>
+                                    <span class="skill-icon-pill" title="Java"><img class="java-icon" src="https://upload.wikimedia.org/wikipedia/en/3/30/Java_programming_language_logo.svg" alt="Java"></span>
+                                    <span class="skill-icon-pill" title="Jira"><img src="https://cdn.simpleicons.org/jira/ffffff" alt="Jira"></span>
+                                    <span class="skill-icon-pill" title="Postman"><img src="https://cdn.simpleicons.org/postman/ffffff" alt="Postman"></span>
+                                    <span class="skill-icon-pill" title="Apache JMeter"><img src="https://cdn.simpleicons.org/apachejmeter/ffffff" alt="Apache JMeter"></span>
+                                    <span class="skill-icon-pill" title="GitHub"><img src="https://cdn.simpleicons.org/github/ffffff" alt="GitHub"></span>
+                                    <span class="skill-icon-pill" title="GitHub Copilot"><img src="https://cdn.simpleicons.org/githubcopilot/ffffff" alt="GitHub Copilot"></span>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div class="infos">
+                                    <h5>SKILLS</h5>
+                                    <h2>Specialization</h2>
+                                </div>
+                                <a href="/about/" class="about-btn">
+                                    <img src="/assets/icon.svg" alt="Star">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Profiles Box -->
+                <div class="col-md-3 mb-24">
+                    <div data-aos="zoom-in" class="about-profile-box-wrap h-full">
+                        <div class="about-profile-box info-box shadow-box h-full">
+                            <img src="/assets/bg1.png" alt="BG" class="bg-img">
+                            <SocialLinks />
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div class="infos">
+                                    <h5>STAY WITH ME</h5>
+                                    <h2>Profiles</h2>
+                                </div>
+                                <a href="/contact/" class="about-btn">
+                                    <img src="/assets/icon.svg" alt="Star">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
 
-        <!-- Services Box -->
-        <div class="col-md-6 mb-24">
-          <div data-aos="zoom-in" class="about-services-box-wrap h-full">
-            <div class="about-services-box info-box shadow-box h-full">
-              <a href="/My-Portfolio/skills/" class="overlay-link"></a>
-              <img src="/My-Portfolio/assets/bg1.png" alt="BG" class="bg-img" />
-              <div class="icon-boxes">
-                <div class="skills-marquee-track">
-                  <span class="skill-icon-pill" title="Playwright"
-                    ><img
-                      src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/playwright/playwright-original.svg"
-                      alt="Playwright"
-                    /></span
-                  >
-                  <span class="skill-icon-pill" title="Java"
-                    ><img
-                      class="java-icon"
-                      src="https://upload.wikimedia.org/wikipedia/en/3/30/Java_programming_language_logo.svg"
-                      alt="Java"
-                    /></span
-                  >
-                  <span class="skill-icon-pill" title="Jira"
-                    ><img
-                      src="https://cdn.simpleicons.org/jira/ffffff"
-                      alt="Jira"
-                    /></span
-                  >
-                  <span class="skill-icon-pill" title="Postman"
-                    ><img
-                      src="https://cdn.simpleicons.org/postman/ffffff"
-                      alt="Postman"
-                    /></span
-                  >
-                  <span class="skill-icon-pill" title="Apache JMeter"
-                    ><img
-                      src="https://cdn.simpleicons.org/apachejmeter/ffffff"
-                      alt="Apache JMeter"
-                    /></span
-                  >
-                  <span class="skill-icon-pill" title="GitHub"
-                    ><img
-                      src="https://cdn.simpleicons.org/github/ffffff"
-                      alt="GitHub"
-                    /></span
-                  >
-                  <span class="skill-icon-pill" title="GitHub Copilot"
-                    ><img
-                      src="https://cdn.simpleicons.org/githubcopilot/ffffff"
-                      alt="GitHub Copilot"
-                    /></span
-                  >
+            <!-- Row 3: Clients Stats & Contact Box -->
+            <div class="row">
+                <!-- Client Stats Box -->
+                <div class="col-md-6 mb-24">
+                    <div data-aos="zoom-in" class="about-client-box-wrap h-full">
+                        <div class="about-client-box info-box shadow-box h-full">
+                            <img src="/assets/bg1.png" alt="BG" class="bg-img">
+                            <div class="clients d-flex align-items-start gap-24 justify-content-center">
+                                <div class="client-item">
+                                    <h2>03</h2>
+                                    <p>Years <br>Experience</p>
+                                </div>
+                                <div class="client-item">
+                                    <h2>+8</h2>
+                                    <p>Total <br>Projects</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                  <span class="skill-icon-pill" title="Playwright"
-                    ><img
-                      src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/playwright/playwright-original.svg"
-                      alt="Playwright"
-                    /></span
-                  >
-                  <span class="skill-icon-pill" title="Java"
-                    ><img
-                      class="java-icon"
-                      src="https://upload.wikimedia.org/wikipedia/en/3/30/Java_programming_language_logo.svg"
-                      alt="Java"
-                    /></span
-                  >
-                  <span class="skill-icon-pill" title="Jira"
-                    ><img
-                      src="https://cdn.simpleicons.org/jira/ffffff"
-                      alt="Jira"
-                    /></span
-                  >
-                  <span class="skill-icon-pill" title="Postman"
-                    ><img
-                      src="https://cdn.simpleicons.org/postman/ffffff"
-                      alt="Postman"
-                    /></span
-                  >
-                  <span class="skill-icon-pill" title="Apache JMeter"
-                    ><img
-                      src="https://cdn.simpleicons.org/apachejmeter/ffffff"
-                      alt="Apache JMeter"
-                    /></span
-                  >
-                  <span class="skill-icon-pill" title="GitHub"
-                    ><img
-                      src="https://cdn.simpleicons.org/github/ffffff"
-                      alt="GitHub"
-                    /></span
-                  >
-                  <span class="skill-icon-pill" title="GitHub Copilot"
-                    ><img
-                      src="https://cdn.simpleicons.org/githubcopilot/ffffff"
-                      alt="GitHub Copilot"
-                    /></span
-                  >
+                <!-- Contact/CTA Box -->
+                <div class="col-md-6 mb-24">
+                    <div data-aos="zoom-in" class="about-contact-box-wrap h-full">
+                        <div class="about-contact-box info-box shadow-box h-full">
+                            <a class="overlay-link" href="/contact/"></a>
+                            <img src="/assets/bg1.png" alt="BG" class="bg-img">
+                            <img src="/assets/icon2.png" alt="Star" class="star-icon">
+                            <h2>Let's <br>work <span>together.</span></h2>
+                            <a href="/contact/" class="about-btn">
+                                <img src="/assets/icon.svg" alt="Star">
+                            </a>
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <div class="d-flex align-items-center justify-content-between">
-                <div class="infos">
-                  <h5>SKILLS</h5>
-                  <h2>Specialization</h2>
-                </div>
-                <a href="/My-Portfolio/skills/" class="about-btn">
-                  <img src="/My-Portfolio/assets/icon.svg" alt="Star" />
-                </a>
-              </div>
             </div>
-          </div>
-        </div>
 
-        <!-- Profiles Box -->
-        <div class="col-md-3 mb-24">
-          <div data-aos="zoom-in" class="about-profile-box-wrap h-full">
-            <div class="about-profile-box info-box shadow-box h-full">
-              <img src="/My-Portfolio/assets/bg1.png" alt="BG" class="bg-img" />
-              <SocialLinks />
-              <div class="d-flex align-items-center justify-content-between">
-                <div class="infos">
-                  <h5>STAY WITH ME</h5>
-                  <h2>Profiles</h2>
-                </div>
-                <a href="/My-Portfolio/contact/" class="about-btn">
-                  <img src="/My-Portfolio/assets/icon.svg" alt="Star" />
-                </a>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
-
-      <!-- Row 3: Clients Stats & Contact Box -->
-      <div class="row">
-        <!-- Client Stats Box -->
-        <div class="col-md-6 mb-24">
-          <div data-aos="zoom-in" class="about-client-box-wrap h-full">
-            <div class="about-client-box info-box shadow-box h-full">
-              <img src="/My-Portfolio/assets/bg1.png" alt="BG" class="bg-img" />
-              <div
-                class="clients d-flex align-items-start gap-24 justify-content-center"
-              >
-                <div class="client-item">
-                  <h2>03</h2>
-                  <p>Years <br />Experience</p>
-                </div>
-                <div class="client-item">
-                  <h2>+8</h2>
-                  <p>Total <br />Projects</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Contact/CTA Box -->
-        <div class="col-md-6 mb-24">
-          <div data-aos="zoom-in" class="about-contact-box-wrap h-full">
-            <div class="about-contact-box info-box shadow-box h-full">
-              <a class="overlay-link" href="/My-Portfolio/contact/"></a>
-              <img src="/My-Portfolio/assets/bg1.png" alt="BG" class="bg-img" />
-              <img
-                src="/My-Portfolio/assets/icon2.png"
-                alt="Star"
-                class="star-icon"
-              />
-              <h2 style="margin-top: 35px; font-size: 44px; line-height: 52px;">
-                Let's <br />work <span>together.</span>
-              </h2>
-              <a href="/My-Portfolio/contact/" class="about-btn">
-                <img src="/My-Portfolio/assets/icon.svg" alt="Star" />
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 </BaseLayout>
