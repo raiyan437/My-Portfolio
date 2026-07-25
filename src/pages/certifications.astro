@@ -7,58 +7,94 @@ const base = rawBase.endsWith('/') ? rawBase : rawBase + '/';
 
 const certifications = [
   {
-    title: "ISTQB Certified Tester (CTFL)",
-    issuer: "ISTQB® - International Software Testing Qualifications Board",
-    category: "FOUNDATION CERTIFICATION",
-    year: "2024",
-    image: `${base}assets/bsec_detail.jpg`,
-    details:
-      "Foundational software testing principles, test design techniques, STLC workflows, and defect management.",
+    title: "Artificial Intelligence Fundamentals",
+    issuer: "IBM SkillsBuild",
+    category: "AI & DATA SCIENCE",
+    year: "2026",
+    image: `${base}assets/Certificates/Artificical Intelligence Fundamentals.png`,
+    pdf: `${base}assets/Certificates/Artificical Intelligence Fundamentals.pdf`,
+    details: "Core AI principles, machine learning concepts, neural network architectures, and IBM SkillsBuild accreditation.",
   },
   {
-    title: "Playwright Automation Masterclass",
-    issuer: "QA Brains Academy",
-    category: "AUTOMATION SPECIALIZATION",
-    year: "2024",
-    image: `${base}assets/qa_java_detail.jpg`,
-    details:
-      "Advanced web automation using Playwright Java & TypeScript, Page Object Model, and parallel test execution.",
+    title: "AI-ization with GitHub Copilot & Claude",
+    issuer: "Ostad Academy",
+    category: "GENAI & AUTOMATION",
+    year: "2025",
+    image: `${base}assets/Certificates/AI-ization with GitHub Copilot & Claude certificate.png`,
+    pdf: `${base}assets/Certificates/AI-ization with GitHub Copilot & Claude certificate.pdf`,
+    details: "Modern AI-assisted software development using GitHub Copilot and Claude for rapid code generation and testing.",
   },
   {
-    title: "Postman API Student Expert",
-    issuer: "Postman",
-    category: "API TESTING",
-    year: "2023",
-    image: `${base}assets/api_detail.jpg`,
-    details:
-      "Automated API suite validation, environment variables, dynamic assertions, and Newman CLI integration.",
+    title: "Information Security",
+    issuer: "Ostad Academy",
+    category: "CYBERSECURITY",
+    year: "2025",
+    image: `${base}assets/Certificates/Information Security.png`,
+    pdf: `${base}assets/Certificates/Information Security.pdf`,
+    details: "Network security fundamentals, data privacy standards, threat analysis, and secure application practices.",
   },
   {
-    title: "Apache JMeter Performance Testing",
-    issuer: "Software QA Institute",
-    category: "PERFORMANCE & LOAD",
-    year: "2023",
-    image: `${base}assets/practice_detail.jpg`,
-    details:
-      "Thread group load generation, assertion listeners, throughput metrics, and server stress testing.",
+    title: "Introduction to Generative AI",
+    issuer: "IBM SkillsBuild",
+    category: "GENERATIVE AI",
+    year: "2026",
+    image: `${base}assets/Certificates/Introduction to Generative AI.png`,
+    pdf: `${base}assets/Certificates/Introduction to Generative AI.pdf`,
+    details: "Generative AI foundational models, prompt engineering, LLM capabilities, and enterprise applications.",
   },
   {
-    title: "Agile QA & Scrum Fundamentals",
-    issuer: "Tappware Solutions / BJIT",
-    category: "AGILE METHODOLOGY",
-    year: "2023",
-    image: `${base}assets/dnothi_detail.jpg`,
-    details:
-      "Agile sprint testing, user story estimation, defect lifecycle management in Jira, and bug reporting.",
+    title: "Machine Learning & Deep Learning",
+    issuer: "IBM SkillsBuild",
+    category: "MACHINE LEARNING",
+    year: "2026",
+    image: `${base}assets/Certificates/Machine Learning and Deep Learning.png`,
+    pdf: `${base}assets/Certificates/Machine Learning and Deep Learning.pdf`,
+    details: "Supervised and unsupervised learning algorithms, deep neural networks, and model evaluation metrics.",
   },
   {
-    title: "Git & GitHub CI/CD Quality Pipeline",
-    issuer: "GitHub Community",
-    category: "DEVOPS & INTEGRATION",
-    year: "2023",
-    image: `${base}assets/qa_ts_detail.jpg`,
-    details:
-      "Continuous integration test workflows, pull request regression checks, and GitHub Actions automation.",
+    title: "Natural Language Processing & Computer Vision",
+    issuer: "IBM SkillsBuild",
+    category: "NLP & VISION",
+    year: "2026",
+    image: `${base}assets/Certificates/Natural Language Processing and Computer Vision.png`,
+    pdf: `${base}assets/Certificates/Natural Language Processing and Computer Vision.pdf`,
+    details: "Text processing pipelines, sentiment analysis, image recognition algorithms, and deep learning vision models.",
+  },
+  {
+    title: "Run AI Models with IBM Watson Studio",
+    issuer: "IBM SkillsBuild",
+    category: "CLOUD & AI DEPLOYMENT",
+    year: "2026",
+    image: `${base}assets/Certificates/Run AI Models with IBM Watson Studio.png`,
+    pdf: `${base}assets/Certificates/Run AI Models with IBM Watson Studio.pdf`,
+    details: "Building, training, and deploying AI models in cloud environments using IBM Watson Studio services.",
+  },
+  {
+    title: "AI Ethics",
+    issuer: "IBM SkillsBuild",
+    category: "AI GOVERNANCE",
+    year: "2026",
+    image: `${base}assets/Certificates/AI Ethics.png`,
+    pdf: `${base}assets/Certificates/AI Ethics.pdf`,
+    details: "Ethical AI development, algorithmic bias mitigation, data governance, transparency, and responsible AI.",
+  },
+  {
+    title: "Introduction to Artificial Intelligence",
+    issuer: "IBM SkillsBuild",
+    category: "AI ESSENTIALS",
+    year: "2026",
+    image: `${base}assets/Certificates/Introduction to Artificial Intelligence.png`,
+    pdf: `${base}assets/Certificates/Introduction to Artificial Intelligence.pdf`,
+    details: "Overview of artificial intelligence technologies, real-world industry applications, and AI system concepts.",
+  },
+  {
+    title: "Your Future in AI: The Job Landscape",
+    issuer: "IBM SkillsBuild",
+    category: "AI CAREERS & TRENDS",
+    year: "2026",
+    image: `${base}assets/Certificates/Your Future in AI The Job Landscape.png`,
+    pdf: `${base}assets/Certificates/Your Future in AI The Job Landscape.pdf`,
+    details: "Industry trends in artificial intelligence, emerging tech roles, and strategic career pathing.",
   },
 ];
 ---
@@ -69,7 +105,7 @@ const certifications = [
 >
   <section class="projects-area">
     <div class="container">
-      <!-- Uniform Equal-Sized Grid (3 Columns x 2 Rows) -->
+      <!-- Uniform Equal-Sized Grid (3 Columns) -->
       <div class="row">
         {
           certifications.map((cert) => (
@@ -77,8 +113,15 @@ const certifications = [
               <div data-aos="zoom-in" class="h-full">
                 <div
                   class="project-item shadow-box h-full d-flex flex-column"
-                  style="padding: 24px 24px 20px 24px;"
+                  style="padding: 24px 24px 20px 24px; position: relative;"
                 >
+                  <a
+                    href={cert.pdf}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="overlay-link"
+                    title={`View ${cert.title} PDF`}
+                  ></a>
                   <img
                     src={`${base}assets/bg1.png`}
                     alt="BG"
@@ -96,16 +139,26 @@ const certifications = [
                       style="width: 100%; height: 100%; object-fit: cover;"
                     />
                   </div>
-                  <div class="d-flex flex-column justify-content-start flex-grow-1">
-                    <p style="color: #BCBCBC; font-size: 11px; letter-spacing: 0.5px; margin-bottom: 6px; text-transform: uppercase;">
-                      {cert.category} • {cert.year}
-                    </p>
-                    <h2 style="font-size: 20px; font-weight: 500; color: #fff; margin-bottom: 6px; line-height: 1.3;">
-                      {cert.title}
-                    </h2>
-                    <p style="color: #9f9f9f; font-size: 13px; line-height: 1.4; margin: 0;">
-                      {cert.issuer}
-                    </p>
+                  <div class="d-flex flex-column justify-content-between flex-grow-1">
+                    <div>
+                      <p style="color: #BCBCBC; font-size: 11px; letter-spacing: 0.5px; margin-bottom: 6px; text-transform: uppercase;">
+                        {cert.category} • {cert.year}
+                      </p>
+                      <h2 style="font-size: 20px; font-weight: 500; color: #fff; margin-bottom: 6px; line-height: 1.3;">
+                        {cert.title}
+                      </h2>
+                      <p style="color: #9f9f9f; font-size: 13px; line-height: 1.4; margin-bottom: 12px;">
+                        {cert.issuer}
+                      </p>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between pt-12" style="border-top: 1px solid rgba(255, 255, 255, 0.08);">
+                      <span style="font-size: 12px; color: var(--primary_color, #5B78F6); font-weight: 500;">
+                        View Certificate PDF ↗
+                      </span>
+                      <div class="project-btn" style="width: 36px; height: 36px;">
+                        <img src={`${base}assets/icon.svg`} alt="view" style="width: 14px; height: 14px;" />
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

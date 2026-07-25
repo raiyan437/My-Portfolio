@@ -314,6 +314,7 @@ ol {
     margin-top: 46px;
     display: flex;
     align-items: center;
+    padding: 7px 0;
     mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
     -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
 }
@@ -350,7 +351,7 @@ ol {
 
 .skill-icon-pill:hover {
     background: rgba(255, 255, 255, 0.2);
-    transform: translateY(-4px) scale(1.1);
+    transform: translateY(-2px) scale(1.08);
     border-color: rgba(255, 255, 255, 0.3);
 }
 
@@ -2219,3 +2220,52 @@ ol {
     padding:10px 15px;
     color: #fff !important;
 }
+
+/* Scroll To Top Button */
+.scroll-to-top-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(30, 30, 30, 0.85);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.scroll-to-top-btn:hover {
+    background: var(--primary_color, #5B78F6);
+    color: #ffffff;
+    border-color: var(--primary_color, #5B78F6);
+    transform: translateY(-4px) scale(1.08);
+    box-shadow: 0 6px 24px rgba(91, 120, 246, 0.5);
+}
+
+.scroll-to-top-btn.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+@media (max-width: 767px) {
+    .scroll-to-top-btn {
+        bottom: 20px;
+        right: 20px;
+        width: 44px;
+        height: 44px;
+    }
+}
+

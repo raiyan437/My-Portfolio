@@ -21,6 +21,10 @@ const base = rawBase.endsWith('/') ? rawBase : rawBase + '/';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{title}</title>
+    <!-- Favicon / Logo in Browser -->
+    <link rel="icon" type="image/png" href={`${base}assets/logo.png`}>
+    <link rel="shortcut icon" type="image/png" href={`${base}assets/logo.png`}>
+    <link rel="apple-touch-icon" href={`${base}assets/logo.png`}>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -46,6 +50,13 @@ const base = rawBase.endsWith('/') ? rawBase : rawBase + '/';
 
     <!-- Footer -->
     <Footer />
+
+    <!-- Scroll To Top Button -->
+    <button id="scroll-to-top" class="scroll-to-top-btn" aria-label="Scroll to top">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 15l-6-6-6 6"/>
+        </svg>
+    </button>
 
     <!-- Local JS Libraries -->
     <script is:inline src={`${base}assets/bootstrap.bundle.min.js`}></script>

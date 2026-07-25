@@ -120,4 +120,30 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 1500);
         });
     }
+
+    /* ==========================================================================
+       Scroll To Top Button Logic
+       ========================================================================== */
+    const scrollTopBtn = document.getElementById('scroll-to-top');
+
+    if (scrollTopBtn) {
+        const toggleScrollTopBtn = () => {
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        };
+
+        window.addEventListener('scroll', toggleScrollTopBtn, { passive: true });
+        toggleScrollTopBtn();
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
 });
+
