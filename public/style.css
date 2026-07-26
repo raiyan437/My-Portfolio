@@ -2275,3 +2275,147 @@ ol {
     }
 }
 
+/* ==========================================================================
+   Theme Toggle Button & Light Theme System
+   ========================================================================== */
+
+.theme-toggle-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+    font-size: 20px;
+}
+
+.theme-toggle-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: scale(1.05);
+}
+
+/* Hide sun in dark mode, show moon */
+html:not([data-theme="light"]) .theme-toggle-btn .sun-icon {
+    display: none;
+}
+html:not([data-theme="light"]) .theme-toggle-btn .moon-icon {
+    display: inline-block;
+    color: #5B78F6;
+}
+
+/* Hide moon in light mode, show sun */
+html[data-theme="light"] .theme-toggle-btn .moon-icon {
+    display: none;
+}
+html[data-theme="light"] .theme-toggle-btn .sun-icon {
+    display: inline-block;
+    color: #f59e0b;
+}
+
+/* --------------------------------------------------------------------------
+   Light Mode Overrides (Default Dark Mode remains 100% untouched)
+   -------------------------------------------------------------------------- */
+html[data-theme="light"] body {
+    background-color: #f1f5f9;
+    color: #334155;
+}
+
+/* Header & Navigation in Light Mode */
+html[data-theme="light"] .header-area .menu li a {
+    color: #334155;
+}
+html[data-theme="light"] .header-area .menu li a:hover,
+html[data-theme="light"] .header-area .menu li.active a {
+    color: var(--primary_color, #5B78F6);
+}
+html[data-theme="light"] .header-area .show-menu span {
+    background-color: #0f172a;
+}
+html[data-theme="light"] .theme-toggle-btn {
+    background: #ffffff;
+    border-color: rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Shadow Box Cards in Light Mode */
+html[data-theme="light"] .shadow-box {
+    background: #ffffff;
+    border: 1px solid rgba(226, 232, 240, 0.9);
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+}
+html[data-theme="light"] .shadow-box:hover {
+    border-color: var(--primary_color, #5B78F6);
+    box-shadow: 0 14px 36px rgba(91, 120, 246, 0.12);
+}
+
+/* Card background overlay opacity in light mode */
+html[data-theme="light"] .bg-img {
+    opacity: 0.12;
+}
+
+/* Headings & Text Colors in Light Mode */
+html[data-theme="light"] h1, 
+html[data-theme="light"] h2, 
+html[data-theme="light"] h3, 
+html[data-theme="light"] h4, 
+html[data-theme="light"] h5, 
+html[data-theme="light"] h6 {
+    color: #0f172a !important;
+}
+html[data-theme="light"] p,
+html[data-theme="light"] .about-area .about-details p,
+html[data-theme="light"] .project-info p,
+html[data-theme="light"] .info-item p {
+    color: #475569;
+}
+
+/* Sidebar & Profile Box in Light Mode */
+html[data-theme="light"] .about-sidebar .image-box,
+html[data-theme="light"] .about-image-box {
+    background: #e2e8f0;
+}
+
+/* Form Inputs in Light Mode */
+html[data-theme="light"] input[type="text"],
+html[data-theme="light"] input[type="email"],
+html[data-theme="light"] textarea {
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    color: #0f172a;
+}
+html[data-theme="light"] input::placeholder,
+html[data-theme="light"] textarea::placeholder {
+    color: #94a3b8;
+}
+
+/* Buttons in Light Mode */
+html[data-theme="light"] .icon-box {
+    background: #f1f5f9;
+    border-color: #cbd5e1;
+    color: #0f172a;
+}
+html[data-theme="light"] .scroll-to-top-btn {
+    background: #ffffff;
+    color: #0f172a;
+    border-color: rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* Footer in Light Mode */
+html[data-theme="light"] .footer-area .footer-content .footer-menu li a {
+    color: #475569;
+}
+html[data-theme="light"] .footer-area .footer-content .footer-menu li a:hover {
+    color: #0f172a;
+}
+html[data-theme="light"] .footer-area .footer-content .copyright {
+    color: #64748b;
+}
+
+
