@@ -100,6 +100,7 @@ const base = rawBase.endsWith('/') ? rawBase : rawBase + '/';
                   readonly
                   style="opacity: 0.75; cursor: not-allowed;"
                   placeholder="To *"
+                  aria-label="Recipient Email"
                 />
               </div>
 
@@ -110,6 +111,7 @@ const base = rawBase.endsWith('/') ? rawBase : rawBase + '/';
                   name="email"
                   required
                   placeholder="Your Email *"
+                  aria-label="Your Email Address"
                 />
               </div>
 
@@ -120,6 +122,7 @@ const base = rawBase.endsWith('/') ? rawBase : rawBase + '/';
                   name="subject"
                   required
                   placeholder="Your Subject *"
+                  aria-label="Email Subject"
                 />
               </div>
 
@@ -129,7 +132,8 @@ const base = rawBase.endsWith('/') ? rawBase : rawBase + '/';
                   name="message"
                   rows="5"
                   required
-                  placeholder="Your Message *"></textarea>
+                  placeholder="Your Message *"
+                  aria-label="Email Message"></textarea>
               </div>
 
               <div class="input-group mb-0">

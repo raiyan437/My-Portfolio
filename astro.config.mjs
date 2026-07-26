@@ -1,12 +1,11 @@
 import { defineConfig } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
 
-// Automatically detect deployment platform
 const isGitHubPages = process.env.GITHUB_ACTIONS === 'true';
 
 export default defineConfig({
-  site: isGitHubPages 
-    ? 'https://raiyan437.github.io' 
-    : (process.env.URL || 'https://localhost:4321'),
+  site: 'https://raiyan437.github.io/My-Portfolio/',
   base: isGitHubPages ? '/My-Portfolio/' : '/',
-  output: 'static'
+  output: 'static',
+  integrations: [sitemap()]
 });
