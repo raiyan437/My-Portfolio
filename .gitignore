@@ -1,7 +1,6 @@
 # build output
 dist/
 .astro/
-build_output/
 
 # dependencies
 node_modules/
@@ -13,4 +12,3 @@ yarn-debug.log*
 yarn-error.log*
 .DS_Store
 .env
-scratch/
