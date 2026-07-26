@@ -70,6 +70,7 @@ const base = rawBase.endsWith('/') ? rawBase : rawBase + '/';
               id="cf-form"
               name="contact"
               method="POST"
+              action="/"
               data-netlify="true"
               netlify-honeypot="bot-field"
               class="wpcf7-form"
@@ -197,14 +198,21 @@ const base = rawBase.endsWith('/') ? rawBase : rawBase + '/';
         if (submitBtn) submitBtn.textContent = "Sending...";
 
         try {
-          const bodyData = new URLSearchParams(formData as any).toString();
+          const params = new URLSearchParams();
+          for (const [key, value] of formData.entries()) {
+            params.append(key, String(value));
+          }
+          if (!params.has("form-name")) {
+            params.append("form-name", "contact");
+          }
+
           const response = await fetch("/", {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: bodyData,
+            body: params.toString(),
           });
 
-          if (response.ok) {
+          if (response.ok || response.status === 200 || response.status === 302 || response.status === 303) {
             if (msgAlert) {
               msgAlert.style.display = "block";
               msgAlert.style.background = "rgba(91, 120, 246, 0.15)";
@@ -216,22 +224,10 @@ const base = rawBase.endsWith('/') ? rawBase : rawBase + '/';
             const toEmailInput = document.getElementById("to-email") as HTMLInputElement;
             if (toEmailInput) toEmailInput.value = "raiyan.uddin.37.pro@gmail.com";
           } else {
-            if (msgAlert) {
-              msgAlert.style.display = "block";
-              msgAlert.style.background = "rgba(255, 77, 77, 0.15)";
-              msgAlert.style.border = "1px solid #ff4d4d";
-              msgAlert.style.color = "#ff4d4d";
-              msgAlert.textContent = "Failed to send message. Please try again.";
-            }
+            form.submit();
           }
         } catch (err) {
-          if (msgAlert) {
-            msgAlert.style.display = "block";
-            msgAlert.style.background = "rgba(255, 77, 77, 0.15)";
-            msgAlert.style.border = "1px solid #ff4d4d";
-            msgAlert.style.color = "#ff4d4d";
-            msgAlert.textContent = "Failed to send message. Please check your connection.";
-          }
+          form.submit();
         } finally {
           if (submitBtn) submitBtn.textContent = "Send Message";
         }
