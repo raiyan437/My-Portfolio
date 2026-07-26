@@ -1,0 +1,126 @@
+---
+// src/components/WorkDetailLayout.astro
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getBaseUrl } from "../utils/base";
+
+interface Props {
+  title: string;
+  category: string;
+  bannerImg: string;
+  bannerAlt?: string;
+  infoTitle?: string;
+  infoDesc1: string;
+  infoDesc2?: string;
+  aboutText: string;
+  year?: string;
+  client?: string;
+  services?: string;
+  project?: string;
+  descriptionText: string;
+  nextProjectUrl?: string;
+  nextProjectLabel?: string;
+}
+
+const {
+  title,
+  category,
+  bannerImg,
+  bannerAlt = `${title} Project Banner`,
+  infoTitle = title,
+  infoDesc1,
+  infoDesc2,
+  aboutText,
+  year = "2023",
+  client = title,
+  services = "QA Engineering & Testing",
+  project = title,
+  descriptionText,
+  nextProjectUrl,
+  nextProjectLabel = "Next Project",
+} = Astro.props;
+
+const base = getBaseUrl();
+---
+
+<BaseLayout title={`${title} - Project Details - Raiyan Uddin`} bodyClass="main-workdetails-page">
+    <section class="project-details-wrap">
+        <div class="container">
+
+            <!-- Breadcrumb Section -->
+            <section class="breadcrumb-area">
+                <div class="container">
+                    <div class="breadcrumb-content" data-aos="fade-up">
+                        <p>{category.toUpperCase()} - {title.toUpperCase()}</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Hero Banner Image -->
+            <div class="project-details-img" data-aos="zoom-in">
+                <img src={`${base}${bannerImg}`} alt={bannerAlt}>
+            </div>
+
+            <!-- Info Box Card -->
+            <div data-aos="zoom-in">
+                <div class="d-flex project-infos-wrap shadow-box mb-24">
+                    <img src={`${base}assets/bg1.webp`} alt="BG" class="bg-img">
+                    <img src={`${base}assets/icon2.png`} alt="Star" class="star-icon">
+                    
+                    <div class="project-details-info flex-1">
+                        <h4>{infoTitle}</h4>
+                        <p>{infoDesc1}</p>
+                        {infoDesc2 && <p>{infoDesc2}</p>}
+                    </div>
+
+                    <div class="project-details-info flex-1">
+                        <h4>About</h4>
+                        <p>{aboutText}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Overview & Details Meta Box -->
+            <div data-aos="zoom-in">
+                <div class="project-about-2 d-flex shadow-box mb-24">
+                    <img src={`${base}assets/bg1.webp`} alt="BG" class="bg-img">
+                    <div class="left-details">
+                        <img src={`${base}assets/icon2.png`} alt="Star" class="star-icon">
+                        <ul>
+                            <li>
+                                <p>Year</p>
+                                <h5>{year}</h5>
+                            </li>
+                            <li>
+                                <p>Client</p>
+                                <h5>{client}</h5>
+                            </li>
+                            <li>
+                                <p>Services</p>
+                                <h5>{services}</h5>
+                            </li>
+                            <li>
+                                <p>Project</p>
+                                <h5>{project}</h5>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="right-details">
+                        <h4>Description</h4>
+                        <p>{descriptionText}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Optional Custom Slot for additional project content -->
+            <slot />
+
+            <!-- Next Project Button -->
+            {nextProjectUrl && (
+                <div class="container d-flex align-items-center justify-content-center mt-24 mb-24" data-aos="zoom-in">
+                    <a href={`${base}${nextProjectUrl.startsWith('/') ? nextProjectUrl.slice(1) : nextProjectUrl}`} class="big-btn shadow-box">{nextProjectLabel}</a>
+                </div>
+            )}
+
+        </div>
+    </section>
+</BaseLayout>

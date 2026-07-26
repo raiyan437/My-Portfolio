@@ -1,87 +1,18 @@
 ---
 // src/pages/works/gcc-mealkun.astro
-import BaseLayout from '../../layouts/BaseLayout.astro';
-
-const rawBase = import.meta.env.BASE_URL;
-const base = rawBase.endsWith('/') ? rawBase : rawBase + '/';
+import WorkDetailLayout from "../../components/WorkDetailLayout.astro";
 ---
 
-<BaseLayout title="GCC Mealkun - Project Details - Raiyan Uddin" bodyClass="main-workdetails-page">
-    <section class="project-details-wrap">
-        <div class="container">
-
-            <!-- Breadcrumb Section -->
-            <section class="breadcrumb-area">
-                <div class="container">
-                    <div class="breadcrumb-content" data-aos="fade-up">
-                        <p>MOBILE DESIGNING - GCC MEALKUN</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Hero Banner Image -->
-            <div class="project-details-img" data-aos="zoom-in">
-                <img src={`${base}assets/gcc.png`} alt="GCC Mealkun Banner">
-            </div>
-
-            <!-- Info Box Card -->
-            <div data-aos="zoom-in">
-                <div class="d-flex project-infos-wrap shadow-box mb-24">
-                    <img src={`${base}assets/bg1.png`} alt="BG" class="bg-img">
-                    <img src={`${base}assets/icon2.png`} alt="Star" class="star-icon">
-                    
-                    <div class="project-details-info flex-1">
-                        <h4>GCC Mealkun</h4>
-                        <p>Quality Assurance and mobile UI/UX design validation for GCC Mealkun, a catering and meal management mobile app. Ensured smooth navigation, responsive interface layout across various smartphone resolutions, and error-free order processing.</p>
-                    </div>
-
-                    <div class="project-details-info flex-1">
-                        <h4>About</h4>
-                        <p>Mobile QA testing focusing on touch gesture responsiveness, push notification delivery, network state resilience (offline/3G), and overall user experience verification.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project Overview & Details Meta Box -->
-            <div data-aos="zoom-in">
-                <div class="project-about-2 d-flex shadow-box mb-24">
-                    <img src={`${base}assets/bg1.png`} alt="BG" class="bg-img">
-                    <div class="left-details">
-                        <img src={`${base}assets/icon2.png`} alt="Star" class="star-icon">
-                        <ul>
-                            <li>
-                                <p>Year</p>
-                                <h5>2023</h5>
-                            </li>
-                            <li>
-                                <p>Client</p>
-                                <h5>GCC Mealkun</h5>
-                            </li>
-                            <li>
-                                <p>Services</p>
-                                <h5>Mobile Designing & QA</h5>
-                            </li>
-                            <li>
-                                <p>Project</p>
-                                <h5>GCC Mealkun</h5>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="right-details">
-                        <h4>Description</h4>
-                        <p>Mobile interface testing, cross-device compatibility validation, payment flow QA, regression suite execution, and performance assessment.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Next Project Button -->
-            <div class="container d-flex align-items-center justify-content-center mt-24 mb-24" data-aos="zoom-in">
-                <a href={`${base}works/bsec-ipo-system/`} class="big-btn shadow-box">Next Project</a>
-            </div>
-
-        </div>
-    </section>
-</BaseLayout>
-
-
-
+<WorkDetailLayout
+  title="GCC Mealkun"
+  category="MOBILE DESIGNING"
+  bannerImg="assets/gcc.webp"
+  infoDesc1="Quality Assurance and mobile UI/UX design validation for GCC Mealkun, a catering and meal management mobile app. Ensured smooth navigation, responsive interface layout across various smartphone resolutions, and error-free order processing."
+  aboutText="Mobile QA testing focusing on touch gesture responsiveness, push notification delivery, network state resilience (offline/3G), and overall user experience verification."
+  year="2023"
+  client="GCC Mealkun"
+  services="Mobile Designing & QA"
+  project="GCC Mealkun"
+  descriptionText="Mobile interface testing, cross-device compatibility validation, payment flow QA, regression suite execution, and performance assessment."
+  nextProjectUrl="works/bsec-ipo-system/"
+/>

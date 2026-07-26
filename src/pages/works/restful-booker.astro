@@ -1,87 +1,18 @@
 ---
 // src/pages/works/restful-booker.astro
-import BaseLayout from '../../layouts/BaseLayout.astro';
-
-const rawBase = import.meta.env.BASE_URL;
-const base = rawBase.endsWith('/') ? rawBase : rawBase + '/';
+import WorkDetailLayout from "../../components/WorkDetailLayout.astro";
 ---
 
-<BaseLayout title="Restful Booker - Project Details - Raiyan Uddin" bodyClass="main-workdetails-page">
-    <section class="project-details-wrap">
-        <div class="container">
-
-            <!-- Breadcrumb Section -->
-            <section class="breadcrumb-area">
-                <div class="container">
-                    <div class="breadcrumb-content" data-aos="fade-up">
-                        <p>API AUTOMATION - RESTFUL BOOKER</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Hero Banner Image -->
-            <div class="project-details-img" data-aos="zoom-in">
-                <img src={`${base}assets/restful-booker.png`} alt="Restful Booker Banner">
-            </div>
-
-            <!-- Info Box Card -->
-            <div data-aos="zoom-in">
-                <div class="d-flex project-infos-wrap shadow-box mb-24">
-                    <img src={`${base}assets/bg1.png`} alt="BG" class="bg-img">
-                    <img src={`${base}assets/icon2.png`} alt="Star" class="star-icon">
-                    
-                    <div class="project-details-info flex-1">
-                        <h4>Restful Booker</h4>
-                        <p>Automated API testing suite for Restful Booker hotel booking platform covering GET, POST, PUT, PATCH, and DELETE endpoints. Implements token authentication, schema validation, and status code verification.</p>
-                    </div>
-
-                    <div class="project-details-info flex-1">
-                        <h4>About</h4>
-                        <p>Focuses on backend API payload validation, response time benchmarking, and edge-case security testing using Postman, RestAssured, and automated scripts.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project Overview & Details Meta Box -->
-            <div data-aos="zoom-in">
-                <div class="project-about-2 d-flex shadow-box mb-24">
-                    <img src={`${base}assets/bg1.png`} alt="BG" class="bg-img">
-                    <div class="left-details">
-                        <img src={`${base}assets/icon2.png`} alt="Star" class="star-icon">
-                        <ul>
-                            <li>
-                                <p>Year</p>
-                                <h5>2023</h5>
-                            </li>
-                            <li>
-                                <p>Client</p>
-                                <h5>Restful Booker</h5>
-                            </li>
-                            <li>
-                                <p>Services</p>
-                                <h5>API Automation</h5>
-                            </li>
-                            <li>
-                                <p>Project</p>
-                                <h5>Restful Booker</h5>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="right-details">
-                        <h4>Description</h4>
-                        <p>Complete backend API verification, JSON payload assertions, header token management, and dynamic test collection execution.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Next Project Button -->
-            <div class="container d-flex align-items-center justify-content-center mt-24 mb-24" data-aos="zoom-in">
-                <a href={`${base}works/gcc-mealkun/`} class="big-btn shadow-box">Next Project</a>
-            </div>
-
-        </div>
-    </section>
-</BaseLayout>
-
-
-
+<WorkDetailLayout
+  title="Restful Booker"
+  category="API AUTOMATION"
+  bannerImg="assets/restful-booker.webp"
+  infoDesc1="Automated API testing suite for Restful Booker hotel booking platform covering GET, POST, PUT, PATCH, and DELETE endpoints. Implements token authentication, schema validation, and status code verification."
+  aboutText="Focuses on backend API payload validation, response time benchmarking, and edge-case security testing using Postman, RestAssured, and automated scripts."
+  year="2023"
+  client="Restful Booker"
+  services="API Automation"
+  project="Restful Booker"
+  descriptionText="Complete backend API verification, JSON payload assertions, header token management, and dynamic test collection execution."
+  nextProjectUrl="works/gcc-mealkun/"
+/>
