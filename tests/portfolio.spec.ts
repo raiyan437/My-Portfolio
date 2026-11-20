@@ -226,6 +226,7 @@ test("shows the loader while an eager page image is still loading", async ({ pag
 test("shows the loader for a slow internal link and clears it on the new page", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/works/");
+  await expect(page.locator(".page-loader")).toBeHidden();
   let releasePage!: () => void;
   const navigationDelay = new Promise<void>((resolve) => { releasePage = resolve; });
   await page.route("**/experience/", async (route) => {
@@ -233,9 +234,20 @@ test("shows the loader for a slow internal link and clears it on the new page", 
     await route.continue();
   });
 
+  await page.evaluate(() => {
+    const root = document.documentElement;
+    const loader = document.querySelector(".page-loader");
+    const observer = new MutationObserver(() => {
+      if (root.dataset.pageLoading !== "navigation" || !loader || getComputedStyle(loader).visibility !== "visible") return;
+      observer.disconnect();
+      console.log("test: navigation loader visible");
+    });
+    observer.observe(root, { attributeFilter: ["data-page-loading"] });
+  });
+  const loaderVisible = page.waitForEvent("console", { predicate: (message) => message.text() === "test: navigation loader visible" });
   const click = page.getByRole("link", { name: "Experience", exact: true }).click();
   try {
-    await expect(page.locator('html[data-page-loading="navigation"] .page-loader')).toBeVisible();
+    await loaderVisible;
   } finally {
     releasePage();
     await click;
