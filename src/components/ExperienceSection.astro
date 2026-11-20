@@ -1,0 +1,15 @@
+---
+import SectionHeading from "./SectionHeading.astro";
+import Timeline from "./Timeline.astro";
+import { experience } from "../data/profile";
+
+interface Props {
+  standalone?: boolean;
+}
+
+const { standalone = false } = Astro.props;
+---
+<section class:list={["panel panel--dark section experience-section", { "subpage-section": standalone }]} id="experience" aria-labelledby="experience-title" tabindex="-1">
+  <SectionHeading id="experience-title" title="Experience" backdrop="Experience" level={standalone ? "h1" : "h2"} />
+  <Timeline entries={experience} />
+</section>

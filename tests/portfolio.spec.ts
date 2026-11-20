@@ -10,6 +10,7 @@ const productProjects = orderedProjects.filter(({ group, selectedWorkGroup }) =>
 const routeHeadings: [string, string][] = [
   ["/about/", "About me"],
   ["/skills/", "Technical expertise"],
+  ["/experience/", "Experience"],
   ["/works/", "All work"],
   ["/certifications/", "Certifications"],
   ["/contact/", "Let’s talk testing."],
@@ -220,25 +221,51 @@ test("the desktop highlight tracks navigation and the reading line follows scrol
   await expect(track).toBeHidden();
 });
 
-test("the desktop header follows scroll direction and marks the visible homepage section", async ({ page }) => {
+test("top-bar links open their own pages from the homepage and other pages", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.goto("/");
-  const header = page.locator(".topbar");
-  const current = header.locator(".desktop-nav [aria-current=location]");
+  const nav = page.getByRole("navigation", { name: "Main" });
 
-  for (const [section, name] of [["work", "Projects"], ["expertise", "Expertise"], ["experience", "Experience"]]) {
-    await page.locator("#" + section).evaluate((element) => {
-      window.scrollTo({ top: scrollY + element.getBoundingClientRect().top - 135, behavior: "instant" });
-    });
-    await expect(current).toHaveText(name);
-    await expect(header).toHaveAttribute("data-scroll-hidden", "");
-    await page.evaluate(() => window.scrollTo({ top: scrollY - 50, behavior: "instant" }));
-    await expect(header).not.toHaveAttribute("data-scroll-hidden", "");
-    await expect(current).toHaveText(name);
-    await expect.poll(() => header.evaluate((element) => element.getBoundingClientRect().top)).toBeGreaterThanOrEqual(0);
+  for (const [name, route] of [["Projects", "/works/"], ["Expertise", "/skills/"], ["Experience", "/experience/"]]) {
+    const link = nav.getByRole("link", { name, exact: true });
+    for (const start of ["/", "/about/"]) {
+      await page.goto(start);
+      await expect(link).toHaveAttribute("href", route);
+      await link.click();
+      await expect(page).toHaveURL(route);
+      await expect(link).toHaveAttribute("aria-current", "page");
+    }
   }
 });
+
+for (const width of [1440, 390]) {
+  test("the homepage header scrolls away and the arrow returns to the top at " + width + " px", async ({ page }) => {
+    await page.setViewportSize({ width, height: 844 });
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.goto("/");
+
+    const header = page.locator(".topbar");
+    const backToTop = page.locator("[data-home-back-to-top]");
+    const scrollTo = (top: number) => page.evaluate((y) => window.scrollTo({ top: y, behavior: "instant" }), top);
+    await expect(header).toBeInViewport();
+    await expect(backToTop).toBeHidden();
+
+    await scrollTo(1600);
+    await expect(header).not.toBeInViewport();
+    await scrollTo(1300);
+    await expect(header).not.toBeInViewport();
+    await expect(header).not.toHaveAttribute("data-scrolled", "");
+    await expect(backToTop).toBeInViewport();
+    await expect(backToTop).toHaveAccessibleName("Back to top of homepage");
+
+    await backToTop.focus();
+    await page.keyboard.press("Enter");
+    await expect(page).toHaveURL("/#top");
+    await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
+    await expect(header).toBeInViewport();
+    await expect(backToTop).toBeHidden();
+  });
+}
 
 test("the main menus expose projects and certifications, and the hero has recognizable social marks", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
@@ -281,6 +308,8 @@ test("the main menus expose projects and certifications, and the hero has recogn
   await page.goto("/");
   await page.locator(".mobile-nav summary").click();
   await expect(nav.getByRole("link", { name: "Projects", exact: true })).toHaveAttribute("href", "/works/");
+  await expect(nav.getByRole("link", { name: "Expertise", exact: true })).toHaveAttribute("href", "/skills/");
+  await expect(nav.getByRole("link", { name: "Experience", exact: true })).toHaveAttribute("href", "/experience/");
   await expect(nav.getByRole("link", { name: "Certifications", exact: true })).toHaveAttribute("href", "/certifications/");
   await expect(nav.getByRole("link", { name: "Contact", exact: true })).toHaveAttribute("href", "/contact/");
   await expect(profiles.locator("svg path")).toHaveCount(4);
@@ -400,9 +429,9 @@ test("mobile menu responds to the keyboard and scroll navigation", async ({ page
   await page.keyboard.press("Space");
   await menu.getByRole("link", { name: "Expertise" }).focus();
   await page.keyboard.press("Enter");
-  await expect(page).toHaveURL(/#expertise$/);
+  await expect(page).toHaveURL("/skills/");
   await expect(menu).not.toHaveAttribute("open", "");
-  await expect(page.locator("#expertise")).toBeFocused();
+  await expect(page.getByRole("heading", { level: 1, name: "Technical expertise" })).toBeVisible();
   const item = page.getByText("API & performance testing", { exact: true });
   await item.click();
   await expect(item.locator("..")).toHaveJSProperty("tagName", "SUMMARY");
@@ -626,9 +655,9 @@ test("opens one expertise panel at a time by keyboard", async ({ page }) => {
   await expect(details.locator("a")).toHaveCount(0);
 });
 
-test("shows role scope in both experience sections without project links", async ({ page }) => {
+test("shows role scope wherever experience appears without project links", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
-  for (const route of ["/#experience", "/about/"]) {
+  for (const route of ["/#experience", "/about/", "/experience/"]) {
     await page.goto(route);
     const experience = page.locator(".experience-section");
     const scopes = experience.locator(".timeline-detail");
@@ -871,7 +900,7 @@ test("email buttons and the local contact draft open Gmail with the recipient fi
   }
 });
 
-for (const route of ["/", "/works/", "/skills/", "/contact/", "/certifications/"]) {
+for (const route of ["/", "/works/", "/skills/", "/experience/", "/contact/", "/certifications/"]) {
   test("has no automated WCAG A or AA violations on " + route, async ({ page }) => {
     await page.emulateMedia({ reducedMotion: "reduce" });
     await page.goto(route);

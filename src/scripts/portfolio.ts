@@ -24,11 +24,14 @@ function watchScrollAndResize(element: HTMLElement, update: () => void) {
   return schedule;
 }
 
-function connectReadingProgress() {
+function connectScrollControls() {
   const progress = document.querySelector<HTMLElement>("[data-page-progress]");
+  const backToTop = document.querySelector<HTMLAnchorElement>("[data-home-back-to-top]");
   if (!progress) return;
 
   const schedule = watchScrollAndResize(document.body, () => {
+    if (backToTop) backToTop.hidden = window.scrollY < window.innerHeight;
+
     const root = document.documentElement;
     const distance = root.scrollHeight - root.clientHeight;
     progress.hidden = reducedMotion.matches || distance <= 0;
@@ -51,20 +54,14 @@ function positionHighlight(group: HTMLElement, item?: HTMLElement) {
 }
 
 function connectNavHighlight() {
-  const header = document.querySelector<HTMLElement>(".topbar");
-  const nav = header?.querySelector<HTMLElement>(".desktop-nav");
-  if (!header || !nav) return;
+  const nav = document.querySelector<HTMLElement>(".desktop-nav");
+  if (!nav) return;
 
   const links = [...nav.querySelectorAll<HTMLAnchorElement>("a")];
-  const sections = links.flatMap((link) => {
-    const section = document.getElementById(link.dataset.navSection ?? "");
-    return section ? [section] : [];
-  });
-  const sectionLinks = header.querySelectorAll<HTMLAnchorElement>("[data-nav-section]");
+  const current = nav.querySelector<HTMLElement>("[aria-current]") ?? undefined;
   let hovered: HTMLAnchorElement | undefined;
   const update = () => {
     const focused = links.find((link) => link.matches(":focus-visible"));
-    const current = nav.querySelector<HTMLElement>("[aria-current]") ?? undefined;
     positionHighlight(nav, focused ?? hovered ?? current);
   };
 
@@ -83,24 +80,6 @@ function connectNavHighlight() {
   nav.addEventListener("focusout", () => requestAnimationFrame(update));
   window.addEventListener("resize", update);
   void document.fonts.ready.then(update);
-  if (sections.length) {
-    let currentSection: string | undefined;
-    const schedule = watchScrollAndResize(document.body, () => {
-      const readingLine = Math.min(window.innerHeight / 3, 230);
-      const section = sections.find((element) => {
-        const { top, bottom } = element.getBoundingClientRect();
-        return top <= readingLine && bottom > readingLine;
-      });
-      if (currentSection === section?.id) return;
-      currentSection = section?.id;
-      for (const link of sectionLinks) {
-        if (currentSection === link.dataset.navSection) link.setAttribute("aria-current", "location");
-        else link.removeAttribute("aria-current");
-      }
-      update();
-    });
-    window.addEventListener("hashchange", schedule);
-  }
   update();
 }
 
@@ -539,28 +518,31 @@ function connectHeader() {
   if (!menu || !header) return;
 
   const compactLayout = window.matchMedia("(max-width: 48rem)");
-  let lastY = Math.max(0, window.scrollY);
-  const updateHeader = () => {
-    const y = Math.max(0, window.scrollY);
-    const scrolled = y > header.offsetHeight;
-    header.toggleAttribute("data-scrolled", scrolled);
-    if (!scrolled || (compactLayout.matches && menu.open)) {
-      header.removeAttribute("data-scroll-hidden");
-    } else {
-      const distance = y - lastY;
-      if (Math.abs(distance) < 8) return;
-      header.toggleAttribute("data-scroll-hidden", distance > 0);
-    }
-    lastY = y;
-  };
-
-  window.addEventListener("scroll", oncePerFrame(updateHeader), { passive: true });
   compactLayout.addEventListener("change", () => {
     if (!compactLayout.matches) menu.open = false;
-    updateHeader();
   });
-  menu.addEventListener("toggle", updateHeader);
-  updateHeader();
+
+  if (!header.closest(".site-shell--home")) {
+    let lastY = Math.max(0, window.scrollY);
+    const updateHeader = () => {
+      const y = Math.max(0, window.scrollY);
+      const scrolled = y > header.offsetHeight;
+      header.toggleAttribute("data-scrolled", scrolled);
+      if (!scrolled || (compactLayout.matches && menu.open)) {
+        header.removeAttribute("data-scroll-hidden");
+      } else {
+        const distance = y - lastY;
+        if (Math.abs(distance) < 8) return;
+        header.toggleAttribute("data-scroll-hidden", distance > 0);
+      }
+      lastY = y;
+    };
+
+    window.addEventListener("scroll", oncePerFrame(updateHeader), { passive: true });
+    compactLayout.addEventListener("change", updateHeader);
+    menu.addEventListener("toggle", updateHeader);
+    updateHeader();
+  }
 
   menu.addEventListener("click", (event) => {
     if (event.target instanceof Element && event.target.closest("a")) menu.open = false;
@@ -648,7 +630,7 @@ function connectContactForm() {
   });
 }
 
-connectReadingProgress();
+connectScrollControls();
 connectNavHighlight();
 connectCustomCursor(reducedMotion);
 connectPointerMotion();

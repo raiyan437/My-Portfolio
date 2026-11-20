@@ -57,7 +57,7 @@ const socialImage = new URL(base + image, origin);
       });
     </script>
   </head>
-  <body id="top">
+  <body id="top" tabindex={home ? "-1" : undefined}>
     <div class="custom-cursor" aria-hidden="true">
       <span class="custom-cursor-ring"></span>
       <span class="custom-cursor-dot"></span>
@@ -71,6 +71,9 @@ const socialImage = new URL(base + image, origin);
       </main>
       <Footer showInvitation={showInvitation} />
     </div>
+    {home && (
+      <a class="button button--dark home-back-to-top" href="#top" aria-label="Back to top of homepage" data-home-back-to-top hidden></a>
+    )}
     <script>
       import "../scripts/portfolio";
     </script>
