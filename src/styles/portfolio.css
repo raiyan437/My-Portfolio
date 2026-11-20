@@ -41,9 +41,8 @@ button { cursor: pointer; }
 .custom-cursor { display: none; pointer-events: none; }
 
 @media (hover: hover) and (pointer: fine) and (forced-colors: none) {
-  .custom-cursor-enabled:not(:has(dialog[open])),
-  .custom-cursor-enabled:not(:has(dialog[open])) * { cursor: none !important; }
-  .custom-cursor-enabled:has(dialog[open]) .custom-cursor { visibility: hidden; }
+  .custom-cursor-enabled,
+  .custom-cursor-enabled * { cursor: none !important; }
 
   .custom-cursor {
     --cursor-ink: #1c1a17;
@@ -77,6 +76,54 @@ button { cursor: pointer; }
     border-color: var(--cursor-hover-border);
     background-color: var(--cursor-hover-fill);
   }
+}
+
+.page-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  background: var(--wash);
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .18s var(--ease), visibility 0s .18s;
+}
+
+[data-page-loading] .page-loader {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  transition-delay: .15s;
+}
+
+:root[data-page-loading="initial"]:not([data-native-transition]) .page-loader { transition: none; }
+.page-loader-content {
+  display: grid;
+  justify-items: center;
+  gap: .85rem;
+  opacity: 0;
+  transition: opacity .18s var(--ease) .15s;
+}
+[data-page-loading] .page-loader-content { opacity: 1; }
+.page-loader .brand-badge { width: 3.5rem; height: 3.5rem; }
+.page-loader .brand-logo { height: 2.65rem; }
+.page-loader-track {
+  position: relative;
+  width: 6rem;
+  height: 2px;
+  overflow: hidden;
+  border-radius: 1rem;
+  background: var(--line);
+}
+.page-loader-track::after {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 42%;
+  border-radius: inherit;
+  background: var(--accent);
 }
 
 .page-progress {
@@ -848,7 +895,16 @@ button { cursor: pointer; }
   border-top-color: #fff;
   border-radius: 50%;
 }
-.missing-page h1 { margin-bottom: 1.5rem; }
+.missing-page { display: grid; align-content: center; min-height: min(30rem, 55svh); text-align: center; }
+.missing-code {
+  color: var(--accent);
+  font-size: clamp(3.8rem, 12vw, 8.5rem);
+  font-weight: 850;
+  line-height: .9;
+  letter-spacing: -.085em;
+}
+.missing-description { max-width: 32ch; margin-inline: auto; color: var(--muted); }
+.missing-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: .6rem; margin-top: 1.5rem; }
 
 .site-footer { margin-top: clamp(3rem, 7vw, 6.8rem); }
 .footer-invitation {
@@ -895,6 +951,7 @@ button { cursor: pointer; }
 
 @media (prefers-reduced-motion: no-preference) {
   @view-transition { navigation: auto; }
+  [data-page-loading] .page-loader-track::after { animation: loader-sweep 1.15s var(--ease) infinite; }
   .case-study { view-transition-name: case-sheet; }
   ::view-transition-new(root) { animation: page-fade-in .26s ease-out both; }
   ::view-transition-old(root) { animation: page-fade-out .26s ease-in both; }
@@ -932,7 +989,7 @@ button { cursor: pointer; }
   .field :is(input, textarea) { transition: background-color .25s ease, border-color .25s ease; }
   .field:focus-within label { translate: 0 -.12rem; }
   .contact-form[aria-busy="true"] button[type="submit"]::after { animation: button-spin .75s linear infinite; }
-  .certificate-dialog[open] { animation: intro-in .24s var(--ease) both; }
+  .certificate-dialog[open] > :not(.custom-cursor) { animation: intro-in .24s var(--ease) both; }
   .certificate-dialog[open]::backdrop { animation: page-fade-in .2s ease-out both; }
   .contact-compose[open] > .contact-form,
   .contact-copy-status:not(:empty) { animation: detail-item-in .25s var(--ease) both; }
@@ -950,7 +1007,8 @@ button { cursor: pointer; }
   .social-links--hero li:nth-child(2) { animation-delay: .22s; }
   .social-links--hero li:nth-child(3) { animation-delay: .26s; }
   .social-links--hero li:nth-child(4) { animation-delay: .3s; }
-  :root[data-hero-font-pending] :is(.name-mask > span, .hero-role, .hero-description, .hero-actions > a, .social-links--hero li) {
+  :root:is([data-hero-font-pending], [data-page-loading="initial"]) :is(.name-mask > span, .hero-role, .hero-description, .hero-actions > a, .social-links--hero li),
+  :root[data-page-loading="initial"] :is(.hero-portrait, .case-study, .case-header > div, .case-facts > div) {
     animation-play-state: paused;
   }
   .hero-portrait {
@@ -1085,6 +1143,7 @@ button { cursor: pointer; }
 @keyframes case-in { from { clip-path: inset(38% 0 0); opacity: .35; } to { clip-path: inset(0); opacity: 1; } }
 @keyframes page-fade-in { from { opacity: 0; } to { opacity: 1; } }
 @keyframes page-fade-out { from { opacity: 1; } to { opacity: 0; } }
+@keyframes loader-sweep { from { translate: -100% 0; } to { translate: 240% 0; } }
 @keyframes button-sheen { to { translate: 100% 0; } }
 @keyframes button-spin { to { rotate: 1turn; } }
 @keyframes image-unveil { from { clip-path: inset(0 0 var(--image-inset, 18%)); } to { clip-path: inset(0); } }
@@ -1226,6 +1285,7 @@ button { cursor: pointer; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+  .page-loader { transition-delay: 0s; }
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
   .project-card:is(:hover, :focus-within) .project-visual,
   .certificate-card:is(:hover, :focus-within) img,

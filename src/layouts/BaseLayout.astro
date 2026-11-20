@@ -53,6 +53,13 @@ const socialImage = new URL(base + image, origin);
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={socialImage} />
+    <script is:inline>
+      document.documentElement.dataset.pageLoading = "initial";
+      setTimeout(() => {
+        const root = document.documentElement;
+        if (root.dataset.pageLoading === "initial") delete root.dataset.pageLoading;
+      }, 3000);
+    </script>
     {home && (
       <script is:inline>
         if (document.fonts && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
@@ -82,6 +89,15 @@ const socialImage = new URL(base + image, origin);
     </script>
   </head>
   <body id="top" tabindex={home ? "-1" : undefined}>
+    <div class="page-loader" aria-hidden="true">
+      <div class="page-loader-content">
+        <span class="brand-badge">
+          <img class="brand-logo" src={base + SITE_CONFIG.logo} width="242" height="296" alt="" />
+        </span>
+        <span class="page-loader-track"></span>
+        <span class="eyebrow">Loading</span>
+      </div>
+    </div>
     <div class="custom-cursor" aria-hidden="true">
       <span class="custom-cursor-ring"></span>
       <span class="custom-cursor-dot"></span>

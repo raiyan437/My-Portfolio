@@ -4,10 +4,14 @@ import { getBaseUrl } from "../utils/base";
 
 const base = getBaseUrl();
 ---
-<BaseLayout title="Page not found · Raiyan Uddin" noindex showInvitation={false}>
-  <section class="panel section subpage-section missing-page">
-    <p class="eyebrow">404</p>
-    <h1>Page not found.</h1>
-    <a class="button button--dark" href={base}>Back to home</a>
+<BaseLayout title="Page not found · Raiyan Uddin" description="This portfolio page could not be found." noindex showInvitation={false}>
+  <section class="panel section subpage-section missing-page" aria-labelledby="missing-title">
+    <p class="missing-code">404</p>
+    <h1 id="missing-title">Page not found.</h1>
+    <p class="missing-description">This page may have moved, or the link may be out of date.</p>
+    <div class="missing-actions">
+      <a class="button button--dark" href={base}>Back to home</a>
+      <a class="button button--light" href={base + "works/"}>Browse projects</a>
+    </div>
   </section>
 </BaseLayout>

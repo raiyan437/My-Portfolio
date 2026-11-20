@@ -1,6 +1,7 @@
 import { projectGroupLabels } from "../data/project-groups";
 import { formatGalleryCount, type GalleryItem } from "../utils/gallery";
 import { connectCustomCursor } from "./custom-cursor";
+import { connectPageLoading } from "./page-navigation";
 
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
@@ -630,6 +631,7 @@ function connectContactForm() {
   });
 }
 
+connectPageLoading();
 connectScrollControls();
 connectNavHighlight();
 connectCustomCursor(reducedMotion);

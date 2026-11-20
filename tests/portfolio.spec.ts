@@ -40,6 +40,8 @@ test("serves existing routes and preserves noindex on unlisted projects", async 
   const missing = await page.goto("/missing-local-page/");
   expect(missing?.status()).toBe(404);
   await expect(page.getByRole("heading", { name: "Page not found." })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Back to home", exact: true })).toHaveAttribute("href", "/");
+  await expect(page.getByRole("link", { name: "Browse projects", exact: true })).toHaveAttribute("href", "/works/");
   expect(errors).toEqual([]);
 });
 
@@ -196,6 +198,51 @@ for (const [width, height] of [[1440, 900], [390, 844], [320, 640]]) {
     await expect(cards).toHaveCount(selectedProjects.length);
   });
 }
+
+test("shows the loader while an eager page image is still loading", async ({ page }) => {
+  let releaseImage!: () => void;
+  const imageDelay = new Promise<void>((resolve) => { releaseImage = resolve; });
+  await page.route(/hero-portrait(?:-\d+)?\.(?:webp|png)(?:\?.*)?$/, async (route) => {
+    await imageDelay;
+    await route.continue();
+  });
+
+  try {
+    await page.goto("/", { waitUntil: "domcontentloaded" });
+    const loader = page.locator(".page-loader");
+    await expect(loader).toHaveCSS("opacity", "1");
+    await expect.poll(() => loader.locator(".page-loader-track").evaluate((track) => (
+      getComputedStyle(track, "::after").animationName
+    ))).toBe("loader-sweep");
+    await expect(page.locator(".hero-role")).toHaveCSS("animation-play-state", "paused");
+    releaseImage();
+    await expect(loader).toBeHidden();
+    await expect(page.locator(".hero-role")).toHaveCSS("opacity", "1");
+  } finally {
+    releaseImage();
+  }
+});
+
+test("shows the loader for a slow internal link and clears it on the new page", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/works/");
+  let releasePage!: () => void;
+  const navigationDelay = new Promise<void>((resolve) => { releasePage = resolve; });
+  await page.route("**/experience/", async (route) => {
+    await navigationDelay;
+    await route.continue();
+  });
+
+  const click = page.getByRole("link", { name: "Experience", exact: true }).click();
+  try {
+    await expect(page.locator(".page-loader")).toBeVisible();
+  } finally {
+    releasePage();
+    await click;
+  }
+  await expect(page).toHaveURL("/experience/");
+  await expect(page.locator(".page-loader")).toBeHidden();
+});
 
 test("the homepage intro waits for Manrope before revealing text", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "no-preference" });
@@ -657,6 +704,41 @@ test("uses the Styleco dot and trailing ring and restores the high-contrast curs
   await page.emulateMedia({ forcedColors: "active" });
   await expect(cursor).toHaveCSS("display", "none");
   await expect(page.locator("html")).not.toHaveClass(/custom-cursor-enabled/);
+});
+
+test("restores the custom cursor at the click position on a new page", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/");
+
+  await expect(page.locator(".page-loader")).toBeHidden();
+  const link = page.locator(".desktop-nav").getByRole("link", { name: "Projects", exact: true });
+  const bounds = (await link.boundingBox())!;
+  const x = Math.round(bounds.x + bounds.width / 2);
+  const y = Math.round(bounds.y + bounds.height / 2);
+  await page.mouse.click(x, y);
+  await expect(page).toHaveURL("/works/");
+  const cursor = page.locator(".custom-cursor");
+  await expect(cursor).toHaveAttribute("data-visible", "");
+  const ring = (await cursor.locator(".custom-cursor-ring").boundingBox())!;
+  expect(ring.x + ring.width / 2).toBeCloseTo(x, 0);
+  expect(ring.y + ring.height / 2).toBeCloseTo(y, 0);
+});
+
+test("keeps the custom cursor visible when opening and closing a certificate preview", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto("/certifications/");
+  await page.getByRole("button", { name: /^Preview / }).first().click();
+
+  const dialog = page.getByRole("dialog");
+  const cursor = dialog.locator(".custom-cursor");
+  await expect(dialog).toBeVisible();
+  await expect(cursor).toHaveAttribute("data-visible", "");
+  await expect(cursor.locator(".custom-cursor-ring")).toHaveCSS("opacity", "1");
+  await expect(cursor).toHaveCSS("visibility", "visible");
+  await page.keyboard.press("Escape");
+  await expect(dialog).toBeHidden();
+  await expect(page.locator("body > .custom-cursor")).toHaveAttribute("data-visible", "");
 });
 
 test("tilts the project image with the pointer and retains keyboard access", async ({ page }) => {
