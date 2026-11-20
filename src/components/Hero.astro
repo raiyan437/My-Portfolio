@@ -1,0 +1,46 @@
+---
+import { existsSync } from "node:fs";
+import { SITE_CONFIG } from "../config/site";
+import { getBaseUrl } from "../utils/base";
+import SocialLinks from "./SocialLinks.astro";
+
+const base = getBaseUrl();
+const portrait = SITE_CONFIG.heroPortrait;
+const hasPortrait = existsSync("public/" + portrait);
+const portraitSrcset = [480, 768, 1120].map((width) =>
+  base + portrait.replace(/\.png$/, "-" + width + ".webp") + " " + width + "w",
+).join(", ");
+const portraitSizes = [
+  "(max-width: 35rem) 49vw",
+  "(max-width: 48rem) and (max-height: 30rem) min(28vw, 12rem)",
+  "(max-width: 48rem) min(20rem, 55vw)",
+  "(max-width: 65rem) min(28rem, 45vw)",
+  "min(35rem, 35vw)",
+].join(", ");
+const [firstName, ...lastName] = SITE_CONFIG.name.split(" ");
+---
+<section class:list={["hero panel", { "hero--portrait": hasPortrait }]} aria-labelledby="hero-name" data-depth>
+  <h1 class="hero-name" id="hero-name">
+    <span class="name-mask"><span class="name-outline">{firstName}</span></span>
+    <span class="name-mask"><span class="name-solid">{lastName.join(" ")}</span></span>
+  </h1>
+  {hasPortrait && (
+    <div class="hero-portrait" data-portrait-wipe>
+      <picture>
+        <source type="image/webp" srcset={portraitSrcset} sizes={portraitSizes} />
+        <img src={base + portrait} alt={SITE_CONFIG.name} width="1254" height="1254" fetchpriority="high" decoding="async" />
+      </picture>
+    </div>
+  )}
+  <div class="hero-copy">
+    <p class="hero-role">{SITE_CONFIG.role}</p>
+    <p class="hero-description">I test web applications and APIs and build Playwright regression suites.</p>
+    <div class="hero-actions">
+      <a class="button button--dark" href={base + "#work"} data-work-jump>Explore my work</a>
+      <a class="button hero-resume" href={base + SITE_CONFIG.resume} target="_blank" rel="noopener noreferrer">View résumé</a>
+    </div>
+  </div>
+  <div class="hero-profiles">
+    <SocialLinks variant="hero" />
+  </div>
+</section>

@@ -1,234 +1,62 @@
 ---
-// src/pages/certifications.astro
 import BaseLayout from "../layouts/BaseLayout.astro";
+import GalleryBar from "../components/GalleryBar.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import { certificates, certificateTopics } from "../data/certificates";
+import { getBaseUrl } from "../utils/base";
 
-const rawBase = import.meta.env.BASE_URL;
-const base = rawBase.endsWith("/") ? rawBase : rawBase + "/";
-
-const certifications = [
-  {
-    title: "Artificial Intelligence Fundamentals",
-    issuer: "IBM SkillsBuild",
-    category: "AI & DATA SCIENCE",
-    year: "2026",
-    image: `${base}assets/Certificates/Artificical Intelligence Fundamentals.png`,
-    pdf: `${base}assets/Certificates/Artificical Intelligence Fundamentals.pdf`,
-  },
-  {
-    title: "AI-ization with GitHub Copilot & Claude",
-    issuer: "Ostad Academy",
-    category: "GENAI & AUTOMATION",
-    year: "2025",
-    image: `${base}assets/Certificates/AI-ization-with-GitHub-Copilot-and-Claude-certificate.png`,
-    pdf: `${base}assets/Certificates/AI-ization-with-GitHub-Copilot-and-Claude-certificate.pdf`,
-  },
-  {
-    title: "Information Security",
-    issuer: "Ostad Academy",
-    category: "CYBERSECURITY",
-    year: "2025",
-    image: `${base}assets/Certificates/Information Security.png`,
-    pdf: `${base}assets/Certificates/Information Security.pdf`,
-  },
-  {
-    title: "Introduction to Generative AI",
-    issuer: "IBM SkillsBuild",
-    category: "GENERATIVE AI",
-    year: "2026",
-    image: `${base}assets/Certificates/Introduction to Generative AI.png`,
-    pdf: `${base}assets/Certificates/Introduction to Generative AI.pdf`,
-  },
-  {
-    title: "Machine Learning & Deep Learning",
-    issuer: "IBM SkillsBuild",
-    category: "MACHINE LEARNING",
-    year: "2026",
-    image: `${base}assets/Certificates/Machine Learning and Deep Learning.png`,
-    pdf: `${base}assets/Certificates/Machine Learning and Deep Learning.pdf`,
-  },
-  {
-    title: "Natural Language Processing & Computer Vision",
-    issuer: "IBM SkillsBuild",
-    category: "NLP & VISION",
-    year: "2026",
-    image: `${base}assets/Certificates/Natural Language Processing and Computer Vision.png`,
-    pdf: `${base}assets/Certificates/Natural Language Processing and Computer Vision.pdf`,
-  },
-  {
-    title: "Run AI Models with IBM Watson Studio",
-    issuer: "IBM SkillsBuild",
-    category: "CLOUD & AI DEPLOYMENT",
-    year: "2026",
-    image: `${base}assets/Certificates/Run AI Models with IBM Watson Studio.png`,
-    pdf: `${base}assets/Certificates/Run AI Models with IBM Watson Studio.pdf`,
-  },
-  {
-    title: "AI Ethics",
-    issuer: "IBM SkillsBuild",
-    category: "AI GOVERNANCE",
-    year: "2026",
-    image: `${base}assets/Certificates/AI Ethics.png`,
-    pdf: `${base}assets/Certificates/AI Ethics.pdf`,
-  },
-  {
-    title: "Introduction to Artificial Intelligence",
-    issuer: "IBM SkillsBuild",
-    category: "AI ESSENTIALS",
-    year: "2026",
-    image: `${base}assets/Certificates/Introduction to Artificial Intelligence.png`,
-    pdf: `${base}assets/Certificates/Introduction to Artificial Intelligence.pdf`,
-  },
-  {
-    title: "Your Future in AI: The Job Landscape",
-    issuer: "IBM SkillsBuild",
-    category: "AI CAREERS & TRENDS",
-    year: "2026",
-    image: `${base}assets/Certificates/Your Future in AI The Job Landscape.png`,
-    pdf: `${base}assets/Certificates/Your Future in AI The Job Landscape.pdf`,
-  },
-  {
-    title: "Professional Graphic Design",
-    issuer: "Creative Design Institute",
-    category: "CREATIVE DESIGN",
-    year: "2024",
-    image: `${base}assets/Certificates/Graphics Design Certificate.png`,
-    pdf: `${base}assets/Certificates/Graphics Design Certificate.pdf`,
-  },
-  {
-    title: "Fight Against Winter",
-    issuer: "Community Welfare Initiative",
-    category: "SOCIAL WORK & COMMUNITY",
-    year: "2024",
-    image: `${base}assets/Certificates/Fight against winter (Social Work).png`,
-    pdf: `${base}assets/Certificates/Fight against winter (Social Work).pdf`,
-  },
-  {
-    title: "Project Chana Piyaju",
-    issuer: "Youth Humanitarian Drive",
-    category: "SOCIAL WORK & VOLUNTEERING",
-    year: "2024",
-    image: `${base}assets/Certificates/Project chauna piyaju (Social Work).png`,
-    pdf: `${base}assets/Certificates/Project chauna piyaju (Social Work).pdf`,
-  },
-  {
-    title: "Yoga & Meditation Training",
-    issuer: "Wellness & Fitness Academy",
-    category: "HEALTH & WELLNESS",
-    year: "2023",
-    image: `${base}assets/Certificates/Yoga-and-Meditation-Certificate.png`,
-    pdf: `${base}assets/Certificates/Yoga-and-Meditation-Certificate.pdf`,
-  },
-];
-
-const leftCertifications = certifications.slice(0, 4);
-const rightCertifications = certifications.slice(4);
+const base = getBaseUrl();
+const groups = [
+  { id: "featured-credentials", title: "Featured credentials", entries: certificates.filter(({ featured }) => featured), loading: "eager" },
+  { id: "more-certifications", title: "More certifications", entries: certificates.filter(({ featured }) => !featured), loading: "lazy" },
+] as const;
 ---
-
-<BaseLayout
-  title="Certifications - Raiyan Uddin"
-  bodyClass="main-certificationspage"
->
-  <section class="projects-area">
-    <div class="container">
-      <div class="row">
-        <!-- Left: Column 1 (4 columns) -->
-        <div class="col-md-4 mb-24">
-          <!-- Mobile Heading Title -->
-          <div class="d-md-none mb-24" data-aos="fade-up">
-            <h1 class="section-heading justify-content-center text-center">
-              All Certificates
-            </h1>
-          </div>
-
-          {
-            leftCertifications.map((cert) => (
-              <div class="mb-24">
-                <div data-aos="zoom-in" class="h-full">
-                  <div class="project-item shadow-box h-full d-flex flex-column justify-content-between">
-                    <a
-                      href={cert.pdf}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="overlay-link"
-                    ></a>
-                    <img src={`${base}assets/bg1.webp`} alt="img" class="bg-img" />
-                    <div class="project-img" style="height: 200px; overflow: hidden; border-radius: 20px; flex-shrink: 0; background: rgba(255, 255, 255, 0.04); display: flex; align-items: center; justify-content: center; padding: 6px;">
-                      <img class="proj-img" src={cert.image} alt={cert.title} style="width: 100%; height: 100%; object-fit: contain; border-radius: 14px;" />
-                    </div>
-                    <div class="d-flex align-items-center justify-content-between flex-grow-1 pt-16">
-                      <div class="project-info me-2" style="min-width: 0;">
-                        <p>
-                          {cert.category} • {cert.year}
-                        </p>
-                        <h2>{cert.title}</h2>
-                      </div>
-                      <a
-                        href={cert.pdf}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="project-btn"
-                        style="flex-shrink: 0;"
-                      >
-                        <img src={`${base}assets/icon.svg`} alt="img" />
-                      </a>
-                    </div>
-                  </div>
+<BaseLayout title="Certifications · Raiyan Uddin" description="Certificates in artificial intelligence, information security, design, and community work.">
+  <section class="panel section subpage-section" aria-labelledby="certificate-title" data-certificates>
+    <SectionHeading id="certificate-title" title="Certifications" backdrop="Learning" level="h1" centered />
+    <GalleryBar labels={certificateTopics} noun="certificate" count={certificates.length} class="certificate-filters" />
+    {groups.map(({ id, title: groupTitle, entries, loading }) => (
+      <section class="certificate-group" aria-labelledby={id} data-certificate-group>
+        <h2 id={id} data-reveal>{groupTitle}</h2>
+        <div class="certificate-grid">
+          {entries.map(({ title, issuer, category, topic, year, file = title }) => (
+            <article class="certificate-card" data-filter-group={topic} data-reveal>
+              <div class="certificate-media" data-depth>
+                <img src={base + "images/certificates/" + encodeURIComponent(file) + ".webp"} alt="" loading={loading} decoding="async" />
+              </div>
+              <div class="certificate-copy">
+                <p class="eyebrow">{category} · {year}</p>
+                <h3>{title}</h3>
+                <p class="certificate-issuer">{issuer}</p>
+                <div class="certificate-actions">
+                  <button class="button button--light" type="button" aria-label={"Preview " + title} aria-haspopup="dialog" data-certificate-preview hidden>Preview</button>
+                  <a
+                    class="certificate-open"
+                    href={base + "assets/Certificates/" + encodeURIComponent(file) + ".pdf"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={"Open PDF for " + title}
+                    data-certificate-pdf
+                  >Open PDF</a>
                 </div>
               </div>
-            ))
-          }
+            </article>
+          ))}
         </div>
-
-        <!-- Right: Columns 2 & 3 (8 columns) -->
-        <div class="col-md-8 mb-24">
-          <!-- Desktop Header Title -->
-          <div class="d-none d-md-block mb-24" data-aos="fade-up">
-            <h1 class="section-heading justify-content-center text-center">
-              All Certificates
-            </h1>
-          </div>
-
-          <div class="row">
-            {
-              rightCertifications.map((cert) => (
-                <div class="col-md-6 mb-24">
-                  <div data-aos="zoom-in" class="h-full">
-                    <div class="project-item shadow-box h-full d-flex flex-column justify-content-between">
-                      <a
-                        href={cert.pdf}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="overlay-link"
-                      ></a>
-                      <img src={`${base}assets/bg1.webp`} alt="img" class="bg-img" />
-                      <div class="project-img" style="height: 200px; overflow: hidden; border-radius: 20px; flex-shrink: 0; background: rgba(255, 255, 255, 0.04); display: flex; align-items: center; justify-content: center; padding: 6px;">
-                        <img class="proj-img" src={cert.image} alt={cert.title} style="width: 100%; height: 100%; object-fit: contain; border-radius: 14px;" />
-                      </div>
-                      <div class="d-flex align-items-center justify-content-between flex-grow-1 pt-16">
-                        <div class="project-info me-2" style="min-width: 0;">
-                          <p>
-                            {cert.category} • {cert.year}
-                          </p>
-                          <h2>{cert.title}</h2>
-                        </div>
-                        <a
-                          href={cert.pdf}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          class="project-btn"
-                          style="flex-shrink: 0;"
-                        >
-                          <img src={`${base}assets/icon.svg`} alt="img" />
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))
-            }
-          </div>
+      </section>
+    ))}
+    <dialog class="certificate-dialog" aria-labelledby="certificate-preview-title" data-certificate-dialog>
+      <header class="certificate-dialog-header">
+        <div>
+          <h2 id="certificate-preview-title"></h2>
+          <p data-certificate-preview-issuer></p>
         </div>
-      </div>
-    </div>
+        <form method="dialog">
+          <button class="button button--light" type="submit" autofocus>Close</button>
+        </form>
+      </header>
+      <img alt="" data-certificate-preview-image />
+      <a class="button button--dark" target="_blank" rel="noopener noreferrer" data-certificate-preview-pdf>Open PDF</a>
+    </dialog>
   </section>
 </BaseLayout>

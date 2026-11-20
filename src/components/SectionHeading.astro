@@ -1,0 +1,15 @@
+---
+interface Props {
+  id: string;
+  title: string;
+  backdrop?: string;
+  level?: "h1" | "h2";
+  centered?: boolean;
+}
+
+const { id, title, backdrop, level: Heading = "h2", centered = false } = Astro.props;
+---
+<div class:list={["section-heading", { "section-heading--center": centered, "section-heading--layered": backdrop }]} data-reveal>
+  {backdrop && <span class="section-backdrop" aria-hidden="true" data-word={backdrop}></span>}
+  <Heading id={id}><span aria-hidden="true">/</span> {title}</Heading>
+</div>

@@ -1,42 +1,34 @@
 ---
-// src/components/Footer.astro
-const rawBase = import.meta.env.BASE_URL;
-const base = rawBase.endsWith('/') ? rawBase : rawBase + '/';
-const pathname = Astro.url.pathname;
+import { SITE_CONFIG } from "../config/site";
+import { getBaseUrl } from "../utils/base";
+import SocialLinks from "./SocialLinks.astro";
 
-const relativePath = pathname.startsWith(base) 
-  ? '/' + pathname.slice(base.length) 
-  : pathname;
+interface Props {
+  showInvitation?: boolean;
+}
 
-const isHome = relativePath === '/' || relativePath === '/index.html' || relativePath === '/index' || relativePath === '';
-const isAbout = relativePath.includes('about');
-const isSkills = relativePath.includes('skills');
-const isWorks = relativePath.includes('works');
-const isCertifications = relativePath.includes('certifications');
-const isContact = relativePath.includes('contact');
-
-const currentYear = new Date().getFullYear();
+const { showInvitation = true } = Astro.props;
+const base = getBaseUrl();
 ---
-
-<footer class="footer-area">
-    <div class="container">
-        <div class="footer-content text-center">
-            <a href={base} class="logo">
-                <img src={`${base}assets/logo.png`} alt="Logo">
-            </a>
-            
-            <ul class="footer-menu">
-                <li class={isHome ? "active" : ""}><a href={base}>Home</a></li>
-                <li class={isAbout ? "active" : ""}><a href={`${base}about/`}>About</a></li>
-                <li class={isSkills ? "active" : ""}><a href={`${base}skills/`}>Skills</a></li>
-                <li class={isWorks ? "active" : ""}><a href={`${base}works/`}>Works</a></li>
-                <li class={isCertifications ? "active" : ""}><a href={`${base}certifications/`}>Certifications</a></li>
-                <li class={isContact ? "active" : ""}><a href={`${base}contact/`}>Contact</a></li>
-            </ul>
-
-            <p class="copyright">
-                © {currentYear} All rights reserved by <span><a href={base}>Raiyan Uddin</a></span>
-            </p>
-        </div>
-    </div>
+<footer class="site-footer" id="contact">
+  {showInvitation && (
+    <section class="footer-invitation panel" aria-labelledby="footer-heading">
+      <p class="eyebrow" data-reveal>/ Contact</p>
+      <h2 id="footer-heading" data-reveal>Let’s talk testing.</h2>
+      <p data-reveal>Have a project in mind? Tell me what you’re building.</p>
+      <a class="button button--dark" href={base + "contact/"} data-reveal>Contact me</a>
+      <SocialLinks variant="footer" />
+    </section>
+  )}
+  <div class="footer-bar" data-reveal>
+    <a class="footer-brand" href={base}>© {new Date().getFullYear()} {SITE_CONFIG.name}</a>
+    <nav aria-label="Footer">
+      <a href={base + "about/"}>About</a>
+      <a href={base + "works/"}>Work</a>
+      <a href={base + "skills/"}>Skills</a>
+      <a href={base + "certifications/"}>Certifications</a>
+      <a href={base + "contact/"}>Contact</a>
+    </nav>
+    <a class="back-to-top" href="#top">Back to top</a>
+  </div>
 </footer>

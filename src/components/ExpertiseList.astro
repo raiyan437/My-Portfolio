@@ -1,0 +1,19 @@
+---
+import { expertise } from "../data/profile";
+---
+<div class="expertise-list">
+  {expertise.map(({ title, description, tools }) => (
+    <details class="expertise-item" name="expertise" data-reveal>
+      <summary>
+        <span>{title}</span>
+        <span class="disclosure-mark" aria-hidden="true"></span>
+      </summary>
+      <div class="expertise-content">
+        <p>{description}</p>
+        <ul class="tags" aria-label={title + " tools and practices"}>
+          {tools.map((tool) => <li class="pill">{tool}</li>)}
+        </ul>
+      </div>
+    </details>
+  ))}
+</div>

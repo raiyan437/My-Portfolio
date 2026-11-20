@@ -1,0 +1,27 @@
+---
+import { getBaseUrl } from "../utils/base";
+
+interface Props {
+  path: string;
+  sizes: string;
+  alt?: string;
+  loading?: "eager" | "lazy";
+  priority?: boolean;
+}
+
+const { path, sizes, alt = "", loading = "lazy", priority = false } = Astro.props;
+const cover = getBaseUrl() + path;
+const stem = cover.slice(0, -".webp".length);
+const srcset = `${stem}-768.webp 768w, ${stem}-1280.webp 1280w, ${cover} 2560w`;
+---
+<img
+  src={stem + "-1280.webp"}
+  srcset={srcset}
+  sizes={sizes}
+  alt={alt}
+  width="2560"
+  height="1600"
+  loading={loading}
+  fetchpriority={priority ? "high" : undefined}
+  decoding="async"
+/>

@@ -1,0 +1,20 @@
+---
+import SectionHeading from "./SectionHeading.astro";
+import Timeline from "./Timeline.astro";
+import { education, experience } from "../data/profile";
+import { getBaseUrl } from "../utils/base";
+
+interface Props {
+  home?: boolean;
+}
+---
+<section class="panel panel--dark section experience-section" id="experience" aria-labelledby="experience-title" tabindex="-1">
+  <SectionHeading id="experience-title" title="Experience" backdrop="Experience" />
+  <Timeline entries={experience} />
+</section>
+
+<section class="panel section education-section" id={Astro.props.home ? "education" : undefined} aria-labelledby="education-title">
+  <SectionHeading id="education-title" title="Education" />
+  <Timeline entries={education} />
+  <a class="button button--light" href={getBaseUrl() + "certifications/"} data-reveal>View certifications</a>
+</section>

@@ -1,126 +1,100 @@
 ---
-// src/components/WorkDetailLayout.astro
 import BaseLayout from "../layouts/BaseLayout.astro";
+import ProjectGrid from "./ProjectGrid.astro";
+import ProjectCoverImage from "./ProjectCoverImage.astro";
+import SectionHeading from "./SectionHeading.astro";
+import { projects, publicProjects, type Project } from "../data/projects";
 import { getBaseUrl } from "../utils/base";
 
 interface Props {
-  title: string;
-  category: string;
-  bannerImg: string;
-  bannerAlt?: string;
-  infoTitle?: string;
-  infoDesc1: string;
-  infoDesc2?: string;
-  aboutText: string;
-  year?: string;
-  client?: string;
-  services?: string;
-  project?: string;
-  descriptionText: string;
-  nextProjectUrl?: string;
-  nextProjectLabel?: string;
+  project: Project;
 }
 
-const {
-  title,
-  category,
-  bannerImg,
-  bannerAlt = `${title} Project Banner`,
-  infoTitle = title,
-  infoDesc1,
-  infoDesc2,
-  aboutText,
-  year = "2023",
-  client = title,
-  services = "QA Engineering & Testing",
-  project = title,
-  descriptionText,
-  nextProjectUrl,
-  nextProjectLabel = "Next Project",
-} = Astro.props;
-
+const { project } = Astro.props;
+const { caseStudy } = project;
 const base = getBaseUrl();
+const next = projects.find(({ slug }) => slug === project.next);
+const otherWork = publicProjects.filter(({ slug }) => slug !== project.slug && slug !== project.next);
+const related = [
+  ...otherWork.filter(({ group }) => group === project.group),
+  ...otherWork.filter(({ group }) => group !== project.group),
+].slice(0, 2);
 ---
-
-<BaseLayout title={`${title} - Project Details - Raiyan Uddin`} bodyClass="main-workdetails-page">
-    <section class="project-details-wrap">
-        <div class="container">
-
-            <!-- Breadcrumb Section -->
-            <section class="breadcrumb-area">
-                <div class="container">
-                    <div class="breadcrumb-content" data-aos="fade-up">
-                        <p>{category.toUpperCase()} - {title.toUpperCase()}</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Hero Banner Image -->
-            <div class="project-details-img" data-aos="zoom-in">
-                <img src={`${base}${bannerImg}`} alt={bannerAlt}>
-            </div>
-
-            <!-- Info Box Card -->
-            <div data-aos="zoom-in">
-                <div class="d-flex project-infos-wrap shadow-box mb-24">
-                    <img src={`${base}assets/bg1.webp`} alt="BG" class="bg-img">
-                    <img src={`${base}assets/icon2.png`} alt="Star" class="star-icon">
-                    
-                    <div class="project-details-info flex-1">
-                        <h4>{infoTitle}</h4>
-                        <p>{infoDesc1}</p>
-                        {infoDesc2 && <p>{infoDesc2}</p>}
-                    </div>
-
-                    <div class="project-details-info flex-1">
-                        <h4>About</h4>
-                        <p>{aboutText}</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project Overview & Details Meta Box -->
-            <div data-aos="zoom-in">
-                <div class="project-about-2 d-flex shadow-box mb-24">
-                    <img src={`${base}assets/bg1.webp`} alt="BG" class="bg-img">
-                    <div class="left-details">
-                        <img src={`${base}assets/icon2.png`} alt="Star" class="star-icon">
-                        <ul>
-                            <li>
-                                <p>Year</p>
-                                <h5>{year}</h5>
-                            </li>
-                            <li>
-                                <p>Client</p>
-                                <h5>{client}</h5>
-                            </li>
-                            <li>
-                                <p>Services</p>
-                                <h5>{services}</h5>
-                            </li>
-                            <li>
-                                <p>Project</p>
-                                <h5>{project}</h5>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="right-details">
-                        <h4>Description</h4>
-                        <p>{descriptionText}</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Optional Custom Slot for additional project content -->
-            <slot />
-
-            <!-- Next Project Button -->
-            {nextProjectUrl && (
-                <div class="container d-flex align-items-center justify-content-center mt-24 mb-24" data-aos="zoom-in">
-                    <a href={`${base}${nextProjectUrl.startsWith('/') ? nextProjectUrl.slice(1) : nextProjectUrl}`} class="big-btn shadow-box">{nextProjectLabel}</a>
-                </div>
-            )}
-
-        </div>
+<BaseLayout
+  title={project.title + " · Raiyan Uddin"}
+  description={project.summary}
+  image={project.cover}
+  noindex={project.group === "unlisted"}
+>
+  <article class="panel section subpage-section case-study">
+    <a class="button button--light case-back" href={base + "works/"} data-work-return={base + "#work"}>
+      Back to projects
+    </a>
+    <header class="case-header" data-reveal>
+      <div>
+        <ul class="tags" aria-label="Tools and practices">
+          {project.tools.map((tool) => <li class="pill">{tool}</li>)}
+        </ul>
+        <h1>{project.title}</h1>
+        <p>{project.summary}</p>
+      </div>
+      <dl class="case-facts">
+        {project.client && <div><dt>Project</dt><dd>{project.client}</dd></div>}
+        <div><dt>Year</dt><dd>{project.year}</dd></div>
+        <div><dt>Work</dt><dd>{project.services}</dd></div>
+      </dl>
+    </header>
+    <div class="case-contribution" data-reveal>
+      <section class="case-highlight" aria-labelledby="case-contribution-heading">
+        <h2 id="case-contribution-heading">My contribution</h2>
+        <p>{project.overview}</p>
+      </section>
+      <section class="case-highlight" aria-labelledby="case-deliverable-heading">
+        <h2 id="case-deliverable-heading">What the work delivered</h2>
+        <p>{caseStudy.deliverable}</p>
+      </section>
+    </div>
+    <figure class="case-image" data-reveal>
+      <ProjectCoverImage
+        path={project.cover}
+        sizes="(max-width: 48rem) 84vw, (max-width: 65rem) 80vw, min(74vw, 72rem)"
+        alt={project.coverAlt}
+        loading="eager"
+        priority
+      />
+    </figure>
+    <div class="case-content">
+      <section data-reveal>
+        <h2>{caseStudy.checks ? "The challenge" : "Context"}</h2>
+        <p>{project.context}</p>
+        {project.details && <p>{project.details}</p>}
+      </section>
+      <section data-reveal>
+        <h2>Testing coverage</h2>
+        <p>{project.coverage}</p>
+        {caseStudy.checks && (
+          <dl class="case-checks" aria-label="Representative checks">
+            {caseStudy.checks.map(({ area, verification }) => (
+              <div>
+                <dt>{area}</dt>
+                <dd>{verification}</dd>
+              </div>
+            ))}
+          </dl>
+        )}
+      </section>
+    </div>
+    <div class="case-actions" data-reveal>
+      <a class="button button--light case-contact" href={base + "contact/"}>Contact me</a>
+      {next && (
+        <a class="case-next" href={base + "works/" + next.slug + "/"} data-work-project>
+          <small>Next project</small>{next.title}
+        </a>
+      )}
+    </div>
+    <section class="related-work" aria-labelledby="related-work-heading">
+      <SectionHeading id="related-work-heading" title="More work" centered />
+      <ProjectGrid projects={related} filterable={false} />
     </section>
+  </article>
 </BaseLayout>

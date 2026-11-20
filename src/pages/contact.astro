@@ -1,241 +1,69 @@
 ---
-// src/pages/contact.astro
 import BaseLayout from "../layouts/BaseLayout.astro";
+import SectionHeading from "../components/SectionHeading.astro";
 import SocialLinks from "../components/SocialLinks.astro";
+import { SITE_CONFIG } from "../config/site";
+import { getBaseUrl } from "../utils/base";
 
-const rawBase = import.meta.env.BASE_URL;
-const base = rawBase.endsWith('/') ? rawBase : rawBase + '/';
+const base = getBaseUrl();
+const acceptsPosts = import.meta.env.PROD && process.env.NETLIFY === "true";
+const ComposePanel = acceptsPosts ? "div" : "details";
+const phoneHref = "tel:" + SITE_CONFIG.phone.replace(/[^+\d]/g, "");
 ---
-
-<BaseLayout title="Contact - Raiyan Uddin" bodyClass="main-contactpage">
-  <section class="contact-area">
-    <div class="container">
-      <div class="gx-row d-flex justify-content-between gap-24">
-        <!-- Left: Contact Details Column -->
-        <div class="contact-infos">
-          <h4 data-aos="fade-up">Contact Info</h4>
-
-          <ul class="contact-details">
-            <!-- Mail -->
-            <li class="d-flex align-items-center" data-aos="zoom-in">
-              <div class="icon-box shadow-box">
-                <i class="iconoir-mail"></i>
-              </div>
-              <div class="right">
-                <span>MAIL US</span>
-                <h5>raiyan.uddin.37.pro@gmail.com</h5>
-              </div>
-            </li>
-
-            <!-- Phone -->
-            <li class="d-flex align-items-center" data-aos="zoom-in">
-              <div class="icon-box shadow-box">
-                <i class="iconoir-phone"></i>
-              </div>
-              <div class="right">
-                <span>Contact Us</span>
-                <h5>+88 018 61277634</h5>
-              </div>
-            </li>
-
-            <!-- Address -->
-            <li class="d-flex align-items-center" data-aos="zoom-in">
-              <div class="icon-box shadow-box">
-                <i class="iconoir-pin-alt"></i>
-              </div>
-              <div class="right">
-                <span>Location</span>
-                <h5>Dhaka <br />Bangladesh</h5>
-              </div>
-            </li>
-          </ul>
-
-          <h4 data-aos="fade-up">Social Info</h4>
-          <SocialLinks boxClass="inner-profile-icons shadow-box" />
+<BaseLayout title="Contact · Raiyan Uddin" description="Contact Raiyan Uddin about software testing, automation, and QA projects." showInvitation={false}>
+  <section class="panel section subpage-section contact-page" aria-labelledby="contact-title">
+    <SectionHeading id="contact-title" title="Let’s talk testing." backdrop="Contact" level="h1" />
+    <div class="contact-grid">
+      <div class="contact-details" data-reveal>
+        <p>Tell me what you’re building and where you’d like help with testing.</p>
+        <div class="contact-email-actions">
+          <a class="button button--dark" href={SITE_CONFIG.socials.email} target="_blank" rel="noopener noreferrer">Email me</a>
+          <button class="button button--light" type="button" data-copy-email={SITE_CONFIG.email} hidden>Copy email address</button>
         </div>
-
-        <!-- Right: Form Panel -->
-        <div data-aos="zoom-in" class="contact-form">
-          <div class="shadow-box">
-            <img src={`${base}assets/bg1.webp`} alt="img" class="bg-img" />
-            <img
-              src={`${base}assets/icon2.png`}
-              alt="img"
-              class="star-icon"
-            />
-
-            <h2>Let’s work <span>together.</span></h2>
-
-            <form
-              id="cf-form"
-              name="contact"
-              method="POST"
-              action="/"
-              data-netlify="true"
-              netlify-honeypot="bot-field"
-              class="wpcf7-form"
-              novalidate="novalidate"
-            >
+        <p class="contact-copy-status" role="status" data-copy-status></p>
+        <address>
+          <span>{SITE_CONFIG.email}</span>
+          <a href={phoneHref}>{SITE_CONFIG.phone}</a>
+          <span>{SITE_CONFIG.location}</span>
+        </address>
+      </div>
+      <ComposePanel class="contact-compose" data-contact-draft={!acceptsPosts || undefined} hidden={!acceptsPosts} data-reveal>
+        {!acceptsPosts && <summary><span class="disclosure-mark" aria-hidden="true"></span>Write an email draft</summary>}
+        <form
+          class="contact-form"
+          name="contact"
+          method={acceptsPosts ? "POST" : undefined}
+          action={acceptsPosts ? base + "contact/" : undefined}
+          data-netlify={acceptsPosts ? "true" : undefined}
+          netlify-honeypot={acceptsPosts ? "bot-field" : undefined}
+          data-contact-form
+          data-compose-url={acceptsPosts ? undefined : SITE_CONFIG.socials.email}
+        >
+          {acceptsPosts && (
+            <>
               <input type="hidden" name="form-name" value="contact" />
-              <p style="display:none;">
-                <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
-              </p>
-
-              <!-- Success / Error Message Alert -->
-              <div
-                class="alert alert-success messenger-box-contact__msg"
-                id="msg-alert"
-                style="display: none; background: rgba(91, 120, 246, 0.15); border: 1px solid var(--primary_color); color: #fff; border-radius: 10px; padding: 12px 16px; margin-bottom: 20px;"
-                role="alert"
-              >
-                Your message was sent successfully.
-              </div>
-
-              <div class="input-group">
-                <input
-                  type="email"
-                  id="to-email"
-                  name="to"
-                  value="raiyan.uddin.37.pro@gmail.com"
-                  readonly
-                  style="opacity: 0.75; cursor: not-allowed;"
-                  placeholder="To *"
-                  aria-label="Recipient Email"
-                />
-              </div>
-
-              <div class="input-group">
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  placeholder="Your Email *"
-                  aria-label="Your Email Address"
-                />
-              </div>
-
-              <div class="input-group">
-                <input
-                  type="text"
-                  id="subject"
-                  name="subject"
-                  required
-                  placeholder="Your Subject *"
-                  aria-label="Email Subject"
-                />
-              </div>
-
-              <div class="input-group">
-                <textarea
-                  id="message"
-                  name="message"
-                  rows="5"
-                  required
-                  placeholder="Your Message *"
-                  aria-label="Email Message"></textarea>
-              </div>
-
-              <div class="input-group mb-0">
-                <button
-                  class="theme-btn submit-btn"
-                  type="submit"
-                  id="submit-btn">Send Message</button
-                >
-              </div>
-            </form>
+              <p hidden><label>Leave this field empty <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
+            </>
+          )}
+          <div class="field">
+            <label for="email">Your email</label>
+            <input id="email" name="email" type="email" autocomplete="email" required />
           </div>
-        </div>
+          <div class="field">
+            <label for="subject">Subject</label>
+            <input id="subject" name="subject" maxlength="160" required />
+          </div>
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="6" required></textarea>
+          </div>
+          <button class="button button--dark" type="submit">{acceptsPosts ? "Send message" : "Open email draft"}</button>
+          <p class="form-status" role="status" data-contact-status>{!acceptsPosts && "This opens a draft in Gmail."}</p>
+        </form>
+      </ComposePanel>
+      <div class="contact-profiles" data-reveal>
+        <SocialLinks showEmail={false} />
       </div>
     </div>
   </section>
-
-  <script>
-    const form = document.getElementById("cf-form") as HTMLFormElement;
-    const msgAlert = document.getElementById("msg-alert") as HTMLDivElement;
-    const submitBtn = document.getElementById("submit-btn");
-    const emailInput = document.getElementById("email") as HTMLInputElement;
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (form) {
-      if (emailInput && msgAlert) {
-        emailInput.addEventListener("input", () => {
-          emailInput.style.borderColor = "";
-        });
-      }
-
-      form.addEventListener("submit", async (e) => {
-        e.preventDefault();
-
-        const formData = new FormData(form);
-        const emailVal = String(formData.get("email") || "").trim();
-        const subjectVal = String(formData.get("subject") || "").trim();
-        const messageVal = String(formData.get("message") || "").trim();
-
-        if (!emailVal || !emailRegex.test(emailVal)) {
-          if (msgAlert) {
-            msgAlert.style.display = "block";
-            msgAlert.style.background = "rgba(255, 77, 77, 0.15)";
-            msgAlert.style.border = "1px solid #ff4d4d";
-            msgAlert.style.color = "#ff4d4d";
-            msgAlert.textContent = "Email is incorrect.";
-          }
-          if (emailInput) {
-            emailInput.style.borderColor = "#ff4d4d";
-            emailInput.focus();
-          }
-          return;
-        }
-
-        if (!subjectVal || !messageVal) {
-          if (msgAlert) {
-            msgAlert.style.display = "block";
-            msgAlert.style.background = "rgba(255, 77, 77, 0.15)";
-            msgAlert.style.border = "1px solid #ff4d4d";
-            msgAlert.style.color = "#ff4d4d";
-            msgAlert.textContent = "Please fill in both Subject and Message.";
-          }
-          return;
-        }
-
-        if (submitBtn) submitBtn.textContent = "Sending...";
-
-        try {
-          const params = new URLSearchParams();
-          for (const [key, value] of formData.entries()) {
-            params.append(key, String(value));
-          }
-          if (!params.has("form-name")) {
-            params.append("form-name", "contact");
-          }
-
-          const response = await fetch("/", {
-            method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: params.toString(),
-          });
-
-          if (response.ok || response.status === 200 || response.status === 302 || response.status === 303) {
-            if (msgAlert) {
-              msgAlert.style.display = "block";
-              msgAlert.style.background = "rgba(91, 120, 246, 0.15)";
-              msgAlert.style.border = "1px solid var(--primary_color)";
-              msgAlert.style.color = "#fff";
-              msgAlert.textContent = "Your message was sent successfully!";
-            }
-            form.reset();
-            const toEmailInput = document.getElementById("to-email") as HTMLInputElement;
-            if (toEmailInput) toEmailInput.value = "raiyan.uddin.37.pro@gmail.com";
-          } else {
-            form.submit();
-          }
-        } catch (err) {
-          form.submit();
-        } finally {
-          if (submitBtn) submitBtn.textContent = "Send Message";
-        }
-      });
-    }
-  </script>
 </BaseLayout>

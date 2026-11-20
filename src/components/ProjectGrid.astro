@@ -1,0 +1,68 @@
+---
+import { projectGroupLabels } from "../data/project-groups";
+import type { Project } from "../data/projects";
+import { getBaseUrl } from "../utils/base";
+import GalleryBar from "./GalleryBar.astro";
+import ProjectCoverImage from "./ProjectCoverImage.astro";
+
+interface Props {
+  projects: Project[];
+  filterable?: boolean;
+  eagerCount?: number;
+  stack?: boolean;
+}
+
+const { projects, filterable = true, eagerCount = 0, stack = false } = Astro.props;
+const base = getBaseUrl();
+const coverSizes = stack
+  ? "(max-width: 48rem) 94vw, (max-width: 65rem) 92vw, min(86vw, 84rem)"
+  : "(max-width: 35rem) 84vw, (max-width: 48rem) 42vw, (max-width: 65rem) 40vw, min(35vw, 35rem)";
+---
+<div data-projects={filterable || undefined}>
+  {filterable && (
+    <GalleryBar labels={projectGroupLabels} noun="project" count={projects.length} class={stack ? "selected-work-bar" : undefined}>
+      {stack && <a class="selected-work-index" href={base + "works/"} data-work-index>View all work</a>}
+    </GalleryBar>
+  )}
+  <div class:list={["project-grid", { "project-grid--stack": stack }]} data-project-stack={stack || undefined}>
+    {projects.map(({ slug, title, group, selectedWorkGroup, tools, summary, cover }, index) => {
+      const category = group === "unlisted" ? selectedWorkGroup : group;
+      return (
+        <article class="project-card" data-filter-group={filterable ? category : undefined} data-reveal>
+          <a
+            href={base + "works/" + slug + "/" + (stack ? "?from=selected-work" : "")}
+            aria-labelledby={"project-" + slug}
+            data-work-project
+          >
+            <div class="project-media" data-depth={!stack || undefined}>
+              <div class="project-visual">
+                <ProjectCoverImage
+                  path={cover}
+                  sizes={coverSizes}
+                  loading={index < eagerCount ? "eager" : "lazy"}
+                />
+              </div>
+              {stack && (
+                <div class="project-overlay">
+                  <div class="project-title-chip">
+                    <h3 id={"project-" + slug}>{title}</h3>
+                  </div>
+                </div>
+              )}
+            </div>
+            {!stack && (
+              <div class="project-copy">
+                {category && <span class="project-category">{projectGroupLabels[category]}</span>}
+                <h3 id={"project-" + slug}>{title}</h3>
+                <p>{summary}</p>
+                <ul class="tags" aria-label="Tools and practices">
+                  {tools.map((tool) => <li class="pill">{tool}</li>)}
+                </ul>
+              </div>
+            )}
+          </a>
+        </article>
+      );
+    })}
+  </div>
+</div>

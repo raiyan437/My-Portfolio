@@ -1,0 +1,41 @@
+---
+import { getBaseUrl } from "../utils/base";
+
+interface Props {
+  entries: {
+    organization: string;
+    role: string;
+    dates: string;
+    website: string;
+    logo: string;
+    scope?: string;
+  }[];
+}
+
+const { entries } = Astro.props;
+const base = getBaseUrl();
+---
+<ul class="timeline">
+  {entries.map(({ organization, role, dates, website, logo, scope }) => (
+    <li data-reveal data-depth>
+      <div>
+        <h3>
+          <a class="timeline-site" href={website} target="_blank" rel="noopener noreferrer">
+            {organization}
+          </a>
+        </h3>
+        <p>{role}</p>
+      </div>
+      <span class="timeline-dates">{dates}</span>
+      {scope && <p class="timeline-detail">{scope}</p>}
+      <div class="timeline-preview" aria-hidden="true">
+        <span>{dates}</span>
+        <div class="timeline-preview-heading">
+          <img src={base + logo} alt="" width="128" height="128" loading="lazy" decoding="async" />
+          <strong>{organization}</strong>
+        </div>
+        <span>{role}</span>
+      </div>
+    </li>
+  ))}
+</ul>

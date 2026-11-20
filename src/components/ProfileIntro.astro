@@ -1,0 +1,25 @@
+---
+import { biography } from "../data/profile";
+import { SITE_CONFIG } from "../config/site";
+import { getBaseUrl } from "../utils/base";
+
+interface Props {
+  showAboutLink?: boolean;
+}
+
+const { showAboutLink = false } = Astro.props;
+const base = getBaseUrl();
+---
+<div class="profile-intro">
+  <div class="profile-copy" data-reveal>
+    <p class="profile-lead">{biography.introduction}</p>
+    <p>{biography.interests}</p>
+    <div class="inline-actions">
+      <a class="button button--dark" href={base + SITE_CONFIG.resume} target="_blank" rel="noopener noreferrer">View résumé</a>
+      {showAboutLink && <a class="button button--light" href={base + "about/"}>More about me</a>}
+    </div>
+  </div>
+  <figure class="profile-photo" data-reveal>
+    <img src={base + SITE_CONFIG.ogImage} alt={SITE_CONFIG.name} width="360" height="360" loading="lazy" decoding="async" />
+  </figure>
+</div>

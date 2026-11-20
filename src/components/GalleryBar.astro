@@ -1,0 +1,24 @@
+---
+import { formatGalleryCount, type GalleryItem } from "../utils/gallery";
+
+interface Props {
+  labels: Record<string, string>;
+  noun: GalleryItem;
+  count: number;
+  class?: string;
+}
+
+const { labels, noun, count, class: variant } = Astro.props;
+const filters = [["all", "All"], ...Object.entries(labels)];
+---
+<div class:list={["gallery-bar", variant]} data-reveal>
+  <div class="gallery-filters" role="group" aria-label={noun === "project" ? "Filter projects" : "Filter certifications"} data-filter-controls hidden>
+    {filters.map(([value, label]) => (
+      <button type="button" class="filter-button" data-filter={value} aria-pressed={value === "all"}>{label}</button>
+    ))}
+  </div>
+  <div class="gallery-meta">
+    <p class="gallery-count" role="status" data-filter-status>{formatGalleryCount(count, noun)}</p>
+    <slot />
+  </div>
+</div>

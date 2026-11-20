@@ -1,103 +1,42 @@
-# Raiyan Uddin - Software QA Engineer Portfolio
+# Raiyan Uddin · QA Portfolio
 
-A modern, high-performance personal portfolio website for **Raiyan Uddin**, Software QA Engineer based in Bangladesh. Built with **Astro 4**, Vanilla CSS glassmorphism styling, and responsive Bootstrap layout.
+Astro 4 static portfolio for Raiyan Uddin, a Software Quality Assurance Engineer based in Dhaka, Bangladesh. The site includes a filterable project showcase, case studies, professional experience, technical expertise, education, certificates, a résumé, and contact links.
 
-Live Preview: [https://raiyan437.github.io/My-Portfolio/](https://raiyan437.github.io/My-Portfolio/)
+## Run locally
 
----
+Use Node.js 20 or later.
 
-## 🌟 Key Features
-
-- **⚡ Blazing Fast Performance**: Built using Astro 4.0 static site generation, achieving 95+ PageSpeed scores.
-- **🎨 Glassmorphic Dark Aesthetics**: Sleek dark mode design (`#0F0F0F` background, `#5B78F6` primary accent) with responsive card grids and smooth hover micro-animations.
-- **🔄 Infinite Never-Ending Skills Marquee**: 4x quadMarquee loop with zero gap, zero jump, and smooth linear infinite scrolling across all screen sizes.
-- **📄 Resume PDF Download**: Direct opening of `SQA_Raiyan_Uddin_CV.pdf` in a new browser tab (`target="_blank"`).
-- **📬 Live Contact Form**: Integrated Web3Forms API sending form submissions directly to `raiyan.uddin.37.pro@gmail.com` with a built-in `mailto:` client fallback.
-- **📱 Responsive & Accessible**: Mobile navigation drawer with auto-close on link selection or outside click, and a theme-matched floating Back-to-Top scroll button.
-- **🔍 SEO & Social Preview Ready**: OpenGraph metadata (`og:title`, `og:image`, `og:description`), Twitter cards, QA-targeted meta keywords, and `robots.txt`.
-
----
-
-## 📂 Page & Navigation Structure (15 Static Routes)
-
-1. **Home (`/`)**: Hero section, infinite skills marquee, Resume card, Specialization card, Showcase projects, and social links.
-2. **About (`/about/`)**: Bio, Experience timeline, Education, Profiles, Contact CTA, and Resume card.
-3. **Skills (`/skills/`)**: Interactive 4x marquee loop + 4 Glassmorphic Specialization Cards (*Test Automation & Frameworks*, *API & Performance Testing*, *CI/CD & DevOps Integration*, *QA Strategy & Management*).
-4. **Works (`/works/`)**: Showcase directory featuring 8 QA automation and manual testing projects.
-5. **Certifications (`/certifications/`)**: 6 uniform equal-sized certification cards (ISTQB CTFL, Playwright Masterclass, Postman Expert, JMeter, Agile QA, Git CI/CD).
-6. **Contact (`/contact/`)**: Live contact form + 3x2 grid of social icon pills (Email, LinkedIn, GitHub, Facebook, Instagram, WhatsApp).
-7. **8 Project Case Study Pages (`/works/[slug]/`)**:
-   - BSEC IPO System (`bsec-ipo-system`)
-   - D-Nothi (`dnothi`)
-   - GCC Mealkun (`gcc-mealkun`)
-   - MrMax (`mrmax`)
-   - Practice Management System (`practice-management-system`)
-   - QA Brains Java Playwright (`qa-brains-java-playwright`)
-   - QA Brains TS Playwright (`qa-brains-ts-playwright`)
-   - Restful Booker (`restful-booker`)
-8. **Custom 404 Error Page (`/404.html`)**: Glassmorphic error page with a "Back to Home" button.
-
----
-
-## 🛠️ Tech Stack & Dependencies
-
-- **Framework**: [Astro 4.0](https://astro.build/)
-- **Styling**: Vanilla CSS (Custom Tokens, Glassmorphism, Micro-animations)
-- **UI Grid**: Bootstrap 5.3
-- **Icons**: Iconoir CDN & Custom SVGs
-- **Form Handler**: Web3Forms API
-- **Deployment Output**: Static Site (`output: 'static'`, `outDir: 'node_modules/.astro-out'`)
-
----
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-- Node.js `v18.0.0` or higher
-- npm `v9.0.0` or higher
-
-### Installation
-
-```bash
-# Clone the repository
-git clone https://github.com/raiyan437/My-Portfolio.git
-
-# Navigate into project directory
-cd My-Portfolio
-
-# Install dependencies
-npm install
-```
-
-### Local Development Server
-
-```bash
-# Start Astro dev server at http://localhost:4321/My-Portfolio/
+```sh
+npm ci
 npm run dev
 ```
 
-### Production Build & Preview
+Open [the local preview](http://127.0.0.1:4321/). To test a static production build locally, run `npm run build` followed by `npm run preview`.
 
-```bash
-# Build static site output into node_modules/.astro-out
-npx astro build
+## Local checks
 
-# Preview production build locally
-npx astro preview
+```sh
+npx playwright install chromium
+npm run lint
+npm run check
+npm test
+npm run build
 ```
 
----
+Playwright reuses an Astro server on port 4321 or starts one for the test run. The suite checks routes, project filters, keyboard navigation, portfolio documents, responsive layouts, reduced motion, contact behavior, and automated accessibility rules.
 
-## 📬 Contact & Social Links
+## Content and design
 
-- **Email**: [raiyan.uddin.37.pro@gmail.com](mailto:raiyan.uddin.37.pro@gmail.com)
-- **LinkedIn**: [Raiyan Uddin](https://www.linkedin.com/in/raiyan-uddin-pyrogod/)
-- **GitHub**: [@raiyan437](https://github.com/raiyan437)
-- **Facebook**: [Raiyan Uddin](https://www.facebook.com/raiyan.uddin/)
-- **Instagram**: [@raiyan.4](https://www.instagram.com/raiyan.4/)
-- **WhatsApp**: [Chat on WhatsApp](https://wa.link/6uo9zk)
+- `src/data/projects.ts` drives the work galleries and case studies. The Projects page lists all entries. The homepage uses full-width project artwork with title buttons over each image in its scroll stack. The `cover` field supplies the artwork for galleries and case studies. The `coverAlt` field describes the image in the case study. Case studies with `group: "unlisted"` use `noindex` and are omitted from the sitemap. The `selectedWorkGroup` field supplies their category in the galleries and includes them in Selected Work.
+- Gallery covers use a 16:10 canvas. Store a 2560 × 1600 WebP at the `cover` path and add 768 × 480 and 1280 × 800 variants with the `-768.webp` and `-1280.webp` suffixes.
+- The covers use public UI captures from [MrMax](https://mrmax.jp/), [dNothi](https://d.nothi.gov.bd/login), [QA Brains](https://practice.qabrains.com/ecommerce/login), and the [BSEC IPO portal](https://ipo.sec.gov.bd/login), plus a published screen from [Mealkun](https://mealkun.jp/features/). Workflow illustrations follow the case studies and, for Restful Booker, the [published API documentation](https://restful-booker.herokuapp.com/apidoc/).
+- `src/data/profile.ts` holds the biography, experience, education, and expertise.
+- Timeline preview logos use published artwork from [BJIT](https://bjitgroup.com/), [Tappware](https://tappware.com/), [bKash Limited’s app listing](https://play.google.com/store/apps/details?id=com.bKash.customerapp), the [BRAC University Media Center](https://www.bracu.ac.bd/media-center), [Chittagong College](https://ctgcollege.gov.bd/), and [Nasirabad Govt. High School](https://www.nghsctg.edu.bd/).
+- `src/data/certificates.ts` defines category filters and pairs certificate information with local WebP previews and the original PDFs.
+- `src/styles/portfolio.css` holds the editorial design system and CSS animations. `src/scripts/portfolio.ts` handles progressive enhancements, including scroll reveals through IntersectionObserver.
+- The hero serves responsive WebP versions of `public/images/hero-portrait.png`, with the original PNG as a fallback. On desktop, the color wipe starts from whichever edge the pointer enters and tracks movement along that axis. Touch-only devices show the portrait in color, and reduced-motion mode switches to an immediate full-color hover.
+- The email links and local contact draft open Gmail in a browser tab with the recipient filled in. A Netlify production build emits the static Netlify Forms markup and sends one URL-encoded POST when that form is submitted.
 
----
+The typography, framed hero, gallery, accordion, and experience panel draw on the publicly available [Dribbble reference](https://dribbble.com/shots/26995447-Personal-Portfolio-Website-Animations). The reference video also informed the hero reveal order, portrait color mask, project actions, case-study entrance, and related work. Browsers with native cross-document transitions animate page navigation, while direct loads and other browsers use the case-study entrance animation. Reduced motion keeps navigation and filtering immediate.
 
-© All rights reserved by **Raiyan Uddin**.
+The cloud backdrop is a grayscale adaptation of [Cloudy Sky Background by Free Nature Stock](https://commons.wikimedia.org/wiki/File:Cloudy_Sky_Background.jpg), published under CC0. Manrope is bundled locally under the SIL Open Font License.

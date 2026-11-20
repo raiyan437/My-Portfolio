@@ -1,48 +1,41 @@
 ---
-// src/components/Header.astro
-const rawBase = import.meta.env.BASE_URL;
-const base = rawBase.endsWith('/') ? rawBase : rawBase + '/';
-const pathname = Astro.url.pathname;
+import { SITE_CONFIG } from "../config/site";
+import { getBaseUrl } from "../utils/base";
 
-const relativePath = pathname.startsWith(base) 
-  ? '/' + pathname.slice(base.length) 
-  : pathname;
-
-const isHome = relativePath === '/' || relativePath === '/index.html' || relativePath === '/index' || relativePath === '';
-const isAbout = relativePath.includes('about');
-const isSkills = relativePath.includes('skills');
-const isWorks = relativePath.includes('works');
-const isCertifications = relativePath.includes('certifications');
-const isContact = relativePath.includes('contact');
+const base = getBaseUrl();
+const path = Astro.url.pathname.slice(base.length).replace(/\/$/, "");
+const home = path === "";
+const nav = [
+  { name: "Projects", href: base + "works/", route: "works", section: "work" },
+  { name: "Expertise", href: base + (home ? "#expertise" : "skills/"), route: "skills", section: "expertise" },
+  { name: "Experience", href: base + (home ? "#experience" : "about/#experience"), route: "about", section: "experience" },
+  { name: "Certifications", href: base + "certifications/", route: "certifications" },
+];
+const onRoute = (route: string) => path === route || path.startsWith(route + "/");
+const current = (route: string) => onRoute(route) ? (path === route ? "page" : "true") : undefined;
+const contactCurrent = onRoute("contact") ? "page" : undefined;
 ---
+<header class="topbar">
+  <a class="brand" href={base} aria-label={SITE_CONFIG.name + " home"}>
+    <span class="brand-badge">
+      <img class="brand-logo" src={base + SITE_CONFIG.logo} alt="" width="242" height="296" />
+    </span>
+  </a>
+  <nav class="desktop-nav" aria-label="Main">
+    {nav.map(({ name, href, route, section }) => (
+      <a href={href} aria-current={current(route)} data-nav-section={home ? section : undefined}>{name}</a>
+    ))}
+  </nav>
+  <a class="button button--dark topbar-contact" href={base + "contact/"} aria-current={contactCurrent}>Contact</a>
 
-<header class="header-area">
-    <div class="container">
-        <div class="gx-row d-flex align-items-center justify-content-between">
-            <a href={base} class="logo">
-                <img src={`${base}assets/logo.png`} alt="Logo">
-            </a>
-
-            <!-- Navigation Menu -->
-            <nav class="navbar" id="navbar">
-                <ul class="menu" id="menu-main-menu">
-                    <li class={isHome ? "active" : ""}><a href={base}>Home</a></li>
-                    <li class={isAbout ? "active" : ""}><a href={`${base}about/`}>About</a></li>
-                    <li class={isSkills ? "active" : ""}><a href={`${base}skills/`}>Skills</a></li>
-                    <li class={isWorks ? "active" : ""}><a href={`${base}works/`}>Works</a></li>
-                    <li class={isCertifications ? "active" : ""}><a href={`${base}certifications/`}>Certifications</a></li>
-                    <li class={isContact ? "active" : ""}><a href={`${base}contact/`}>Contact</a></li>
-                </ul>
-            </nav>
-
-            <a href={`${base}contact/`} class="theme-btn">Let's talk</a>
-
-            <!-- Mobile Toggle Menu -->
-            <div class="show-menu" id="show-menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </div>
+  <details class="mobile-nav">
+    <summary class="pill"><span>Menu</span><span class="menu-mark" aria-hidden="true"></span></summary>
+    <nav aria-label="Main">
+      {nav.map(({ name, href, route, section }) => (
+        <a href={href} aria-current={current(route)} data-nav-section={home ? section : undefined}>{name}</a>
+      ))}
+      <a href={base + "contact/"} aria-current={contactCurrent}>Contact</a>
+      <a href={base + SITE_CONFIG.resume}>Résumé</a>
+    </nav>
+  </details>
 </header>

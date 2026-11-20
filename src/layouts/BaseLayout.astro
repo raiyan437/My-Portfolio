@@ -1,101 +1,78 @@
 ---
-// src/layouts/BaseLayout.astro
-import Preloader from '../components/Preloader.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { SITE_CONFIG } from '../config/site';
-import { getBaseUrl } from '../utils/base';
+import "@fontsource-variable/manrope";
+import "../styles/portfolio.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { SITE_CONFIG } from "../config/site";
+import { getBaseUrl } from "../utils/base";
 
 interface Props {
   title?: string;
   description?: string;
   image?: string;
-  bodyClass?: string;
+  home?: boolean;
+  noindex?: boolean;
+  showInvitation?: boolean;
 }
 
 const {
   title = SITE_CONFIG.title,
   description = SITE_CONFIG.description,
   image = SITE_CONFIG.ogImage,
-  bodyClass = "main-homepage"
+  home = false,
+  noindex = false,
+  showInvitation = true,
 } = Astro.props;
 
 const base = getBaseUrl();
-const canonicalURL = new URL(Astro.url.pathname, Astro.site || SITE_CONFIG.url);
-const ogImageUrl = new URL(`${base}${image}`, Astro.site || SITE_CONFIG.url).href;
+const origin = Astro.site ?? new URL(SITE_CONFIG.url);
+const canonical = new URL(Astro.url.pathname, origin);
+const socialImage = new URL(base + image, origin);
 ---
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#e4e3df" />
     <title>{title}</title>
-
-    <!-- SEO Meta Tags -->
-    <meta name="description" content={description}>
-    <meta name="author" content={SITE_CONFIG.name}>
-    <link rel="canonical" href={canonicalURL}>
-    <link rel="sitemap" href={`${base}sitemap-index.xml`}>
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content={canonicalURL}>
-    <meta property="og:site_name" content={SITE_CONFIG.name}>
-    <meta property="og:title" content={title}>
-    <meta property="og:description" content={description}>
-    <meta property="og:image" content={ogImageUrl}>
-
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content={canonicalURL}>
-    <meta name="twitter:title" content={title}>
-    <meta name="twitter:description" content={description}>
-    <meta name="twitter:image" content={ogImageUrl}>
-
-    <!-- Favicon / Logo in Browser -->
-    <link rel="icon" type="image/png" href={`${base}assets/logo.png`}>
-    <link rel="shortcut icon" type="image/png" href={`${base}assets/logo.png`}>
-    <link rel="apple-touch-icon" href={`${base}assets/logo.png`}>
-
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css?family=Inter%3A100%2C200%2C300%2C400%2C500%2C600%2C700%2C800%2C%26subset%3Dlatin%2Clatin-ext&display=swap" rel="stylesheet">
-
-    <!-- Local CSS Libraries -->
-    <link rel="stylesheet" href={`${base}assets/bootstrap.min.css`}>
-    <link rel="stylesheet" href={`${base}assets/aos.css`}>
-    <link rel="stylesheet" href={`${base}assets/iconoir.css`}>
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href={`${base}style.css`}>
-</head>
-<body class={bodyClass}>
-
-    <!-- Preloader -->
-    <Preloader />
-
-    <!-- Header -->
-    <Header />
-
-    <!-- Page Specific Slot -->
-    <slot />
-
-    <!-- Footer -->
-    <Footer />
-
-    <!-- Scroll To Top Button -->
-    <button id="scroll-to-top" class="scroll-to-top-btn" aria-label="Scroll to top">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M18 15l-6-6-6 6"/>
-        </svg>
-    </button>
-
-    <!-- Local JS Libraries -->
-    <script is:inline src={`${base}assets/bootstrap.bundle.min.js`}></script>
-    <script is:inline src={`${base}assets/aos.js`}></script>
-    <!-- Custom JS -->
-    <script is:inline src={`${base}main.js`}></script>
-</body>
+    <meta name="description" content={description} />
+    <meta name="author" content={SITE_CONFIG.name} />
+    {noindex ? <meta name="robots" content="noindex, follow" /> : <link rel="canonical" href={canonical} />}
+    <link rel="sitemap" href={base + "sitemap-index.xml"} />
+    <link rel="icon" type="image/png" href={base + SITE_CONFIG.logo} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE_CONFIG.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={socialImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImage} />
+    <script is:inline>
+      window.addEventListener("pagereveal", (event) => {
+        document.documentElement.toggleAttribute("data-native-transition", Boolean(event.viewTransition));
+      });
+    </script>
+  </head>
+  <body id="top">
+    <div class="custom-cursor" aria-hidden="true">
+      <span class="custom-cursor-ring"></span>
+      <span class="custom-cursor-dot"></span>
+    </div>
+    <div class="page-progress" data-page-progress aria-hidden="true" hidden></div>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class:list={["site-shell", { "site-shell--home": home }]}>
+      <Header />
+      <main id="main" tabindex="-1">
+        <slot />
+      </main>
+      <Footer showInvitation={showInvitation} />
+    </div>
+    <script>
+      import "../scripts/portfolio";
+    </script>
+  </body>
 </html>
