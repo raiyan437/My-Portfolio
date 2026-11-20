@@ -53,6 +53,22 @@ const socialImage = new URL(base + image, origin);
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={socialImage} />
+    {home && (
+      <script is:inline>
+        if (document.fonts && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          const root = document.documentElement;
+          const reveal = () => {
+            clearTimeout(timeout);
+            root.removeAttribute("data-hero-font-pending");
+          };
+          root.setAttribute("data-hero-font-pending", "");
+          const timeout = setTimeout(reveal, 2500);
+          document.addEventListener("DOMContentLoaded", () => {
+            document.fonts.load('850 1rem "Manrope Variable"', "Raiyan Uddin").then(reveal, reveal);
+          }, { once: true });
+        }
+      </script>
+    )}
     <script is:inline>
       window.addEventListener("pagereveal", (event) => {
         document.documentElement.toggleAttribute("data-native-transition", Boolean(event.viewTransition));

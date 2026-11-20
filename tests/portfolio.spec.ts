@@ -197,6 +197,28 @@ for (const [width, height] of [[1440, 900], [390, 844], [320, 640]]) {
   });
 }
 
+test("the homepage intro waits for Manrope before revealing text", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  let releaseFont!: () => void;
+  const fontDelay = new Promise<void>((resolve) => { releaseFont = resolve; });
+  await page.route(/manrope-latin-wght-normal[^/]*\.woff2(?:\?.*)?$/, async (route) => {
+    await fontDelay;
+    await route.continue();
+  });
+
+  try {
+    await page.goto("/", { waitUntil: "domcontentloaded" });
+    const title = page.locator(".name-mask > span").first();
+    await expect(title).toHaveCSS("animation-play-state", "paused");
+    await expect(title).toHaveCSS("opacity", "0");
+    releaseFont();
+    await expect(title).toHaveCSS("animation-play-state", "running");
+    await expect(title).toHaveCSS("opacity", "1");
+  } finally {
+    releaseFont();
+  }
+});
+
 test("the desktop highlight tracks navigation and the reading line follows scroll", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto("/");

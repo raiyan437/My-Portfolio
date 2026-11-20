@@ -950,6 +950,9 @@ button { cursor: pointer; }
   .social-links--hero li:nth-child(2) { animation-delay: .22s; }
   .social-links--hero li:nth-child(3) { animation-delay: .26s; }
   .social-links--hero li:nth-child(4) { animation-delay: .3s; }
+  :root[data-hero-font-pending] :is(.name-mask > span, .hero-role, .hero-description, .hero-actions > a, .social-links--hero li) {
+    animation-play-state: paused;
+  }
   .hero-portrait {
     animation: portrait-in .7s var(--ease) .18s both,
       portrait-hover-lock .7s linear .18s backwards;
