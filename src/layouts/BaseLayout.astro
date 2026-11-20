@@ -1,5 +1,6 @@
 ---
 import "@fontsource-variable/manrope";
+import manropeLatin from "@fontsource-variable/manrope/files/manrope-latin-wght-normal.woff2?url";
 import "../styles/portfolio.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
@@ -35,6 +36,7 @@ const socialImage = new URL(base + image, origin);
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#e4e3df" />
+    <link rel="preload" href={manropeLatin} as="font" type="font/woff2" crossorigin="anonymous" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="author" content={SITE_CONFIG.name} />
