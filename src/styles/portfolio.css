@@ -98,7 +98,8 @@ button { cursor: pointer; }
   transition-delay: .15s;
 }
 
-:root[data-page-loading="initial"]:not([data-native-transition]) .page-loader { transition: none; }
+:root[data-page-loading="initial"]:not([data-native-transition]) .page-loader,
+:root[data-page-loading="navigation"] :is(.page-loader, .page-loader-content) { transition: none; }
 .page-loader-content {
   display: grid;
   justify-items: center;
@@ -1285,7 +1286,7 @@ button { cursor: pointer; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .page-loader { transition-delay: 0s; }
+  .page-loader, [data-page-loading] .page-loader, .page-loader-content { transition: none; }
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
   .project-card:is(:hover, :focus-within) .project-visual,
   .certificate-card:is(:hover, :focus-within) img,

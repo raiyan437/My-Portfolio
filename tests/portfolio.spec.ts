@@ -235,7 +235,7 @@ test("shows the loader for a slow internal link and clears it on the new page", 
 
   const click = page.getByRole("link", { name: "Experience", exact: true }).click();
   try {
-    await expect(page.locator(".page-loader")).toBeVisible();
+    await expect(page.locator('html[data-page-loading="navigation"] .page-loader')).toBeVisible();
   } finally {
     releasePage();
     await click;
