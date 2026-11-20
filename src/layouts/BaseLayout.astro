@@ -71,7 +71,13 @@ const socialImage = new URL(base + image, origin);
     )}
     <script is:inline>
       window.addEventListener("pagereveal", (event) => {
-        document.documentElement.toggleAttribute("data-native-transition", Boolean(event.viewTransition));
+        const root = document.documentElement;
+        const transition = event.viewTransition;
+        root.toggleAttribute("data-native-transition", Boolean(transition));
+        transition?.ready.catch(() => root.removeAttribute("data-native-transition"));
+      });
+      window.addEventListener("pageswap", (event) => {
+        event.viewTransition?.ready.catch(() => undefined);
       });
     </script>
   </head>

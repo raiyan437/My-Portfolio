@@ -367,6 +367,27 @@ test("case studies open with a native transition and recommend two other public 
   await expect(page).toHaveURL(/works\/bsec-ipo-system\/$/);
 });
 
+test("uses the case-study entrance when the browser skips a native transition", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await page.addInitScript(() => {
+    window.addEventListener("pagereveal", (event) => {
+      if (!event.viewTransition) return;
+      event.viewTransition.skipTransition();
+      document.documentElement.setAttribute("data-test-transition-skipped", "");
+    });
+  });
+  const errors: string[] = [];
+  page.on("pageerror", ({ message }) => errors.push(message));
+  await page.goto("/works/");
+  test.skip(!(await page.evaluate(() => "onpagereveal" in window)), "Native view transitions are unavailable");
+  await page.getByRole("link", { name: "BSEC IPO System" }).click();
+  await expect(page).toHaveURL(/works\/bsec-ipo-system\/$/);
+  await expect(page.locator("html")).toHaveAttribute("data-test-transition-skipped", "");
+  await expect(page.locator("html")).not.toHaveAttribute("data-native-transition", "");
+  await expect(page.locator(".case-study")).toHaveCSS("animation-name", "case-in");
+  expect(errors).toEqual([]);
+});
+
 test("keeps the résumé and all certificate PDFs available", async ({ page, request, baseURL }) => {
   await page.goto("/");
   const heroResume = await page.locator(".hero").getByRole("link", { name: "View résumé" }).getAttribute("href");
